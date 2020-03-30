@@ -1,0 +1,69 @@
+* {
+  box-sizing: border-box;
+}
+
+
+
+.main-header{
+  height: 98px;
+  width: 932px;
+  border-style: groove;
+}
+
+.main{
+  height: 3208px;
+  width: 932px;
+  border-style: groove;
+  display: flex;
+  flex-direction: column;
+  
+  &__top{
+    height: 560px;
+    width: 932px;
+    border-style: groove;
+  }
+
+  &__introduction{
+    height: 619px;
+    width: 932px;
+    border-style: groove;
+  }
+
+  &__publicity{
+    height: 400px;
+    width: 932px;
+    border-style: groove;
+  }
+
+  &__feature{
+    height: 644px;
+    width: 932px;
+    border-style: groove;
+  }
+
+  &__newproducts{
+    height: 426px;
+    width: 932px;
+    border-style: groove;
+  }
+
+  &__brand{
+    height: 532px;
+    width: 932px;
+    border-style: groove;
+  }
+  &__banner{
+    height: 359px;
+    width: 932px;
+    border-style: groove;
+  }
+  &__footer{
+    height: 354px;
+    width: 932px;
+  
+    
+    border-style: groove;
+  }
+
+}
+
