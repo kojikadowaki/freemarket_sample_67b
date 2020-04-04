@@ -1,0 +1,29 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      profile: プロフィール
+      shipping_address: 送付先住所
+    attributes:
+      user:
+        nickname: ニックネーム
+      profile:
+        family_name: 姓
+        first_name: 名
+        family_name_kana: 姓(ふりがな)
+        first_name_kana: 名(ふりがな) 
+        avatar: アバター
+        birth_year: 誕生年
+        birth_month: 誕生月
+        birth_day: 誕生日
+      shipping_address:
+        address_family_name: 姓
+        address_first_name: 名
+        address_family_name_kana: 姓(ふりがな)
+        address_first_name_kana: 名(ふりがな)
+        post_code: 郵便番号
+        prefecture: 都道府県
+        city: 市区町村
+        address_number: 番地
+        building_name: ビル名・部屋番号など
+        phone_number: 電話番号
