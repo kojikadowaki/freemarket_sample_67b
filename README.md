@@ -7,12 +7,12 @@
 |email|string|null: false, unique: true, index: true|
 |password|integer|null: false|
 ### Association
-- has_many :products
-- has_many :comments
-- has_many :orders
-- has_one :profile
-- has_one :credit_card
-- has_one :shipping_address
+- has_many :products, dependent: :destroy
+- has_many :comments, dependent: :destroy
+- has_many :orders, dependent: :destroy
+- has_one :profile, dependent: :destroy
+- has_one :credit_card, dependent: :destroy
+- has_one :shipping_address, dependent: :destroy
 
 ## profilesテーブル
 |Column|Type|Options|
@@ -71,8 +71,8 @@
 |category_id|references|null: false, foreign_key: true|
 |user_id|references|null: false, foreign_key: true|
 ### Association
-- has_many :comments
-- has_many :product_images
+- has_many :comments, dependent: :destroy
+- has_many :product_images, dependent: :destroy
 - belongs_to :user
 - belongs_to :size
 - belongs_to :ship_from_location
@@ -80,7 +80,7 @@
 - belongs_to :derivery_fee_payer
 - belongs_to :derivery_day
 - belongs_to :category
-- has_one :order
+- has_one :order, dependent: :destroy
 
 ## product_imagesテーブル
 |Column|Type|Options|
@@ -95,37 +95,37 @@
 |------|----|-------|
 |size|string|null: false|
 ### Association
-- has_many :products
+- has_many :products, dependent: :destroy
 - has_many :categories, through: :category_sizes
-- has_many :category_sizes
+- has_many :category_sizes, dependent: :destroy
 
 ## ship_from_locationsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |ship_from_location|string|null: false|
 ### Association
-- has_many :products
+- has_many :products, dependent: :destroy
 
 ## product_conditionsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |product_condition|string|null: false|
 ### Association
-- has_many :products
+- has_many :products, dependent: :destroy
 
 ## derivery_fee_payersテーブル
 |Column|Type|Options|
 |------|----|-------|
 |derivery_fee_payer|string|null: false|
 ### Association
-- has_many :products
+- has_many :products, dependent: :destroy
 
 ## derivery_daysテーブル
 |Column|Type|Options|
 |------|----|-------|
 |derivery_day|integer|null: false|
 ### Association
-- has_many :products
+- has_many :products, dependent: :destroy
 
 ## categoriesテーブル
 |Column|Type|Options|
@@ -133,9 +133,9 @@
 |name|string|null: false|
 |ancestry|string|null: false|
 ### Association
-- has_many :products
+- has_many :products, dependent: :destroy
 - has_many :sizes, through: :category_sizes
-- has_many :category_sizes
+- has_many :category_sizes, dependent: :destroy
 
 ## category_sizesテーブル
 |Column|Type|Options|
