@@ -7,8 +7,9 @@ class CreateProfiles < ActiveRecord::Migration[5.0]
       t.string :family_name_kana, null: false
       t.integer :birth_year, null: false
       t.integer :birth_month, null: false
+      t.integer :birth_day, null: false
       t.string :avatar
-      t.references :user
+      t.references :user, null: false
       t.timestamps
     end
   end

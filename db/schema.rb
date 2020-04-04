@@ -19,8 +19,9 @@ ActiveRecord::Schema.define(version: 20200401205117) do
     t.string   "family_name_kana", null: false
     t.integer  "birth_year",       null: false
     t.integer  "birth_month",      null: false
+    t.integer  "birth_day",        null: false
     t.string   "avatar"
-    t.integer  "user_id"
+    t.integer  "user_id",          null: false
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
@@ -31,12 +32,12 @@ ActiveRecord::Schema.define(version: 20200401205117) do
     t.string   "address_family_name",      null: false
     t.string   "address_first_name_kana",  null: false
     t.string   "address_family_name_kana", null: false
-    t.string   "post_code",                null: false
+    t.integer  "post_code",                null: false
     t.string   "prefecture",               null: false
     t.string   "city",                     null: false
     t.string   "address_number",           null: false
     t.string   "building_name"
-    t.string   "phone_number"
+    t.integer  "phone_number"
     t.integer  "user_id",                  null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
