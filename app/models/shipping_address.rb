@@ -25,9 +25,9 @@
 class ShippingAddress < ApplicationRecord
   belongs_to :user, optional: true
 
-  VALID_NAME_REGEX = /[\p{Hiragana}\p{Katakana}\p{Han}]+/
-  VALID_KANA_REGEX = /[\p{Hiragana}\p{Katakana}]+/
-  VALID_PHONE_REGEX = /\A0\d{9,10}/
+  VALID_NAME_REGEX = /\A[\p{Hiragana}\p{Katakana}\p{Han}]+\z/
+  VALID_KANA_REGEX = /\A[\p{Hiragana}\p{Katakana}]+\z/
+  VALID_PHONE_REGEX = /\A0\d{9,10}\z/
 
   validates :address_first_name, :address_family_name,
             presence: true,

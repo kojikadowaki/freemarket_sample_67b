@@ -24,8 +24,8 @@ require 'date'
 class Profile < ApplicationRecord
   belongs_to :user, optional: true
 
-  VALID_NAME_REGEX = /[\p{Hiragana}\p{Katakana}\p{Han}]+/
-  VALID_KANA_REGEX = /[\p{Hiragana}\p{Katakana}]+/
+  VALID_NAME_REGEX = /\A[\p{Hiragana}\p{Katakana}\p{Han}]+\z/
+  VALID_KANA_REGEX = /\A[\p{Hiragana}\p{Katakana}]+\z/
 
   validates :first_name, :family_name,
             presence: true,
