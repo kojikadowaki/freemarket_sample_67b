@@ -17,6 +17,13 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
+
+require 'rails_helper'
+RSpec.describe User, type: :model do
+  pending "add some examples to (or delete) #{__FILE__}"
+
+end
+
 describe User do
   describe '#create' do
     it '正規のユーザが登録できる' do
@@ -86,4 +93,5 @@ describe User do
       end
     end
   end
-end
+
+
