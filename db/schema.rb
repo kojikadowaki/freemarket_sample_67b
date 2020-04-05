@@ -37,10 +37,11 @@ ActiveRecord::Schema.define(version: 20200401205117) do
     t.string   "city",                     null: false
     t.string   "address_number",           null: false
     t.string   "building_name"
-    t.integer  "phone_number"
+    t.string   "phone_number"
     t.integer  "user_id",                  null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.index ["phone_number"], name: "index_shipping_addresses_on_phone_number", unique: true, using: :btree
     t.index ["user_id"], name: "index_shipping_addresses_on_user_id", using: :btree
   end
 

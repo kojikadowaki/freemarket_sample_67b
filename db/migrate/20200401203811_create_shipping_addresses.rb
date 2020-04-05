@@ -10,9 +10,10 @@ class CreateShippingAddresses < ActiveRecord::Migration[5.0]
       t.string :city, null: false
       t.string :address_number, null: false
       t.string :building_name
-      t.integer :phone_number
+      t.string :phone_number
       t.references :user, null: false
       t.timestamps
     end
+    add_index :shipping_addresses, :phone_number, unique: true
   end
 end
