@@ -4,3 +4,4 @@ class DeriveryDay < ActiveHash::Base
     {id: 3, derivery_day: '4~7日で発送'}
   ]
 end
+
