@@ -43,7 +43,7 @@ class ShippingAddress < ApplicationRecord
             }
   validates :prefecture,
             presence: true
-  validate  :prefecture_cannnot_be_invalid
+  validate  :prefecture_cannot_be_invalid
   validates :city,
             presence: true,
             length: { maximum: 10 }
@@ -60,7 +60,7 @@ class ShippingAddress < ApplicationRecord
 
   private
 
-  def prefecture_cannnot_be_invalid
+  def prefecture_cannot_be_invalid
     pref_data = JpPrefecture::Prefecture.all.map{ |data| data.name }
     unless pref_data.include?(prefecture)
       errors.add(:prefecture, 'は都道府県ではありません')
