@@ -1,0 +1,45 @@
+%h2 Sign up(3/3)
+= form_for @address do |f|
+  = render "devise/shared/error_messages", resource: @address
+  .field
+    = f.label :address_family_name
+    %br/
+    = f.text_field :address_family_name
+  .field
+    = f.label :address_first_name
+    %br/
+    = f.text_field :address_first_name
+  .field
+    = f.label :address_family_name_kana
+    %br/
+    = f.text_field :address_family_name_kana
+  .field
+    = f.label :address_first_name_kana
+    %br/
+    = f.text_field :address_first_name_kana
+  .field
+    = f.label :post_code
+    %br/
+    = f.text_field :post_code
+  .field
+    = f.label :prefecture
+    %br/
+    = f.text_field :prefecture
+  .field
+    = f.label :city
+    %br/
+    = f.text_field :city
+  .field
+    = f.label :address_number
+    %br/
+    = f.text_field :address_number
+  .field
+    = f.label :building_name
+    %br/
+    = f.text_field :building_name
+  .field
+    = f.label :phone_number
+    %br/
+    = f.text_field :phone_number
+  .actions
+    = f.submit "Submit"
