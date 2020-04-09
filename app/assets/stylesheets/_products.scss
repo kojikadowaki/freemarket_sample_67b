@@ -184,7 +184,7 @@ a {
         padding-left: 20px;
         @include space-around;
 
-        &__login-item {
+        &__login-item, &__mypage-item {
           color: #000;
           font-size: 14px;
           font-family: YuGothic;
