@@ -9,4 +9,6 @@ Rails.application.routes.draw do
     get  'shipping_addresses', to: 'users/registrations#new_address'
     post 'shipping_addresses', to: 'users/registrations#create_address'
   end
+
+  resources :products, only: [:new, :create]
 end
