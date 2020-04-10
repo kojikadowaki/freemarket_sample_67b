@@ -9,13 +9,47 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-ActiveRecord::Schema.define(version: 20200401205117) do
+ActiveRecord::Schema.define(version: 20200405101728) do
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
+    t.string   "ancestry",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "ancestry"
-    t.index ["ancestry"], name: "index_categories_on_ancestry", using: :btree
+  end
+
+  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "buyer_user_id", null: false
+    t.integer  "product_id",    null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["buyer_user_id"], name: "index_orders_on_buyer_user_id", using: :btree
+    t.index ["product_id"], name: "index_orders_on_product_id", using: :btree
+  end
+
+  create_table "product_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "url",        null: false
+    t.integer  "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_product_images_on_product_id", using: :btree
+  end
+
+  create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",                                null: false
+    t.integer  "price",                               null: false
+    t.text     "description",           limit: 65535, null: false
+    t.integer  "size_id",                             null: false
+    t.integer  "ship_from_location_id"
+    t.integer  "product_condition_id"
+    t.integer  "derivery_fee_payer_id"
+    t.integer  "derivery_day_id"
+    t.integer  "category_id"
+    t.integer  "user_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["category_id"], name: "index_products_on_category_id", using: :btree
+    t.index ["size_id"], name: "index_products_on_size_id", using: :btree
+    t.index ["user_id"], name: "index_products_on_user_id", using: :btree
   end
 
   create_table "profiles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -51,70 +85,8 @@ ActiveRecord::Schema.define(version: 20200401205117) do
     t.index ["user_id"], name: "index_shipping_addresses_on_user_id", using: :btree
   end
 
-  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",       null: false
-    t.string   "ancestry",   null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "derivery_days", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "derivery_day", null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  create_table "derivery_fee_payers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "derivery_fee_payer", null: false
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-  end
-
-  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "buyer_user_id", null: false
-    t.integer  "product_id",    null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["buyer_user_id"], name: "index_orders_on_buyer_user_id", using: :btree
-    t.index ["product_id"], name: "index_orders_on_product_id", using: :btree
-  end
-
-  create_table "product_conditions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "product_condition", null: false
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
-
-  create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",                                null: false
-    t.integer  "price",                               null: false
-    t.text     "description",           limit: 65535, null: false
-    t.integer  "size_id",                             null: false
-    t.integer  "ship_from_location_id"
-    t.integer  "product_condition_id"
-    t.integer  "derivery_fee_payer_id"
-    t.integer  "derivery_day_id"
-    t.integer  "category_id"
-    t.integer  "user_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.index ["category_id"], name: "index_products_on_category_id", using: :btree
-    t.index ["derivery_day_id"], name: "index_products_on_derivery_day_id", using: :btree
-    t.index ["derivery_fee_payer_id"], name: "index_products_on_derivery_fee_payer_id", using: :btree
-    t.index ["product_condition_id"], name: "index_products_on_product_condition_id", using: :btree
-    t.index ["ship_from_location_id"], name: "index_products_on_ship_from_location_id", using: :btree
-    t.index ["size_id"], name: "index_products_on_size_id", using: :btree
-    t.index ["user_id"], name: "index_products_on_user_id", using: :btree
-  end
-
-  create_table "ship_from_locations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "ship_from_location", null: false
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-  end
-
   create_table "sizes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "size"
+    t.string   "size",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -132,13 +104,11 @@ ActiveRecord::Schema.define(version: 20200401205117) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   end
+
   add_foreign_key "orders", "products"
   add_foreign_key "orders", "users", column: "buyer_user_id"
+  add_foreign_key "product_images", "products"
   add_foreign_key "products", "categories"
-  add_foreign_key "products", "derivery_days"
-  add_foreign_key "products", "derivery_fee_payers"
-  add_foreign_key "products", "product_conditions"
-  add_foreign_key "products", "ship_from_locations"
   add_foreign_key "products", "sizes"
   add_foreign_key "products", "users"
 end
