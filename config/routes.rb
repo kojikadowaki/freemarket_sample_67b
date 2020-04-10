@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  root to: 'products#index'
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
@@ -9,6 +8,7 @@ Rails.application.routes.draw do
     get  'shipping_addresses', to: 'users/registrations#new_address'
     post 'shipping_addresses', to: 'users/registrations#create_address'
   end
+  root to: 'products#index'
+  resources :products, only: [:index, :new, :create]
 
-  resources :products, only: [:new, :create]
 end
