@@ -1,0 +1,35 @@
+.wrapper
+  .form
+    = form_for [@product] do |f|
+      #image-box
+        =f.fields_for :product_images do |image|
+          %div.js-file_group{data: {index: "= image.index"}}
+            = image.label :product_image, "出品画像"
+            = image.file_field :link, multiple: true, class: "js-file"
+            %br
+            %span.js-remove 
+              消去
+      =f.label :name, "商品名"
+      =f.text_field :name, placeholder: "商品名", autofocus: 'true'
+      =f.label :description, "商品の説明"
+      =f.text_area :description, placeholder: "商品の説明", autofocus: 'true'
+      
+      
+      =f.label :product_condition, "商品の状態"
+      =f.collection_select(:product_condition, @conditions, :id, :product_condition)
+
+      =f.label :derivery_fee_payer, "配送料の負担"
+      =f.collection_select(:derivery_fee_payer, @payers, :id, :derivery_fee_payer)
+
+      =f.label :ship_from_location, "発送元の地域"
+      =f.collection_select(:ship_from_location, @locations, :id, :name)
+
+      =f.label :derivery_day, "発送までの日数"
+      =f.collection_select(:derivery_day, @days, :id, :derivery_day)
+
+      =f.label :price, "販売価格"
+      =f.number_field :price, autofocus: 'true'
+
+      =f.submit '出品する'
+
+
