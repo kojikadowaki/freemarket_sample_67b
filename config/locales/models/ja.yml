@@ -7,6 +7,7 @@ ja:
     attributes:
       user:
         nickname: ニックネーム
+        email: メールアドレス
       profile:
         family_name: 姓
         first_name: 名
