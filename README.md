@@ -78,7 +78,6 @@
 - has_many :product_images, dependent: :destroy
 - belongs_to :user
 - belongs_to :size
-- belongs_to :brand
 - belongs_to_active_hash :ship_from_location
 - belongs_to_active_hash :product_condition
 - belongs_to_active_hash :product_status
