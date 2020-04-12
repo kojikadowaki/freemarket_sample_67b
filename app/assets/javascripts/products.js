@@ -9,9 +9,9 @@ $(document).on('turbolinks:load', ()=> {
     return html;
   }
   let fileIndex = [1,2,3,4,5,6,7,8,9,10];
-
-  $('#image-box').on('change', 'js-file', function(e){
-    $('image-box').append(buildFieldField(fileIndex[0]));
+  $('#image-box').on('change', `input[type="file"]`, function(e){
+    e.preventDefault();
+    $('#image-box').append(buildFieldField(fileIndex[0]));
     fileIndex.shift();
     fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
   });
