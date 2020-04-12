@@ -30,7 +30,8 @@
 #
 class Product < ApplicationRecord
   has_many :comments, dependent: :destroy
-  has_many :product_images, dependent: :destroy
+  has_many :product_images
+  accepts_nested_attributes_for :product_images, allow_destroy: true
   belongs_to :user
   belongs_to :size
   belongs_to :category
@@ -41,4 +42,7 @@ class Product < ApplicationRecord
   belongs_to_active_hash :product_condition
   belongs_to_active_hash :derivery_fee_payer
   belongs_to_active_hash :derivery_day
+  validates :name, :price, :description, :size_id, :ship_from_location_id, :product_condition_id, :derivery_fee_payer_id, 
+  :derivery_day_id, :category_id, :user_id, presence: true
+  validates_associated :product_images
 end
