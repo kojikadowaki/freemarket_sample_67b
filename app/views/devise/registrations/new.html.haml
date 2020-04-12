@@ -1,25 +1,27 @@
-%h2 Sign up(1/3)
-= form_for(@user, url: user_registration_path) do |f|
-  = render "devise/shared/error_messages", resource: @user
-  .field
-    = f.label :nickname
-    %br/
-    = f.text_field :nickname
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Next"
-= render "devise/shared/links"
+.signup-container
+  %header.signup-header
+    %h1
+      = link_to root_path, class: 'signup-header__logo' do
+        = image_tag 'logo.png', size: '140x40', alt: 'ロゴ'
+    = render partial: 'progress', locals: { progress: 0 }
+
+  .signup-content
+    %h2.signup-title 会員情報入力
+    = form_for(@user, url: user_registration_path, html: { class: 'signup-form' }) do |f|
+      = render "devise/shared/error_messages", resource: @user
+      .signup-form__field
+        = f.label :nickname, class: 'signup-form__label--required'
+        = f.text_field :nickname, autofocus: true, placeholder: '例) フリマ次郎', class: 'signup-form__text-field'
+      .signup-form__field
+        = f.label :email, class: 'signup-form__label--required'
+        = f.email_field :email, autocomplete: 'email', placeholder: 'PC・携帯どちらでも可', class: 'signup-form__email-field'
+      .signup-form__field
+        = f.label :password, class: 'signup-form__label--required'
+        = f.password_field :password, autocomplete: 'new-password', placeholder: "#{@minimum_password_length}文字以上", class: 'signup-form__password-field'
+      .signup-form__field
+        = f.label :password_confirmation, class: 'signup-form__label--required'
+        = f.password_field :password_confirmation, autocomplete: 'new-password', placeholder: "#{@minimum_password_length}文字以上", class: 'signup-form__password-field'
+      .signup-form__actions
+        = f.submit '次へ進む', class: 'signup-form__submit'
+    -# = render "devise/shared/links"
+
