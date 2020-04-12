@@ -675,6 +675,8 @@
         - if user_signed_in?
           .nav-right__mypage
             = link_to "マイページ", "#", class: "nav-right__mypage-item"
+          .nav-right__logout
+            = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-right__logout-item"
         - else
           .nav-right__login
             = link_to "ログイン", new_user_session_path, class: "nav-right__login-item"
