@@ -1,0 +1,161 @@
+$wallpaper_color: #FAFAFA;
+$disabled_color:  #AAAAAA;
+$completed_color: #3CCACE;
+
+html {
+  background-color: $wallpaper_color;
+}
+
+.signup-container {
+  width: 700px;
+  margin: 0 auto;
+}
+
+.signup-header {
+  height: 150px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  &__logo:hover {
+    opacity: 0.5;
+  }
+}
+
+.progress-bar {
+  display: flex;
+  margin: 0 0 1rem 0;
+  justify-content: space-between;
+  %__item {
+    flex: 2;
+    width: 80px;
+    position: relative;
+    padding: 0 0 14px 0;
+    font-size: 12px;
+    line-height: 1.5;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: visible;
+    min-width: 0;
+    text-align: center;
+    border-bottom: 2px solid $disabled_color;
+    &:first-child {
+      flex: 1;
+      &:before {
+        left: 0;
+      }
+    }
+    &:last-child {
+      flex: 1;
+      text-align: right;
+      &:before {
+        right: 0;
+        left: auto;
+      }
+    }
+    &:before {
+      content: "";
+      display: block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      position: absolute;
+      left: calc(50% - 7px);
+      bottom: -7px;
+      z-index: 3;
+      transition: all .2s ease-in-out;
+    }
+  }
+  &__item {
+    @extend %__item;
+    color: $disabled_color;
+    &:before {
+      background-color: $disabled_color;
+      border: 2px solid $wallpaper_color;
+    }
+    &--complete, &--active {
+      @extend %__item;
+      color: $completed_color;
+      &:not(:first-child):after {
+        content: "";
+        display: block;
+        width: 100%;
+        position: absolute;
+        bottom: -2px;
+        left: -50%;
+        z-index: 2;
+        border-bottom: 2px solid $completed_color;
+      }
+      &:last-child:after {
+        width: 200%;
+        left: -100%;
+      }
+    }
+    &--complete:before {
+      background-color: $completed_color;
+      border: 2px solid $wallpaper_color;
+    }
+    &--active:before {
+      background-color: white;
+      border: 2px solid $completed_color;
+    }
+  }
+}
+
+.signup-content {
+  background-color: #fff;
+  padding: 24px 0;
+}
+
+.signup-title {
+  padding: 32px 0;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  border-bottom: 1px solid #EEEEEE;
+}
+
+.signup-form {
+  &__field, &__actions {
+    width: 300px;
+    margin: 24px auto;
+  }
+  %__label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  &__label {
+    @extend %__label;
+    &--required {
+      @extend %__label;
+      &:after {
+        content: "必須";
+        font-size: 10px;
+        color: white;
+        background-color: $completed_color;
+        margin-left: 8px;
+        padding: 4px;
+        border-radius: 2px;
+      }
+    }
+  }
+  &__text-field, &__email-field, &__password-field {
+    width: 100%;
+    height: 48px;
+    padding: 0 8px;
+    line-height: 48px;
+    border: 1px solid #AAAAAA;
+    border-radius: 4px;
+  }
+  &__submit {
+    width: 100%;
+    height: 48px;
+    background-color: $completed_color;
+    color: white;
+    line-height: 48px;
+    text-align: center;
+    border-width: 0;
+    cursor: pointer;
+  }
+}
