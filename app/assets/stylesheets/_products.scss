@@ -184,7 +184,7 @@ a {
         padding-left: 20px;
         @include space-around;
 
-        &__login-item, &__mypage-item {
+        &__login-item, &__logout-item, &__mypage-item {
           color: #000;
           font-size: 14px;
           font-family: YuGothic;
@@ -673,7 +673,7 @@ a {
       }
       .icon_camera{
         width: 54px;
-        right: 40x;
+        right: 40px;
       }
   }
 }
