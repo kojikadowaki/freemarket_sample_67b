@@ -2,34 +2,40 @@
   .form
     = form_for [@product] do |f|
       #image-box
-        =f.fields_for :product_images do |image|
+        = f.fields_for :product_images do |image|
           %div.js-file_group{data: {index: "= image.index"}}
             = image.label :product_image, "出品画像"
-            = image.file_field :link, multiple: true, class: "js-file"
+            = image.file_field :url, multiple: false, class: "js-file", name: "product[product_images_attributes][0][url]"
             %br
             %span.js-remove 
               消去
       =f.label :name, "商品名"
       =f.text_field :name, placeholder: "商品名", autofocus: 'true'
+      %br
       =f.label :description, "商品の説明"
       =f.text_area :description, placeholder: "商品の説明", autofocus: 'true'
-      
-      
+      %br
+      =f.label :category, "カテゴリー"
+      =f.number_field :category_id, autofocus: 'true'
+      %br
+      =f.label :size, "size"
+      =f.number_field :size_id, autofocus: 'true'
+      %br
       =f.label :product_condition, "商品の状態"
-      =f.collection_select(:product_condition, @conditions, :id, :product_condition)
-
+      =f.collection_select(:product_condition_id, @conditions, :id, :product_condition, prompt: "選択して下さい")
+      %br
       =f.label :derivery_fee_payer, "配送料の負担"
-      =f.collection_select(:derivery_fee_payer, @payers, :id, :derivery_fee_payer)
-
+      =f.collection_select(:derivery_fee_payer_id, @payers, :id, :derivery_fee_payer, prompt: "選択して下さい")
+      %br
       =f.label :ship_from_location, "発送元の地域"
-      =f.collection_select(:ship_from_location, @locations, :id, :name)
-
+      =f.collection_select(:ship_from_location_id, @locations, :id, :name, prompt: "選択して下さい")
+      %br
       =f.label :derivery_day, "発送までの日数"
-      =f.collection_select(:derivery_day, @days, :id, :derivery_day)
-
+      =f.collection_select(:derivery_day_id, @days, :id, :derivery_day, prompt: "選択して下さい")
+      %br
       =f.label :price, "販売価格"
       =f.number_field :price, autofocus: 'true'
-
+      %br
       =f.submit '出品する'
 
 
