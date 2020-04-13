@@ -1,18 +1,20 @@
 $wallpaper_color: #FAFAFA;
 $disabled_color:  #AAAAAA;
 $completed_color: #3CCACE;
+$header_width: 700px;
+$header_height: 150px;
+$content_width: 700px;
+$form_width: 300px;
 
-html {
+.signup-container {
+  width: 100vw;
   background-color: $wallpaper_color;
 }
 
-.signup-container {
-  width: 700px;
-  margin: 0 auto;
-}
-
 .signup-header {
-  height: 150px;
+  width: $header_width;
+  height: $header_height;
+  margin: 0 auto;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -102,7 +104,9 @@ html {
 }
 
 .signup-content {
-  background-color: #fff;
+  width: $content_width;
+  margin: 0 auto;
+  background-color: white;
   padding: 24px 0;
 }
 
@@ -116,7 +120,7 @@ html {
 
 .signup-form {
   &__field, &__actions {
-    width: 300px;
+    width: $form_width;
     margin: 24px auto;
   }
   %__label {
@@ -140,13 +144,30 @@ html {
       }
     }
   }
-  &__text-field, &__email-field, &__password-field {
+  &__birthdate-field {
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  %__input-field {
     height: 48px;
     padding: 0 8px;
     line-height: 48px;
     border: 1px solid #AAAAAA;
     border-radius: 4px;
+  }
+  &__text-field, &__email-field, &__password-field {
+    @extend %__input-field;
+    width: $form_width;
+  }
+  &__select-year {
+    @extend %__input-field;
+    width: calc(#{$form_width} * 0.3);
+  }
+  &__select-month, &__select-day {
+    @extend %__input-field;
+    width: calc(#{$form_width} * 0.25);
   }
   &__submit {
     width: 100%;
@@ -157,5 +178,9 @@ html {
     text-align: center;
     border-width: 0;
     cursor: pointer;
+  }
+
+  .error-messages {
+    color: red;
   }
 }
