@@ -63,11 +63,14 @@
 |name|string|null: false|
 |price|integer|null: false|
 |description|text|null: false|
+|brand|string|
 |size_id|references|null: false, foreign_key: true|
-|ship_from_location_id|references|null: false, foreign_key: true|
-|product_condition_id|references|null: false, foreign_key: true|
-|derivery_fee_payer_id|references|null: false, foreign_key: true|
-|derivery_day_id|references|null: false, foreign_key: true|
+|ship_from_location_id|integer|null: false|
+|product_condition_id|integer|null: false|
+|product_status_id|integer|null: false|
+|derivery_fee_payer_id|integer|null: false|
+|derivery_day_id|integer|null: false|
+|derivery_method_id|integer|null: false|
 |category_id|references|null: false, foreign_key: true|
 |user_id|references|null: false, foreign_key: true|
 ### Association
@@ -75,12 +78,15 @@
 - has_many :product_images, dependent: :destroy
 - belongs_to :user
 - belongs_to :size
-- belongs_to :ship_from_location
-- belongs_to :product_condition
-- belongs_to :derivery_fee_payer
-- belongs_to :derivery_day
+- belongs_to_active_hash :ship_from_location
+- belongs_to_active_hash :product_condition
+- belongs_to_active_hash :product_status
+- belongs_to_active_hash :derivery_fee_payer
+- belongs_to_active_hash :derivery_day
+- belongs_to_active_hash :derivery_method
 - belongs_to :category
 - has_one :order, dependent: :destroy
+- has_one :buyer_user, through: :orders
 
 ## product_imagesテーブル
 |Column|Type|Options|
@@ -98,34 +104,6 @@
 - has_many :products, dependent: :destroy
 - has_many :categories, through: :category_sizes
 - has_many :category_sizes, dependent: :destroy
-
-## ship_from_locationsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|ship_from_location|string|null: false|
-### Association
-- has_many :products, dependent: :destroy
-
-## product_conditionsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|product_condition|string|null: false|
-### Association
-- has_many :products, dependent: :destroy
-
-## derivery_fee_payersテーブル
-|Column|Type|Options|
-|------|----|-------|
-|derivery_fee_payer|string|null: false|
-### Association
-- has_many :products, dependent: :destroy
-
-## derivery_daysテーブル
-|Column|Type|Options|
-|------|----|-------|
-|derivery_day|integer|null: false|
-### Association
-- has_many :products, dependent: :destroy
 
 ## categoriesテーブル
 |Column|Type|Options|
