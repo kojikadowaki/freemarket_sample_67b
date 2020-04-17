@@ -9,6 +9,11 @@ Rails.application.routes.draw do
     post 'shipping_addresses', to: 'users/registrations#create_address'
   end
   root to: 'products#index'
-  resources :products, only: [:index, :new, :create]
-
+  resources :products, only: [:index, :new, :create] do
+    collection do
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json'}
+      get 'get_size', defaults: { format: 'json' }
+    end
+  end
 end
