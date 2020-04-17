@@ -4,10 +4,26 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @product.product_images.new
-    @conditions = ProductCondition.all
-    @payers = DeriveryFeePayer.all
-    @days = DeriveryDay.all
-    @locations = ShipFromLocation.all
+
+    @category_parents = ["選択して下さい"]
+    Category.where(ancestry: nil).each do |parent|
+      @category_parents << parent.name
+    end
+  end
+
+  def get_category_children
+    @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
+  end
+
+  def get_category_grandchildren
+    @category_grandchildren = Category.find("#{params[:child_id]}").children
+  end
+  
+  def get_size
+    grandchild_category = Category.find("#{params[:grandchild_id]}")
+    if related_size = grandchild_category.sizes[0]
+      @sizes = related_size.children
+    end
   end
   
   def create
