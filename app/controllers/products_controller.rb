@@ -47,6 +47,13 @@ class ProductsController < ApplicationController
       product = Product.find(@product.id)
       product.update(derivery_day_id: derivery_day_id)
 
+      derivery_method_id = DeriveryMethod.find(@product.derivery_method_id).id
+      product = Product.find(@product.id)
+      product.update(derivery_method_id: derivery_method_id)
+
+      product_status = ProductStatus.find(@product.product_status_id).id
+      product = Product.find(@product.id)
+      product.update(product_status_id: product_status_id)
       redirect_to root_path
     else
       render :new
@@ -56,7 +63,7 @@ class ProductsController < ApplicationController
   private
   def product_params
     params.require(:product).permit(:name, :price, :description, :ship_from_location_id, 
-      :product_condition_id,:derivery_fee_payer_id, :derivery_day_id, :size_id, :category_id,
+      :product_condition_id,:product_status_id, :derivery_fee_payer_id, :derivery_day_id, :size_id, :category_id,
       product_images_attributes: [:url]).merge(user_id: current_user.id)
   end
 end
