@@ -1,11 +1,11 @@
 $(function(){
   function selected_category(category){
-    var html = `<option value="${category.name}" data-category="${category.id}">${category.name}</option>`;
+    var html = `<option value="${category.id}" data-category="${category.id}">${category.name}</option>`;
     return html;
   }
 
   function selected_size(size){
-    var html =`<option value="${size.size}">${size.size}</option>`;
+    var html =`<option value="${size.id}">${size.size}</option>`;
     return html;
   }
 
