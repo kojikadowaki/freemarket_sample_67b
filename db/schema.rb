@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200415125656) do
+ActiveRecord::Schema.define(version: 20200418033847) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
@@ -59,6 +59,9 @@ ActiveRecord::Schema.define(version: 20200415125656) do
     t.integer  "user_id"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "brand"
+    t.integer  "product_status_id",                   null: false
+    t.integer  "derivery_method_id",                  null: false
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
     t.index ["size_id"], name: "index_products_on_size_id", using: :btree
     t.index ["user_id"], name: "index_products_on_user_id", using: :btree
@@ -108,7 +111,6 @@ ActiveRecord::Schema.define(version: 20200415125656) do
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "nickname",                            null: false
     t.string   "email",                  default: "", null: false
-    t.integer  "password",                            null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"

@@ -3,6 +3,7 @@
 # Table name: products
 #
 #  id                    :integer          not null, primary key
+#  brand                 :string(255)
 #  description           :text(65535)      not null
 #  name                  :string(255)      not null
 #  price                 :integer          not null
@@ -11,7 +12,9 @@
 #  category_id           :integer
 #  derivery_day_id       :integer
 #  derivery_fee_payer_id :integer
+#  derivery_method_id    :integer          not null
 #  product_condition_id  :integer
+#  product_status_id     :integer          not null
 #  ship_from_location_id :integer
 #  size_id               :integer          not null
 #  user_id               :integer
