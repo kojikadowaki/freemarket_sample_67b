@@ -104,8 +104,9 @@ a {
 
     .nav-left {
         height: 32px;
-        width: 204px;
+        width: 400px;
         display: flex;
+        margin-top: 5px;
       }
 
 /*ドロップメニュー start*********************************************************************************************************/
@@ -114,11 +115,7 @@ a {
         width: 100px;
         z-index: 2;
         display: flex; 
-        font-size: 14px;
-      }
-
-      .nav-category > li {/*親階層のみ幅を25%にする*/
-        width: 25%;
+        font-size: 12px;   
       }
 
       /*全てのリスト・リンク共通*/
@@ -126,24 +123,25 @@ a {
         list-style: none;
         position: relative;
       }
+      
       .nav-category li a {
-        padding: 0 0 0 10px;
+        padding: 0 0 0 5px;
         color: #333;
         font-family: YuGothic;
-        font-size: 1４px;
+        font-size: 14px;
         display: block;
         height: 2.3rem;
-        line-height: 2rem;
         text-align: left;
-        text-decoration: none;
-        width: 250px;
       }
 
       /*子階層以降共通*/
       .nav-category li li {
         height: 0;
+        width: 240px;
+        padding: 0 0 0 5px;
         overflow: hidden;
-        transition: .2s;
+        transition: .0.5s;
+        line-height: 3rem;
         background-color: #fff;
       }
       .nav-category li li a {
@@ -171,9 +169,7 @@ a {
         color: #333; 
         font-size: 14px;
         margin-left: 25px;
-        margin-top: 5px;
-        font-family: YuGothic;
-        text-decoration: none;   
+        font-family: YuGothic; 
       }
 /*ドロップメニュー end*********************************************************************************************************/
 
@@ -188,14 +184,12 @@ a {
           color: #000;
           font-size: 14px;
           font-family: YuGothic;
-          text-decoration: none;
         }
 
         &__new-item {
           color: #000;
           font-size: 14px;
           font-family: YuGothic;
-          text-decoration: none;
         }
       } 
   
