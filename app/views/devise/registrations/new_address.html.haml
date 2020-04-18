@@ -1,45 +1,54 @@
-%h2 Sign up(3/3)
-= form_for @address do |f|
-  = render "devise/shared/error_messages", resource: @address
-  .field
-    = f.label :address_family_name
-    %br/
-    = f.text_field :address_family_name
-  .field
-    = f.label :address_first_name
-    %br/
-    = f.text_field :address_first_name
-  .field
-    = f.label :address_family_name_kana
-    %br/
-    = f.text_field :address_family_name_kana
-  .field
-    = f.label :address_first_name_kana
-    %br/
-    = f.text_field :address_first_name_kana
-  .field
-    = f.label :post_code
-    %br/
-    = f.text_field :post_code
-  .field
-    = f.label :prefecture
-    %br/
-    = f.text_field :prefecture
-  .field
-    = f.label :city
-    %br/
-    = f.text_field :city
-  .field
-    = f.label :address_number
-    %br/
-    = f.text_field :address_number
-  .field
-    = f.label :building_name
-    %br/
-    = f.text_field :building_name
-  .field
-    = f.label :phone_number
-    %br/
-    = f.text_field :phone_number
-  .actions
-    = f.submit "Submit"
+.signup-container
+  %header.signup-header
+    %h1
+      = link_to root_path, class: 'signup-header__logo' do
+        = image_tag 'logo.png', size: '140x40', alt: 'ロゴ'
+    = render partial: 'progress', locals: { progress: 2 }
+
+  .signup-content
+    %h2.signup-title 送付先住所入力
+    = form_for @address, html: { class: 'signup-form' } do |f|
+      .signup-form__field
+        = f.label :address_family_name, class: 'signup-form__label--required'
+        = f.text_field :address_family_name, autofocus: true, placeholder: '例) フリマ', class: 'signup-form__text-field'
+        = render partial: 'devise/shared/error_messages', locals: { model: @address, scope: :shipping_address, target: :address_family_name }
+      .signup-form__field
+        = f.label :address_first_name, class: 'signup-form__label--required'
+        = f.text_field :address_first_name, placeholder: '例) 次郎', class: 'signup-form__text-field'
+        = render partial: 'devise/shared/error_messages', locals: { model: @address, scope: :shipping_address, target: :address_first_name }
+      .signup-form__field
+        = f.label :address_family_name_kana, class: 'signup-form__label--required'
+        = f.text_field :address_family_name_kana, placeholder: '例) ふりま', class: 'signup-form__text-field'
+        = render partial: 'devise/shared/error_messages', locals: { model: @address, scope: :shipping_address, target: :address_family_name_kana }
+      .signup-form__field
+        = f.label :address_first_name_kana, class: 'signup-form__label--required'
+        = f.text_field :address_first_name_kana, placeholder: '例) じろう', class: 'signup-form__text-field'
+        = render partial: 'devise/shared/error_messages', locals: { model: @address, scope: :shipping_address, target: :address_first_name_kana }
+      .signup-form__field
+        .signup-form__container
+          .signup-form__postcode-field
+            = f.label :post_code, class: 'signup-form__label--required'
+            = f.text_field :post_code, placeholder: '7桁数字', class: 'signup-form__text-field'
+          .signup-form__prefecture-field
+            = f.label :prefecture, class: 'signup-form__label--required'
+            = f.select :prefecture, JpPrefecture::Prefecture.all.map{ |data| data.name }, { include_blank: '--' }, class: 'signup-form__select-prefecture'
+        = render partial: 'devise/shared/error_messages', locals: { model: @address, scope: :shipping_address, target: :post_code }
+        = render partial: 'devise/shared/error_messages', locals: { model: @address, scope: :shipping_address, target: :prefecture }
+      .signup-form__field
+        = f.label :city, class: 'signup-form__label--required'
+        = f.text_field :city, placeholder: '例) フリマ市', class: 'signup-form__text-field'
+        = render partial: 'devise/shared/error_messages', locals: { model: @address, scope: :shipping_address, target: :city }
+      .signup-form__field
+        = f.label :address_number, class: 'signup-form__label--required'
+        = f.text_field :address_number, placeholder: '例) 〇〇番地〇〇丁目〇〇号', class: 'signup-form__text-field'
+        = render partial: 'devise/shared/error_messages', locals: { model: @address, scope: :shipping_address, target: :address_number }
+      .signup-form__field
+        = f.label :building_name, class: 'signup-form__label'
+        = f.text_field :building_name, class: 'signup-form__text-field'
+        = render partial: 'devise/shared/error_messages', locals: { model: @address, scope: :shipping_address, target: :building_name }
+      .signup-form__field
+        = f.label :phone_number, class: 'signup-form__label'
+        = f.text_field :phone_number, placeholder: 'ハイフンなし', class: 'signup-form__text-field'
+        = render partial: 'devise/shared/error_messages', locals: { model: @address, scope: :shipping_address, target: :phone_number }
+      .signup-form__actions
+        = f.submit '登録', class: 'signup-form__submit'

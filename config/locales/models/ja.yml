@@ -7,6 +7,7 @@ ja:
     attributes:
       user:
         nickname: ニックネーム
+        email: メールアドレス
       profile:
         family_name: 姓
         first_name: 名
@@ -16,7 +17,7 @@ ja:
         birth_year: 誕生年
         birth_month: 誕生月
         birth_day: 誕生日
-        birth_date: 誕生年月日
+        birth_date: 生年月日
       shipping_address:
         address_family_name: 姓
         address_first_name: 名
