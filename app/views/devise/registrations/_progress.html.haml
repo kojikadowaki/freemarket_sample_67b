@@ -1,5 +1,5 @@
 %ol.progress-bar
-  - ['会員情報', 'プロフィール', '送付先住所', '完了'].each_with_index do |item, index|
+  - ['会員情報', 'プロフィール', '送付先住所'].each_with_index do |item, index|
     - if progress < index
       %li.progress-bar__item
         = content_tag(:span, item)

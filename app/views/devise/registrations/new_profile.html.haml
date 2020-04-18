@@ -11,19 +11,19 @@
       .signup-form__field
         = f.label :family_name, class: 'signup-form__label--required'
         = f.text_field :family_name, autofocus: true, placeholder: '例) フリマ', class: 'signup-form__text-field'
-        = render partial: 'error_messages', locals: { model: @profile, scope: :profile, target: :family_name }
+        = render partial: 'devise/shared/error_messages', locals: { model: @profile, scope: :profile, target: :family_name }
       .signup-form__field
         = f.label :first_name, class: 'signup-form__label--required'
         = f.text_field :first_name, placeholder: '例) 次郎', class: 'signup-form__text-field'
-        = render partial: 'error_messages', locals: { model: @profile, scope: :profile, target: :first_name }
+        = render partial: 'devise/shared/error_messages', locals: { model: @profile, scope: :profile, target: :first_name }
       .signup-form__field
         = f.label :family_name_kana, class: 'signup-form__label--required'
         = f.text_field :family_name_kana, placeholder: '例) ふりま', class: 'signup-form__text-field'
-        = render partial: 'error_messages', locals: { model: @profile, scope: :profile, target: :family_name_kana }
+        = render partial: 'devise/shared/error_messages', locals: { model: @profile, scope: :profile, target: :family_name_kana }
       .signup-form__field
         = f.label :first_name_kana, class: 'signup-form__label--required'
         = f.text_field :first_name_kana, placeholder: '例) じろう', class: 'signup-form__text-field'
-        = render partial: 'error_messages', locals: { model: @profile, scope: :profile, target: :first_name_kana }
+        = render partial: 'devise/shared/error_messages', locals: { model: @profile, scope: :profile, target: :first_name_kana }
       .signup-form__field
         = f.label :birth_date, class: 'signup-form__label--required'
         .signup-form__birthdate-field
@@ -33,9 +33,9 @@
           月
           = f.select :birth_day, [], { include_blank: '--' }, class: 'signup-form__select-day'
           日
-        = render partial: 'error_messages', locals: { model: @profile, scope: :profile, target: :birth_date }
-        = render partial: 'error_messages', locals: { model: @profile, scope: :profile, target: :birth_year }
-        = render partial: 'error_messages', locals: { model: @profile, scope: :profile, target: :birth_month }
-        = render partial: 'error_messages', locals: { model: @profile, scope: :profile, target: :birth_day }
+        = render partial: 'devise/shared/error_messages', locals: { model: @profile, scope: :profile, target: :birth_date }
+        = render partial: 'devise/shared/error_messages', locals: { model: @profile, scope: :profile, target: :birth_year }
+        = render partial: 'devise/shared/error_messages', locals: { model: @profile, scope: :profile, target: :birth_month }
+        = render partial: 'devise/shared/error_messages', locals: { model: @profile, scope: :profile, target: :birth_day }
       .signup-form__actions
         = f.submit "次へ進む", class: 'signup-form__submit'
