@@ -17,7 +17,7 @@
       %br
       .product-detail-info
         .product-detail-info__category
-          =f.label :category, "カテゴリー", class: 'category-label'
+          =f.label :category, "カテゴリー", class: 'label'
           %span.attention 必須
           .category-select-wrapper
             .category-select-wrapper__box
@@ -27,18 +27,26 @@
       =f.label :product_condition, "商品の状態"
       =f.collection_select(:product_condition_id, ProductCondition.all, :id, :product_condition, prompt: "選択して下さい")
       %br
-      =f.label :derivery_fee_payer, "配送料の負担"
-      =f.collection_select(:derivery_fee_payer_id, DeriveryFeePayer.all, :id, :derivery_fee_payer, prompt: "選択して下さい")
+      .derivery-detail-info
+        .derivery-detail-info__wrapper
+          =f.label :derivery_fee_payer, "配送料の負担", class: 'label'
+          %span.attention 必須
+          =f.collection_select(:derivery_fee_payer_id, DeriveryFeePayer.all, :id, :derivery_fee_payer, prompt: "選択して下さい")
+          %br
+          =f.label :derivery_method, "発送方法"
+          =f.collection_select(:derivery_method_id, DeriveryMethod.all, :id, :method, prompt: "選択して下さい")
+          %br
+          =f.label :ship_from_location, "発送元の地域"
+          =f.collection_select(:ship_from_location_id, ShipFromLocation.all, :id, :name, prompt: "選択して下さい")
+          %br
+          =f.label :derivery_day, "発送までの日数"
+          =f.collection_select(:derivery_day_id, DeriveryDay.all, :id, :derivery_day, prompt: "選択して下さい")
       %br
-      =f.label :ship_from_location, "発送元の地域"
-      =f.collection_select(:ship_from_location_id, ShipFromLocation.all, :id, :name, prompt: "選択して下さい")
-      %br
-      =f.label :derivery_day, "発送までの日数"
-      =f.collection_select(:derivery_day_id, DeriveryDay.all, :id, :derivery_day, prompt: "選択して下さい")
-      %br
+
       =f.label :price, "販売価格"
       =f.number_field :price, autofocus: 'true'
       %br
+      =f.hidden_field :product_status_id, :value => 1
       =f.submit '出品する'
 
 
