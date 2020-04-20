@@ -459,14 +459,29 @@ a {
         height: 245px;
         width: 780px;
         margin: 16px auto;
-        @include space-around;
       }
         .products-list {
           height: 245px;
-          width: 220px;
+          margin: 26px auto;
           position: relative;
-          background-color: #fff;
+          @include space-around;
         
+        a {
+          background-color: #fff;
+        }
+
+        a:hover {
+          opacity: 0.5;
+        }
+
+        .product_header {
+          width: 220px;
+          height: 150px;
+          position: relative;
+          overflow: hidden;
+          margin: 0;
+          z-index: auto;
+        }
           &__img {
             height: 150px;
             width: 100%;
@@ -474,6 +489,8 @@ a {
             object-fit: cover;
           }
         }
+
+         
 
           .list-block {
             height: 85px;
@@ -533,13 +550,6 @@ a {
         text-decoration: none;
       }
     }
-
-  .brand-box {
-    height: 300px;
-    width: 780px;
-    margin: 26px auto;
-    @include space-around;
-  }
 
   .banner {
     height: 359px;
