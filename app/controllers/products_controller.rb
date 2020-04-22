@@ -4,9 +4,7 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @product.product_images.new
-
     @category_parents = Category.where(ancestry: nil).pluck(:name)
-      
   end
 
   def get_category_children
