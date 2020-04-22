@@ -18,6 +18,6 @@
 #
 FactoryBot.define do
   factory :product_image do
-    
+    url   {File.open("#{Rails.root}/public/uploads/product_image/url/1/download.jpg")}
   end
 end
