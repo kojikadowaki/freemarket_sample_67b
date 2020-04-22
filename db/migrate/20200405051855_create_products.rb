@@ -10,7 +10,7 @@ class CreateProducts < ActiveRecord::Migration[5.0]
       t.integer :derivery_fee_payer_id, null: false
       t.integer :derivery_day_id, null: false
       t.references :category, foreign_key: true, null: false
-      t.references :user, foreign_key: true, null: false,
+      t.references :user, foreign_key: true, null: false
       t.timestamps
     end
   end
