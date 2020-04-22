@@ -5,10 +5,8 @@ class ProductsController < ApplicationController
     @product = Product.new
     @product.product_images.new
 
-    @category_parents = []
-    Category.where(ancestry: nil).each do |parent|
-      @category_parents << parent.name
-    end
+    @category_parents = Category.where(ancestry: nil).pluck(:name)
+      
   end
 
   def get_category_children
@@ -27,15 +25,11 @@ class ProductsController < ApplicationController
   end
   
   def create
-
     @product = Product.new(product_params)
     if @product.save
       redirect_to root_path
     else
-      @category_parents = []
-      Category.where(ancestry: nil).each do |parent|
-        @category_parents << parent.name
-      end
+      @category_parents = Category.where(ancestry: nil).pluck(:name)
       render :new
     end
   end
