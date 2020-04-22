@@ -2,18 +2,32 @@
   .form
     = form_for [@product] do |f|
       #image-box
-        = f.fields_for :product_images do |image|
-          %div.js-file_group{data: {index: "= image.index"}}
+        #previews
+          - if @product.persisted?
+            - @product.product_images.each_with_index do |image, i|
+              = image_tag image.url, {data: {index: i}, width: "100", height: '100'}
+        #img-fields
+          = f.fields_for :product_images do |image|
             = image.label :product_image, "出品画像"
-            = image.file_field :url, multiple: false, class: "js-file", name: "product[product_images_attributes][0][url]"
-            %br
-            %span.js-remove 
-              消去
+            %span.attention 必須
+            %div.js-file_group{data: {index: "= image.index"}}
+              = image.file_field :url, class: "js-file", name: "product[product_images_attributes][#{image.index}][url]"
+              %br
+          = f.file_field :product_images, multiple: true, id: "change-item-image", name: "", accept: "image/*", data: {index: "#{@product.product_images.index}"}
+          %br
+          %button{type: "button", class:'js-remove'}
+            削除
+          = render partial: 'error-messages', locals: { product: @product.errors, column: 'product_images'}
+      %br
       =f.label :name, "商品名"
+      %span.attention 必須
       =f.text_field :name, placeholder: "商品名", autofocus: 'true'
+      = render partial: 'error-messages', locals: {product: f.object, column: 'name'}
       %br
       =f.label :description, "商品の説明"
+      %span.attention 必須
       =f.text_area :description, placeholder: "商品の説明", autofocus: 'true'
+      = render partial: 'error-messages', locals: {product: f.object, column: 'description'}
       %br
       .product-detail-info
         .product-detail-info__category
@@ -21,30 +35,45 @@
           %span.attention 必須
           .category-select-wrapper
             .category-select-wrapper__box
-              =f.select(:category, @category_parents, {}, class: 'category-select-wrapper__box__select', id: 'parent_category')
+              =f.select(:category, @category_parents, {prompt: "選択して下さい"}, class: 'category-select-wrapper__box__select', id: 'parent_category')
               %i.fas.fa-chevron-down.category-select-wrapper__box--arrow-signal
+              = render partial: 'error-messages', locals: {product: f.object, column: 'category'}
+             
+      %br
+      =f.label :brand, "ブランド ", class: 'label'
+      =f.text_field :brand, placeholder: 'ブランド', autofocus: 'true'
       %br
       =f.label :product_condition, "商品の状態"
+      %span.attention 必須
       =f.collection_select(:product_condition_id, ProductCondition.all, :id, :product_condition, prompt: "選択して下さい")
+      = render partial: 'error-messages', locals: {product: f.object, column: 'product_condition_id'}
       %br
       .derivery-detail-info
         .derivery-detail-info__wrapper
           =f.label :derivery_fee_payer, "配送料の負担", class: 'label'
           %span.attention 必須
           =f.collection_select(:derivery_fee_payer_id, DeriveryFeePayer.all, :id, :derivery_fee_payer, prompt: "選択して下さい")
+          = render partial: 'error-messages', locals: {product: f.object, column: 'derivery_fee_payer_id'}
           %br
           =f.label :derivery_method, "発送方法"
-          =f.collection_select(:derivery_method_id, DeriveryMethod.all, :id, :method, prompt: "選択して下さい")
+          %span.attention 必須
+          =f.collection_select(:derivery_method_id, DeriveryMethod.all, :id, :name, prompt: "選択して下さい")
           %br
           =f.label :ship_from_location, "発送元の地域"
+          %span.attention 必須
           =f.collection_select(:ship_from_location_id, ShipFromLocation.all, :id, :name, prompt: "選択して下さい")
+          = render partial: 'error-messages', locals: {product: f.object, column: 'ship_from_location_id'}
           %br
           =f.label :derivery_day, "発送までの日数"
+          %span.attention 必須
           =f.collection_select(:derivery_day_id, DeriveryDay.all, :id, :derivery_day, prompt: "選択して下さい")
+          = render partial: 'error-messages', locals: {product: f.object, column: 'derivery_day_id'}
       %br
 
       =f.label :price, "販売価格"
+      %span.attention 必須
       =f.number_field :price, autofocus: 'true'
+      = render partial: 'error-messages', locals: {product: f.object, column: 'price'}
       %br
       =f.hidden_field :product_status_id, :value => 1
       =f.submit '出品する'
