@@ -1,8 +1,14 @@
 $(function(){
+  function selected_category_child(category){
+    var html = `<option value="${category.id}" data-category="${category.id}">${category.name}</option>`;
+    return html;
+  }
+
   function selected_category(category){
     var html = `<option value="${category.id}" data-category="${category.id}">${category.name}</option>`;
     return html;
   }
+  
 
   function selected_size(size){
     var html =`<option value="${size.id}">${size.size}</option>`;
@@ -26,7 +32,7 @@ $(function(){
     var choiseGrandChild = ''
     choiseGrandChild = `<div class='category-select-wrapper__add' id= 'grandchildren_wrapper' >
                           <div class='category-select-wrapper__box'>
-                            <select class='category-select-wrapper__box--select' id="grandchild-category" name='category_id'>
+                            <select class='category-select-wrapper__box--select' id="grandchild-category" name='product[category_id]'>
                               <option value"---" data-category="---">選択して下さい</option>
                               ${categories}
                             </select>
@@ -43,7 +49,7 @@ $(function(){
                     <span class='attention'>必須</span>
                     <div class='size-select-wrapper'>
                       <div class='size_select-wrapper__box'>
-                        <select class="category-select-wrapper__box__select" id="size" name="size_id>
+                        <select class="category-select-wrapper__box__select" id="size" name="product[size_id]">
                           <option value="---">---</option>
                           ${sizes}
                         <select>
@@ -71,7 +77,7 @@ $(function(){
         $('#size_wrapper').remove();
         var insertHTML = '';
         children.forEach(function(child){
-          insertHTML += selected_category(child);
+          insertHTML += selected_category_child(child);
         });
         childrenGroup(insertHTML);
       })
