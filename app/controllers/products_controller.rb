@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
     @product = Product.new
     @product.product_images.new
 
-    @category_parents = ["選択して下さい"]
+    @category_parents = []
     Category.where(ancestry: nil).each do |parent|
       @category_parents << parent.name
     end
@@ -29,33 +29,13 @@ class ProductsController < ApplicationController
   def create
 
     @product = Product.new(product_params)
-
-    if @product.save!
-      ship_from_location_id = ShipFromLocation.find(@product.ship_from_location_id).id
-      product = Product.find(@product.id)
-      product.update(ship_from_location_id: ship_from_location_id)
-
-      product_condition_id = ProductCondition.find(@product.product_condition_id).id
-      product = Product.find(@product.id)
-      product.update(product_condition_id: product_condition_id)
-
-      derivery_fee_payer_id = DeriveryFeePayer.find(@product.derivery_fee_payer_id).id
-      product = Product.find(@product.id)
-      product.update(derivery_fee_payer_id: derivery_fee_payer_id)
-
-      derivery_day_id = DeriveryDay.find(@product.derivery_day_id).id
-      product = Product.find(@product.id)
-      product.update(derivery_day_id: derivery_day_id)
-
-      derivery_method_id = DeriveryMethod.find(@product.derivery_method_id).id
-      product = Product.find(@product.id)
-      product.update(derivery_method_id: derivery_method_id)
-
-      product_status = ProductStatus.find(@product.product_status_id).id
-      product = Product.find(@product.id)
-      product.update(product_status_id: product_status_id)
+    if @product.save
       redirect_to root_path
     else
+      @category_parents = []
+      Category.where(ancestry: nil).each do |parent|
+        @category_parents << parent.name
+      end
       render :new
     end
   end
@@ -63,7 +43,7 @@ class ProductsController < ApplicationController
   private
   def product_params
     params.require(:product).permit(:name, :price, :description, :ship_from_location_id, 
-      :product_condition_id,:product_status_id, :derivery_fee_payer_id, :derivery_day_id, :size_id, :category_id,
+      :product_condition_id,:product_status_id, :derivery_fee_payer_id, :derivery_day_id, :derivery_method_id, :category_id, :size_id, :brand,
       product_images_attributes: [:url]).merge(user_id: current_user.id)
   end
 end
