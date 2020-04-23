@@ -24,6 +24,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one :profile,          dependent: :destroy
   has_one :shipping_address, dependent: :destroy
+  has_one :credit_card, dependent: :destroy
   
   validates :nickname,
             presence: true,
