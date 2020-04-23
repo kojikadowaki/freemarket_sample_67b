@@ -8,6 +8,7 @@
 #  price             :integer
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  category_id       :integer
 #  product_status_id :integer
 #
 require 'rails_helper'
