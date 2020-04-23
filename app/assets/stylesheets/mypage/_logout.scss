@@ -1,0 +1,32 @@
+$mainWhite: #fff;
+
+.logout{
+  width: 700px;
+  position: absolute;
+  top: 55px;
+  margin-top: 16px;
+  margin-left: 520px;
+  padding-top: 80px;
+
+  &__content{
+    width:700px;
+    background-color: $mainWhite;
+
+    &__single--inner {
+      padding: 65px;
+    }
+
+    &__single--content {
+      width: 320px;
+      margin: 0 auto;
+      .logout-btn{
+        display: block;
+        line-height: 48px;
+        font-size: 14px;
+        text-align: center;
+        background-color: #3CCACE;
+        color: $mainWhite;  
+      }
+    }
+  }
+}
