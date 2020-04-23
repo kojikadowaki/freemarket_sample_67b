@@ -1,0 +1,75 @@
+= render "products/header"
+= render 'users/mypage_side_nav'
+
+.card__container
+  = form_tag(pay_card_index_path, method: :post, id: 'charge-form', name: 'inputForm', class: 'main__container') do
+    .main__container__head
+      クレジットカード情報入力
+      
+    .main__container__form
+      .main__container__form__card
+        .main__container__form__card--title
+          カード番号
+        .main__container__form__card--required
+          必須
+        = text_field_tag "number", "", maxlength: "16", type: "text", id: 'card_number', placeholder: "半角数字のみ", class: "main__container__form__card--number"
+        .main__container__form__card--images
+          = image_tag "card_logo_visa.png",   size: "45x30", class: "main__container__form__card__images__icon"
+          = image_tag "card_logo_master.png", size: "45x30", class: "main__container__form__card__images__icon"
+          = image_tag "card_logo_saison.png", size: "45x30", class: "main__container__form__card__images__icon"
+          = image_tag "card_logo_jcb.gif",    size: "45x30", class: "main__container__form__card__images__icon"
+          = image_tag "card_logo_amex.gif",   size: "45x30", class: "main__container__form__card__images__icon"
+
+      .main__container__form__expiration
+        .main__container__form__expiration--title
+          有効期限
+        .main__container__form__expiration--required
+          必須
+        .main__container__form__expiration--form
+          .main__container__form__expiration--month
+            %select#exp_month{name: "exp_month", type: "text"}
+              %option{value: ""}    --
+              %option{value: "1"}   01
+              %option{value: "2"}   02
+              %option{value: "3"}   03
+              %option{value: "4"}   04
+              %option{value: "5"}   05
+              %option{value: "6"}   06
+              %option{value: "7"}   07
+              %option{value: "8"}   08
+              %option{value: "9"}   09
+              %option{value: "10"}  10
+              %option{value: "11"}  11
+              %option{value: "12"}  12
+            %span 月
+          .main__container__form__expiration--year
+            %select#exp_year{name: "exp_year", type: "text"}
+              %option{value: ""} --
+              %option{value: "2019"}19
+              %option{value: "2020"}20
+              %option{value: "2021"}21
+              %option{value: "2022"}22
+              %option{value: "2023"}23
+              %option{value: "2024"}24
+              %option{value: "2025"}25
+              %option{value: "2026"}26
+              %option{value: "2027"}27
+              %option{value: "2028"}28
+              %option{value: "2029"}29
+            %span 年
+
+      .main__container__form__security
+        .main__container__form__security--title
+          セキュリティーコード
+        .main__container__form__security--required
+          必須
+        = text_field_tag "cvc", "", maxlength: "4", type: "text", id: "cvc", placeholder: "カード背面4桁もしくは3桁の番号", class: "main__container__form__security--number"
+        #card_token
+
+      .main__container__form__question
+        カードの裏面の番号とは？
+
+      .main__container__form__btn
+        = submit_tag "追加する" , id: "token_submit", class: "main__container__form__btn--blue" 
+  
+= render 'products/footer'

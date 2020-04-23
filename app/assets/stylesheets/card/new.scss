@@ -1,0 +1,129 @@
+$mainWhite: #fff;
+
+@mixin requiredMark {
+  background-color: #3CCACE;
+  display: inline-block;
+  margin: 0 0 0 7px;
+  padding: 2px 4px;
+  border-radius: 5px;
+  color: $mainWhite;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+@mixin numberInputBox {
+  height: 48px;
+  width: 100%;
+  margin: 8px auto 0;
+  padding: 10px 16px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+
+.card__container {
+  height: 680px;
+  width: 750px;
+  position: absolute;
+  top: 100px;
+  margin-top: 50px;
+  margin-left: 540px;
+
+  .main__container {
+    height: 100%;
+    width: 90%;
+    background-color: $mainWhite;
+    margin-left: 15px;
+    &__head {
+      height: 60px;
+      line-height: 60px;
+      text-align: center;
+      font-size: 23px;
+      font-weight: bold;
+      border-bottom: #f5f5f5 solid 3px;
+    }
+    &__form {
+      margin-top: 40px;
+
+      &__card {
+        width: 340px;
+        margin: 10px auto 0;
+        &--title {
+          display: inline-block;
+          font-weight: bold;
+        }
+        &--required {
+          @include requiredMark;
+        }
+        &--number {
+          @include numberInputBox;
+        }
+        &--images {
+          margin-top: 10px;
+        }          
+      }
+
+      &__expiration {
+        height: 120px;
+        width: 340px;
+        margin: 30px auto 0;
+        select {
+          height: 45px;
+          width: 120px;
+          background-color: $mainWhite;
+          margin: 8px 3px 3px;
+          border: 1px solid #ccc;
+          font-size: 15px;
+          }
+        &--title {
+          font-weight: bold;
+          display: inline-block;
+        }
+        &--required {
+          @include requiredMark;
+         }
+        &--form{
+          display: flex;
+        }
+      }
+
+      &__security {
+        width: 340px;
+        margin: 10px auto 0;
+        &--title {
+          display: inline-block;
+          font-weight: bold;
+        }
+        &--required {
+          @include requiredMark;
+         }
+         &--number {
+          @include numberInputBox;
+        }
+      }
+
+      &__question {
+        width: 340px;
+        margin: 8px auto 0;
+        text-align: right;
+        color: #0099e8;
+      }
+
+      &__btn {
+        margin-top: 25px;
+        &--blue {
+          height: 50px;
+          width : 340px;
+          background-color: #3CCACE;
+          display: block;
+          margin: 0 auto 5px;
+          font-size: 15px;
+          color: $mainWhite;
+          text-decoration: none;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
