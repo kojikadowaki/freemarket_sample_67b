@@ -1,0 +1,177 @@
+$mainBlack: #333;
+$mainWhite: #fff;
+$mainGray: #ccc;
+$mainLightGray: #eee;
+
+@mixin tabsDesign {
+  background-color: $mainWhite;
+  border: solid 2px;
+  border-color: #3CCACE $mainWhite $mainWhite $mainWhite
+}
+
+@mixin tabsShape {
+  height: 70px;
+  width: 50%;
+  background-color: $mainLightGray;
+  float: left;
+  line-height: 60px;
+  text-align: center;
+  font-weight: bold;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+@mixin between {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.main__content {
+  height: 100vh;
+  width: 700px;
+  position: absolute;
+  top: 100px;
+  margin: 50px 0 0 520px;
+  
+  .users__info {
+    height: 210px;
+    width: 700px;
+    background-color: $mainWhite;
+    position: relative;
+    list-style: none;
+    &__image {
+      &--background {
+        opacity: 0.7;
+        filter: blur(3px);
+      }
+      &--profile__icon {
+        top: 20%;
+        left: 44%;
+        position: absolute;
+        border-radius: 50%;
+        &__name {
+          top: 60%;
+          left: 41%;
+          position: absolute;
+          color: #000;
+          text-align: center;
+          text-decoration: none;
+        }
+      }
+    } 
+  }  
+
+  .notification__tabs {
+    background-color: $mainWhite;
+    
+    input[name="tabs1"] {
+      display: none;
+    }
+
+    input[name="tabs1"]:checked + .tab_item {
+      @include tabsDesign;
+    }
+
+    .tab_item {
+      @include tabsShape;
+    }
+
+    #news:checked ~ #news, #todo:checked ~ #todo {
+      display: block;
+    }
+
+    #news{
+      height: 80px;
+      border-bottom: solid 0.1px $mainLightGray;
+      font-size: 15px;
+      &:hover{
+        background-color: #f5f5f5;
+      }
+    }
+
+    #todo {
+      color: $mainGray;
+      text-align: center;
+      font-size: 16px;
+      padding-bottom: 85px;
+    }
+
+    .tab__content {
+      display: none;
+      clear: both;
+      overflow: hidden;
+      list-style: none;
+      &__description { 
+        @include between;
+        min-height: 80px;
+        padding: 14px;
+        color: $mainBlack;
+        &__news {
+          float: right;
+          margin-left: 15px;
+          i {
+            color: #696969;
+            margin-top: 3px;
+            font-size: 13px;
+          }
+        }
+        &__more {
+          height: 50px;
+          width: 100%;
+          background-color: $mainLightGray;
+          margin: 0 auto;
+          color: $mainBlack;
+          line-height: 50px;
+          text-align: center;
+          .btn-icon {
+            display: block;
+            color: $mainBlack;
+            text-decoration: none;
+            &:hover {
+              background-color: $mainWhite;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .trading{
+    &__title {
+      background-color: #f0ffff;
+      padding: 0 16px;
+      font-size: 16px;
+      line-height: 72px
+    }
+
+    &__tabs {
+      input[name="tabs2"] {
+        display: none;
+      }
+
+      input[name="tabs2"]:checked + .tab_item2 {
+        @include tabsDesign; 
+      }
+
+      .tab_item2 {
+        @include tabsShape;
+      }
+
+      .tab__content {
+        height: 350px;
+        background-color: $mainWhite;
+        display: none;
+        padding-top: 150px;
+        color: $mainGray;
+        text-align: center;
+        font-size: 16px;
+      }
+    
+      #now_trading:checked ~ .content1, #past_trading:checked ~ .content2 {
+        display: block;
+      }
+    }
+  }
+}

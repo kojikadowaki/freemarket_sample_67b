@@ -1,0 +1,106 @@
+.main__content
+  .users__info
+    .users__info__image
+      = image_tag "mypage_profile_background.jpg", size: "700x206", class: "users__info__image--background"
+      = image_tag "mypage_user_pic_sample.png",    size: "85x85",   class: "users__info__image--profile__icon"
+      = link_to "#", class: "users__info__image--profile__icon__name" do
+        = @nickname
+        .users__value
+          評価 13 出品数 7
+
+  .notification__tabs
+    %input#news{checked: "checked", name: "tabs1", type: "radio"}
+    %label.tab_item{for: "news"} 
+      お知らせ
+    %input#todo{name: "tabs1", type: "radio"}
+    %label.tab_item{for: "todo"}
+      やることリスト
+
+    #news.tab__content
+      %li.tab__content__description
+        %section.tab__content__description__image
+          = image_tag "logo_blue.png", size: "45x45", class: "icon-image" 
+          %section.tab__content__description__news 
+            新型コロナウイルスの感染拡大に伴う一部配送への影響について
+            %section.tab__content__description__news--date
+            %i.far.fa-clock 
+              1日前
+        %section.tab__content__description__details
+          %i.fa.fa-angle-right
+
+    #news.tab__content
+      %li.tab__content__description
+        %section.tab__content__description__image
+          = image_tag "logo_blue.png", size: "45x45", class: "icon-image" 
+          %section.tab__content__description__news 
+            【注意喚起】厚生労働省より配布される布マスクの出品について
+            %section.tab__content__description__news--date
+            %i.far.fa-clock 
+              5日前
+        %section.tab__content__description__details
+          %i.fa.fa-angle-right
+
+    #news.tab__content
+      %li.tab__content__description
+        %section.tab__content__description__image
+          = image_tag "logo_blue.png", size: "45x45", class: "icon-image" 
+          %section.tab__content__description__news 
+            《500円分のポイントが必ずもらえる》友達招待のお知らせ
+            %section.tab__content__description__news--date
+            %i.far.fa-clock 
+              8日前
+        %section.tab__content__description__details
+          %i.fa.fa-angle-right
+
+    #news.tab__content
+      %li.tab__content__description
+        %section.tab__content__description__image
+          = image_tag "logo_blue.png", size: "45x45", class: "icon-image" 
+          %section.tab__content__description__news 
+            友達と一緒にポイントGETできる「友達招待」のお知らせ
+            %section.tab__content__description__news--date
+            %i.far.fa-clock 
+              11日前
+        %section.tab__content__description__details
+          %i.fa.fa-angle-right
+
+    #news.tab__content
+      %li.tab__content__description
+        %section.tab__content__description__image
+          = image_tag "logo_blue.png", size: "45x45", class: "icon-image" 
+          %section.tab__content__description__news 
+            新型コロナウイルスの感染拡大に伴う再配達および集荷予約について
+            %section.tab__content__description__news--date
+            %i.far.fa-clock 
+              15日前
+        %section.tab__content__description__details
+          %i.fa.fa-angle-right
+          
+    #news.tab__content
+      %li.tab__content__description
+        %section.tab__content__description__more
+          = link_to '#', class: 'btn-icon' do
+            一覧を見る
+
+    #todo.tab__content
+      .tab__content__description
+      = image_tag "logo_gray.jpg", size: "70x70", class: "all-image" 
+      %p.c-txtsp 現在やることリストはありません   
+
+  .trading
+    .trading__title 
+      購入した商品
+    .trading__tabs
+      %input#now_trading{checked: "checked", name: "tabs2", type: "radio"}
+      %label.tab_item2{for: "now_trading"} 
+        取引中
+      %input#past_trading{name: "tabs2", type: "radio"}
+      %label.tab_item2{for: "past_trading"} 
+        過去の取引
+
+      #now_trading.tab__content.content1
+        = image_tag "logo_gray.jpg", size: "70x70", class: "all-image"  
+        %p.c-txtsp 取引中の商品はありません
+      #past_trading.tab__content.content2
+        = image_tag "logo_gray.jpg", size: "70x70", class: "all-image"  
+        %p.c-txtsp 取引済の商品はありません
