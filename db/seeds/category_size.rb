@@ -1,11 +1,11 @@
-n = 7851
+n = 3
 15.times do 
   CategorySize.create!(
     category_id: n, size_id: 1
   )  
   n += 1
 end 
-n = 7867
+n = 19
 21.times do 
   CategorySize.create!(
     category_id: n, size_id: 1
@@ -13,7 +13,7 @@ n = 7867
   n += 1
 end
 
-n = 7889
+n = 41
 12.times do 
   CategorySize.create!(
     category_id: n, size_id: 1
@@ -21,7 +21,7 @@ n = 7889
   n += 1
 end
 
-n = 7902
+n = 54
 5.times do 
   CategorySize.create!(
     category_id: n, size_id: 1
@@ -29,7 +29,7 @@ n = 7902
   n += 1
 end
 
-n = 7908
+n = 60
 4.times do 
   CategorySize.create!(
     category_id: n, size_id: 1
@@ -37,15 +37,15 @@ n = 7908
   n += 1
 end
 
-n = 7913
+n = 65
 10.times do 
   CategorySize.create!(
-    category_id: n, size_id: 65
+    category_id: n, size_id: 35
   )
   n += 1
 end
 
-n = 7925
+n = 77
 2.times do 
   CategorySize.create!(
     category_id: n, size_id: 1
@@ -53,7 +53,7 @@ n = 7925
   n += 1
 end
 
-n = 8018
+n = 170
 3.times do 
   CategorySize.create!(
     category_id: n, size_id: 1
@@ -61,7 +61,7 @@ n = 8018
   n += 1
 end
 
-n = 8023
+n = 175
 3.times do 
   CategorySize.create!(
     category_id: n, size_id: 1
@@ -69,7 +69,7 @@ n = 8023
   n += 1
 end
 
-n = 8031
+n = 183
 9.times do 
   CategorySize.create!(
     category_id: n, size_id: 1
@@ -77,7 +77,7 @@ n = 8031
   n += 1
 end
 
-n = 8046
+n = 198
 12.times do 
   CategorySize.create!(
     category_id: n, size_id: 1
@@ -86,7 +86,7 @@ n = 8046
 end
 
 
-n = 8059
+n = 211
 23.times do 
   CategorySize.create!(
     category_id: n, size_id: 1
@@ -94,7 +94,7 @@ n = 8059
   n += 1
 end
 
-n = 8083
+n = 235
 9.times do 
   CategorySize.create!(
     category_id: n, size_id: 1
@@ -102,15 +102,15 @@ n = 8083
   n += 1
 end
 
-n = 8093
+n = 245
 8.times do 
   CategorySize.create!(
-    category_id: n, size_id: 82
+    category_id: n, size_id: 52
   )
   n += 1
 end
 
-n = 8115
+n = 267
 5.times do 
   CategorySize.create!(
     category_id: n, size_id: 1
@@ -118,7 +118,7 @@ n = 8115
   n += 1
 end
 
-n = 8175
+n = 327
 2.times do 
   CategorySize.create!(
     category_id: n, size_id: 1
@@ -126,7 +126,7 @@ n = 8175
   n += 1
 end
 
-n = 8185
+n = 337
 2.times do 
   CategorySize.create!(
     category_id: n, size_id: 1
@@ -134,58 +134,58 @@ n = 8185
   n += 1
 end
 
-n = 8191
+n = 343
 11.times do 
   CategorySize.create!(
-    category_id: n, size_id: 31
+    category_id: n, size_id: 12
   )
   n += 1
 end
 
-n = 8203
+n = 355
 8.times do 
   CategorySize.create!(
-    category_id: n, size_id: 31
+    category_id: n, size_id: 12
   )
   n += 1
 end
 
-n = 8212
+n = 364
 8.times do 
   CategorySize.create!(
-    category_id: n, size_id: 31
+    category_id: n, size_id: 12
   )
   n += 1
 end
 
-n = 8221
+n = 373
 18.times do 
   CategorySize.create!(
-    category_id: n, size_id: 37
+    category_id: n, size_id: 18
   )
   n += 1
 end
 
-n = 8240
+n = 392
 14.times do 
   CategorySize.create!(
-    category_id: n, size_id: 37
+    category_id: n, size_id: 18
   )
   n += 1
 end
 
-n = 8255
+n = 377
 8.times do 
   CategorySize.create!(
-    category_id: n, size_id: 37
+    category_id: n, size_id: 18
   )
   n += 1
 end
 
-n = 8264
+n = 416
 5.times do 
   CategorySize.create!(
-    category_id: n, size_id: 45
+    category_id: n, size_id: 26
   )
   n += 1
 end
