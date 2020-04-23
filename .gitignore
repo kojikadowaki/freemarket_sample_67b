@@ -17,6 +17,7 @@
 .byebug_history
 
 config/secrets.yml
-
+public/uploads/product_image
+public/uploads/tmp
 # .DS_Store banished!
 .DS_Store

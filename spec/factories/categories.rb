@@ -12,10 +12,8 @@
 #
 #  index_categories_on_ancestry  (ancestry)
 #
-require 'test_helper'
-
-class CategoryTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+FactoryBot.define do
+  factory :category do
+    
+  end
 end

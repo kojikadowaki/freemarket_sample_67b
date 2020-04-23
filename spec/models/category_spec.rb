@@ -12,10 +12,8 @@
 #
 #  index_categories_on_ancestry  (ancestry)
 #
-require 'test_helper'
+require 'rails_helper'
 
-class CategoryTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+RSpec.describe Category, type: :model do
+  pending "add some examples to (or delete) #{__FILE__}"
 end
