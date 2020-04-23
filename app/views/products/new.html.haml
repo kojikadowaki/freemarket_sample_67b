@@ -13,6 +13,9 @@
             %div.js-file_group{data: {index: "= image.index"}}
               = image.file_field :url, class: "js-file", name: "product[product_images_attributes][#{image.index}][url]"
               %br
+              %button{type: "button", class:'js-remove'}
+                削除
+              %br
           = f.file_field :product_images, multiple: true, id: "change-item-image", name: "", accept: "image/*", data: {index: "#{@product.product_images.index}"}
           %br
           %button{type: "button", class:'js-remove'}
