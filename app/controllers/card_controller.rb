@@ -27,8 +27,7 @@ class CardController < ApplicationController
 
   def delete #PayjpとCardデータベースを削除
     card = Card.find_by(user_id: current_user.id)
-    if card.blank?
-    else
+    if card.present?
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
       customer = Payjp::Customer.retrieve(card.customer_id)
       customer.delete
@@ -39,12 +38,12 @@ class CardController < ApplicationController
 
   def show #Cardのデータpayjpに送り情報を取り出す
     card = Card.find_by(user_id: current_user.id)
-    if card.blank?
-      redirect_to new_card_path
-    else
+    if card.present?
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
       customer = Payjp::Customer.retrieve(card.customer_id)
       @default_card_information = customer.cards.retrieve(card.card_id)
+    else
+      redirect_to new_card_path
     end
   end
 end
