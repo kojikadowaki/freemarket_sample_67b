@@ -138,4 +138,3 @@ describe Product do
     end
   end
 end
-

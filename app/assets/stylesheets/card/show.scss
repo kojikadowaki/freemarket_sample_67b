@@ -1,0 +1,45 @@
+$mainWhite: #fff;
+
+.card__confirmation__container {
+  height: 400px;
+  width: 675px;
+  position: absolute;
+  background-color: $mainWhite;
+  top: 100px;
+  margin-top: 50px;
+  margin-left: 555px;
+  &__head {
+    height: 60px;
+    font-size: 23px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 60px;
+    border-bottom: #f5f5f5 solid 3px;
+  }
+
+  &__info {
+    padding-left: 170px;
+    &--title {
+      padding: 70px 0 15px 0;
+      font-weight: bold;
+    }
+    &--number {
+      font-size: 14px;
+    }
+  }
+  
+  &__btn {
+    margin-top: 45px;
+    button {
+      height: 50px;
+      width : 340px;
+      background-color: #3CCACE;
+      display: block;
+      margin: 0 auto 5px;
+      font-size: 15px;
+      color: $mainWhite;
+      text-decoration: none;
+      text-align: center;
+    }
+  }
+}

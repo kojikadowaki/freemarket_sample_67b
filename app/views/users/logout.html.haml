@@ -1,0 +1,10 @@
+= render 'products/header'
+= render 'mypage_side_nav'
+
+.logout
+  .logout__content
+    %form.logout__content__single--inner{action: "#", method: "POST", novalidate: "novalidate"}
+      .logout__content__single--content
+        = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "logout-btn"
+
+= render 'products/footer'

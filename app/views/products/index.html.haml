@@ -113,6 +113,7 @@
     .subtittle
       = link_to "#", class: "subtittle__text" do
         アーカイバ
+
       .products-box
         .products-list
           - @brands.limit(3).each do |bland|
@@ -130,4 +131,4 @@
                       %li
                         %i.fas.fa-star 0
                     %p (税込)
-  = render 'footer'
+= render 'footer'

@@ -80,12 +80,9 @@ gem 'haml-rails'
 
 gem 'jp_prefecture'
 
-# カテゴリー
 gem 'ancestry'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog-aws'
-
-
 gem 'active_hash'
-
+gem 'payjp' 
