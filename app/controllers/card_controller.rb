@@ -1,6 +1,7 @@
 class CardController < ApplicationController
 
   def new
+    @categories = Category.eager_load(children: :children).where(ancestry: nil)
     card = Card.where(user_id: current_user.id)
     redirect_to action: card_path(card) if card.exists?
   end
@@ -37,6 +38,7 @@ class CardController < ApplicationController
   end
 
   def show #Cardのデータpayjpに送り情報を取り出す
+    @categories = Category.eager_load(children: :children).where(ancestry: nil)
     card = Card.find_by(user_id: current_user.id)
     if card.present?
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
