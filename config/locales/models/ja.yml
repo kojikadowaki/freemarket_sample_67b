@@ -4,9 +4,11 @@ ja:
       user: ユーザー
       profile: プロフィール
       shipping_address: 送付先住所
+      product: 商品
     attributes:
       user:
         nickname: ニックネーム
+        email: メールアドレス
       profile:
         family_name: 姓
         first_name: 名
@@ -16,7 +18,7 @@ ja:
         birth_year: 誕生年
         birth_month: 誕生月
         birth_day: 誕生日
-        birth_date: 誕生年月日
+        birth_date: 生年月日
       shipping_address:
         address_family_name: 姓
         address_first_name: 名
@@ -28,3 +30,14 @@ ja:
         address_number: 番地
         building_name: ビル名・部屋番号など
         phone_number: 電話番号
+      product:
+        name: 商品名
+        category: カテゴリー
+        price: 価格
+        description: 商品の説明文
+        ship_from_location_id: 配送元の地域
+        product_condition_id: 商品の状態
+        derivery_fee_payer_id: 配送料の負担先
+        derivery_day_id: 配送までの日数
+        derivery_method_id: 配送方法
+        product_images: 画像
