@@ -50,13 +50,13 @@ ActiveRecord::Schema.define(version: 20200418033847) do
     t.string   "name",                                null: false
     t.integer  "price",                               null: false
     t.text     "description",           limit: 65535, null: false
-    t.integer  "size_id",                             null: false
-    t.integer  "ship_from_location_id"
-    t.integer  "product_condition_id"
-    t.integer  "derivery_fee_payer_id"
-    t.integer  "derivery_day_id"
-    t.integer  "category_id"
-    t.integer  "user_id"
+    t.integer  "size_id"
+    t.integer  "ship_from_location_id",               null: false
+    t.integer  "product_condition_id",                null: false
+    t.integer  "derivery_fee_payer_id",               null: false
+    t.integer  "derivery_day_id",                     null: false
+    t.integer  "category_id",                         null: false
+    t.integer  "user_id",                             null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "brand"
