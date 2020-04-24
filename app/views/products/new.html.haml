@@ -16,10 +16,6 @@
               %button{type: "button", class:'js-remove'}
                 削除
               %br
-          = f.file_field :product_images, multiple: true, id: "change-item-image", name: "", accept: "image/*", data: {index: "#{@product.product_images.index}"}
-          %br
-          %button{type: "button", class:'js-remove'}
-            削除
           = render partial: 'error-messages', locals: { product: @product.errors, column: 'product_images'}
       %br
       =f.label :name, "商品名"
