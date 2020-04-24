@@ -92,76 +92,43 @@
         新規投稿商品
       .products-box
         .products-list
-          = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png", class: "products-list__img"
-          .list-block
-            .list-block__name
-              products3
-            .price
-              %ul
-                %li 3000円
-                %li
-                  %i.fas.fa-star 0
-              %p (税込)
-        .products-list
-          = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", class: "products-list__img"
-          .list-block
-            .list-block__name
-              products2
-            .price
-              %ul
-                %li 2000円
-                %li
-                  %i.fas.fa-star 0
-              %p (税込)
-        .products-list
-          = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/7/a001.png", class: "products-list__img"
-          .list-block
-            .list-block__name
-              products1
-            .price
-              %ul
-                %li 1000円
-                %li
-                  %i.fas.fa-star 0
-              %p (税込)
+          - @products.limit(3).each do |product|
+            = link_to "#" do
+              .product
+                .product_header
+                  = image_tag product.product_images.first.url, class: "products-list__img"
+                .list-block
+                  .list-block__name
+                    = product.name
+                  .price
+                    %ul
+                      %li
+                        = "#{product.price}円"
+                      %li
+                        %i.fas.fa-star 0
+                    %p (税込)
   .brand
     .brand__tittle
       ピックアップブランド
     .subtittle
       = link_to "#", class: "subtittle__text" do
         アーカイバ
-    .brand-box
-      .products-list
-        = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png", class: "products-list__img"
-        .list-block
-          .list-block__name
-            products3
-          .price
-            %ul
-              %li 3000円
-              %li
-                %i.fas.fa-star 0
-            %p (税込)
-      .products-list
-        = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", class: "products-list__img"
-        .list-block
-          .list-block__name
-            products2
-          .price
-            %ul
-              %li 2000円
-              %li
-                %i.fas.fa-star 0
-            %p (税込)
-      .products-list
-        = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/7/a001.png", class: "products-list__img"
-        .list-block
-          .list-block__name
-            products1
-          .price
-            %ul
-              %li 1000円
-              %li
-                %i.fas.fa-star 0
-            %p (税込)
-  = render 'footer'
+
+      .products-box
+        .products-list
+          - @brands.limit(3).each do |bland|
+            = link_to "#" do
+              .product
+                .product_header
+                  = image_tag bland.product_images.first.url, class: "products-list__img"
+                .list-block
+                  .list-block__name
+                    = bland.name
+                  .price
+                    %ul
+                      %li
+                        = "#{bland.price}円"
+                      %li
+                        %i.fas.fa-star 0
+                    %p (税込)
+= render 'footer'

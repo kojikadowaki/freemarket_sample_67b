@@ -9,15 +9,15 @@
 #  price                 :integer          not null
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
-#  category_id           :integer
-#  derivery_day_id       :integer
-#  derivery_fee_payer_id :integer
+#  category_id           :integer          not null
+#  derivery_day_id       :integer          not null
+#  derivery_fee_payer_id :integer          not null
 #  derivery_method_id    :integer          not null
-#  product_condition_id  :integer
+#  product_condition_id  :integer          not null
 #  product_status_id     :integer          not null
-#  ship_from_location_id :integer
-#  size_id               :integer          not null
-#  user_id               :integer
+#  ship_from_location_id :integer          not null
+#  size_id               :integer
+#  user_id               :integer          not null
 #
 # Indexes
 #
@@ -36,6 +36,7 @@ require 'rails_helper'
 RSpec.describe Product, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end
+
 
 describe Product do
   describe '商品出品時のテストケース' do
