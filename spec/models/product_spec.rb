@@ -37,6 +37,7 @@ RSpec.describe Product, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end
 
+
 describe Product do
   describe '商品出品時のテストケース' do
     it '必須項目に値があれば出品できる' do
