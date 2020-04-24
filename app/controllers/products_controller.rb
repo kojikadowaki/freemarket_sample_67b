@@ -27,6 +27,8 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to root_path
     else
+      @product.product_images.new
+      ProductImage.new
       @category_parents = Category.where(ancestry: nil).pluck(:name)
       render :new
     end
