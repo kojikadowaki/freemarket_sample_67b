@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200421133229) do
+ActiveRecord::Schema.define(version: 20200418033847) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
@@ -20,22 +20,51 @@ ActiveRecord::Schema.define(version: 20200421133229) do
     t.index ["ancestry"], name: "index_categories_on_ancestry", using: :btree
   end
 
+  create_table "category_sizes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "category_id", null: false
+    t.integer  "size_id",     null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["category_id"], name: "index_category_sizes_on_category_id", using: :btree
+    t.index ["size_id"], name: "index_category_sizes_on_size_id", using: :btree
+  end
+
+  create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "buyer_user_id", null: false
+    t.integer  "product_id",    null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["buyer_user_id"], name: "index_orders_on_buyer_user_id", using: :btree
+    t.index ["product_id"], name: "index_orders_on_product_id", using: :btree
+  end
+
   create_table "product_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "url"
-    t.integer  "product_id"
+    t.string   "url",        null: false
+    t.integer  "product_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_product_images_on_product_id", using: :btree
   end
 
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.integer  "price"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.string   "bland"
-    t.integer  "product_status_id"
+    t.string   "name",                                null: false
+    t.integer  "price",                               null: false
+    t.text     "description",           limit: 65535, null: false
+    t.integer  "size_id",                             null: false
+    t.integer  "ship_from_location_id"
+    t.integer  "product_condition_id"
+    t.integer  "derivery_fee_payer_id"
+    t.integer  "derivery_day_id"
     t.integer  "category_id"
+    t.integer  "user_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "brand"
+    t.integer  "product_status_id",                   null: false
+    t.integer  "derivery_method_id",                  null: false
+    t.index ["category_id"], name: "index_products_on_category_id", using: :btree
+    t.index ["size_id"], name: "index_products_on_size_id", using: :btree
+    t.index ["user_id"], name: "index_products_on_user_id", using: :btree
   end
 
   create_table "profiles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -71,6 +100,14 @@ ActiveRecord::Schema.define(version: 20200421133229) do
     t.index ["user_id"], name: "index_shipping_addresses_on_user_id", using: :btree
   end
 
+  create_table "sizes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "size",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "ancestry"
+    t.index ["ancestry"], name: "index_sizes_on_ancestry", using: :btree
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "nickname",                            null: false
     t.string   "email",                  default: "", null: false
@@ -84,5 +121,12 @@ ActiveRecord::Schema.define(version: 20200421133229) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "category_sizes", "categories"
+  add_foreign_key "category_sizes", "sizes"
+  add_foreign_key "orders", "products"
+  add_foreign_key "orders", "users", column: "buyer_user_id"
   add_foreign_key "product_images", "products"
+  add_foreign_key "products", "categories"
+  add_foreign_key "products", "sizes"
+  add_foreign_key "products", "users"
 end

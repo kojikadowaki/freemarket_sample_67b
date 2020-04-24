@@ -48,6 +48,7 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
+  gem 'pry-rails'
 end
 
 group :development do
@@ -85,4 +86,10 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog-aws'
 
+<<<<<<< HEAD
+=======
 gem 'pry-rails'
+
+gem 'active_hash'
+>>>>>>> a1f1aaf12061cfd05b0c7647e8565e936e48ba94
+
