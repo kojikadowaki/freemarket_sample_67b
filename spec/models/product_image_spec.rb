@@ -3,10 +3,10 @@
 # Table name: product_images
 #
 #  id         :integer          not null, primary key
-#  url        :string(255)
+#  url        :string(255)      not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  product_id :integer
+#  product_id :integer          not null
 #
 # Indexes
 #
