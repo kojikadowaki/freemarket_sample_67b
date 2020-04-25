@@ -50,7 +50,7 @@ $(function(){
                     <div class='size-select-wrapper'>
                       <div class='size_select-wrapper__box'>
                         <select class="category-select-wrapper__box__select" id="size" name="product[size_id]">
-                          <option value="---">---</option>
+                          <option value="---">選択してください</option>
                           ${sizes}
                         <select>
                         <i class='fas fa-chevron-down listing-select-wrapper__box--arrow-down'></i>
