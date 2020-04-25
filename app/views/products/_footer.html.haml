@@ -51,9 +51,11 @@
     = link_to "#" do
       = image_tag "logo-white.png", class: "banner-icon__app"
     %p © FURIMA
-  .exhibition-btn
-    .exhibition-btn__text
-      出品する
-    .exhibition-btn__icon 
-      = link_to "#" do
-        = image_tag "icon_camera.png", class: "icon_camera"
+  
+  .exhibition
+    = link_to "#" do
+      .exhibition-btn
+        .exhibition-btn__text
+          出品する
+        .exhibition-btn__icon 
+          = image_tag "icon_camera.png", class: "icon_camera"
