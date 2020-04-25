@@ -3,7 +3,7 @@ class CardController < ApplicationController
   def new
     @categories = Category.eager_load(children: :children).where(ancestry: nil)
     card = Card.where(user_id: current_user.id)
-    redirect_to action: card_path(card) if card.exists?
+    redirect_to card_path(card) if card.exists?
   end
 
   def pay #payjpとCardのデータベース作成を実施
