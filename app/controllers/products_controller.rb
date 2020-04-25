@@ -38,7 +38,7 @@ class ProductsController < ApplicationController
       redirect_to root_path
     else
       @product.product_images.new
-      ProductImage.new
+      session[:error] = "画像を選択してください"
       @category_parents = Category.where(ancestry: nil).pluck(:name)
       render :new
     end

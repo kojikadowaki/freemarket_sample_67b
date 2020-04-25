@@ -7,16 +7,17 @@
             - @product.product_images.each_with_index do |image, i|
               = image_tag image.url, {data: {index: i}, width: "100", height: '100'}
         #img-fields
-          = f.fields_for :product_images do |image|
+          = f.fields_for :product_images do |image| 
             = image.label :product_image, "出品画像"
             %span.attention 必須
-            %div.js-file_group{data: {index: "= image.index"}}
+            %div.js-file_group{data: {index: "#{image.index}"}}
               = image.file_field :url, class: "js-file", name: "product[product_images_attributes][#{image.index}][url]"
               %br
               %button{type: "button", class:'js-remove'}
                 削除
               %br
-          = render partial: 'error-messages', locals: { product: @product.errors, column: 'product_images'}
+          - if @product.errors[:product_images].present?
+            = session[:error]
       %br
       =f.label :name, "商品名"
       %span.attention 必須
