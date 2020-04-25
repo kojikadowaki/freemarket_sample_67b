@@ -19,8 +19,7 @@
 #
 # Indexes
 #
-#  index_shipping_addresses_on_phone_number  (phone_number) UNIQUE
-#  index_shipping_addresses_on_user_id       (user_id)
+#  index_shipping_addresses_on_user_id  (user_id)
 #
 require 'rails_helper'
 
@@ -197,6 +196,12 @@ RSpec.describe ShippingAddress do
         address = build(:shipping_address)
         address.valid?
         expect(address.errors[:phone_number]).to include('はすでに存在します')
+      end
+
+      it 'すでに電話番号が未入力のデータがある場合も登録できる' do
+        build(:shipping_address, phone_number: '').save
+        address = build(:shipping_address, phone_number: '', user_id: '2')
+        expect(address).to be_valid
       end
     end
 
