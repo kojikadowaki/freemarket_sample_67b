@@ -2,7 +2,7 @@ $(document).on('turbolinks:load', ()=> {
   let buildFieldField = (index)=> {
     let html = `<div data-index="${index}" class="js-file_group">
                     <input class="js-file" type="file"
-                    name="product[images_attributes][${index}][url]"
+                    name="product[product_images_attributes][${index}][url]"
                     id="product_images_attributes_${index}_url"><br>
                     <button type="button" class="js-remove">削除</button>
                   </div>`;
@@ -24,7 +24,7 @@ $(document).on('turbolinks:load', ()=> {
       img.setAttribute('src', urlObject);
     }else{
       $('#previews').append(buildImage(targetIndex, urlObject));
-      $('#image-box').append(buildFieldField(fileIndex[0]))
+      $('#img-fields').append(buildFieldField(fileIndex[0]))
       fileIndex.shift();
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
     }
