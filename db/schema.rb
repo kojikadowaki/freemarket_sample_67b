@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200418033847) do
+ActiveRecord::Schema.define(version: 20200425200330) do
 
   create_table "cards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id",     null: false
@@ -105,7 +105,6 @@ ActiveRecord::Schema.define(version: 20200418033847) do
     t.integer  "user_id",                  null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
-    t.index ["phone_number"], name: "index_shipping_addresses_on_phone_number", unique: true, using: :btree
     t.index ["user_id"], name: "index_shipping_addresses_on_user_id", using: :btree
   end
 
