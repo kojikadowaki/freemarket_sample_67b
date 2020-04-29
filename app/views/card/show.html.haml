@@ -8,8 +8,9 @@
   .card__confirmation__container__info
     .card__confirmation__container__info--title
       クレジットカード情報
+    .card__confirmation__container__info--brand
+      = image_tag "#{@card_src}",alt: @card_brand, size: "38x28", id: "card_image"  
     .card__confirmation__container__info--number
-      %br
       = "**** **** **** " + @default_card_information.last4
       %br
       - exp_month = @default_card_information.exp_month.to_s
