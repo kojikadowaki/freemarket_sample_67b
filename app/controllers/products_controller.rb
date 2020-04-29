@@ -6,10 +6,6 @@ class ProductsController < ApplicationController
     @products   = Product.all.order("created_at DESC").where.not(product_status_id: 2)
     @brands     = Product.all.order("created_at DESC").where.not(brand: nil).where.not(product_status_id: 2)
   end
-
-  def move_to_index
-    redirect_to action: :index unless user_signed_in?
-  end
   
   def new
     @product = Product.new
@@ -58,5 +54,9 @@ class ProductsController < ApplicationController
     params.require(:product).permit(:name, :price, :description, :ship_from_location_id, 
       :product_condition_id,:product_status_id, :derivery_fee_payer_id, :derivery_day_id, :derivery_method_id, :category_id, :size_id, :brand,
       product_images_attributes: [:url]).merge(user_id: current_user.id)
+  end
+
+  def move_to_index
+    redirect_to root_path unless user_signed_in?
   end
 end
