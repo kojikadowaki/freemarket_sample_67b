@@ -44,8 +44,22 @@ class CardController < ApplicationController
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
       customer = Payjp::Customer.retrieve(card.customer_id)
       @default_card_information = customer.cards.retrieve(card.card_id)
+      @card_brand = @default_card_information.brand 
+      case @card_brand
+      when "Visa"
+        @card_src = "card_logo_visa.png"
+      when "MasterCard"
+        @card_src = "card_logo_master.png"
+      when "Saison"
+        @card_src = "card_logo_saisonr.png"
+      when "JCB"
+        @card_src = "card_logo_jcb.gif"
+      when "American Express"
+        @card_src = "card_logo_amex.gif"
+      end
     else
       redirect_to new_card_path
     end
   end
+
 end
