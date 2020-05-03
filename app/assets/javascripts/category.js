@@ -23,6 +23,7 @@ $(function(){
                           <option value="---" data-category="---">選択して下さい</option>
                           ${categories}
                         </select>
+                        <i class='fas fa-chevron-down listing-select-wrapper__box--arrow-down'></i>
                       </div>
                     </div>`;
     $('.product-detail-info__category').append(choiseChild);
@@ -48,8 +49,8 @@ $(function(){
                     <label class="size_iabel" for="サイズ">サイズ</label>
                     <span class='attention'>必須</span>
                     <div class='size-select-wrapper'>
-                      <div class='size_select-wrapper__box'>
-                        <select class="category-select-wrapper__box__select" id="size" name="product[size_id]">
+                      <div class='size-select-wrapper__box'>
+                        <select class="size-select-wrapper__box__select" id="size" name="product[size_id]">
                           <option value="---">選択してください</option>
                           ${sizes}
                         <select>

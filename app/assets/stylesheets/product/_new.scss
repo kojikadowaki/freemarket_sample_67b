@@ -1,0 +1,399 @@
+* {
+  box-sizing: border-box;
+}
+
+@mixin exp-category {
+  padding-bottom: 8px;
+  font-size: 14px;
+  color: rgb(136, 136, 136);
+  font-weight: 600;
+  line-height: 1.4em;
+  margin-bottom: 24px;
+}
+@mixin attention{
+  background-color:  #2CCCD1;
+  color: white;
+  font-weight: bold;
+  display: inline;
+  margin-left: 8px;
+  font-size: 12px;
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+
+@mixin label{
+  font-weight: bold;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+@mixin form-box{
+  -webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+  width: 100%;
+  height: 50px;
+  margin: 18px 0;
+  padding:0 56px 0 16px;
+  border-radius: 5px;
+  background-color: white;
+  border: solid 1px rgb(196, 194, 194);
+  outline: none;
+  cursor: pointer;
+}
+
+@mixin focus{
+  border: solid 1px #2CCCD1;
+}
+
+@mixin form-box__exp{
+  width: 100%;
+  height: 160px;
+  padding: 16px;
+  margin: 18px 0;
+  border-radius: 5px;
+  border: solid 1px rgb(196, 194, 194);
+  outline: none;
+}
+
+@mixin pull-down{
+  position: absolute;
+  right: 24px; 
+  top: 36px;
+  font-size: 20px;
+  pointer-events: none;
+}
+
+.product-error-text{
+  margin-bottom: 20px;
+  color: red;
+}
+
+.wrapper{
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f1f1f1;
+  padding: 40px 0 40px 0;
+}
+  .top-icon{
+   text-align: center;
+    .top-logo{
+      width: 160px;
+    }
+  }
+  .form{
+    margin: 32px auto ;
+    width: 700px;
+    background-color: white;
+  }
+    #image-box{
+      &__wrapper{
+        padding: 40px;
+        border-bottom: solid 1px #f1f1f1;
+        #img-fields{
+          .label{
+            @include label
+          }
+          .attention{
+            @include attention
+          }
+          .img-attention{
+            padding: 8px 0 8px 0;
+          }
+          .input-box__image{
+            &__wrapper{
+              display: block;
+              height: 150px;
+              width: 100%;
+              background-color:#f1f1f1;
+              border: dashed 1px gray;
+              .img-preview{
+                width:122px;
+                height: 146px;
+                background-color: white;
+                text-align: center;
+                display: inline-block;
+                border-left: solid 1px #f1f1f1;
+                .js-remove{
+                  color: red;
+                  line-height: 24px;
+                }
+              }
+            }
+          }
+          .input-box__form{
+            .js-file_group{
+              display: none;
+            }
+          }
+          .img-btn{
+            height: 60px;
+            color: white;
+            background-color:  #2CCCD1;
+            height: 50px;
+            width: 230px;
+            border-radius: 5px;
+            margin: 40px auto;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease 0s;
+            .fa-camera{
+              padding: 0 20px;
+              font-size: 30px;
+              line-height: 50px;
+            }
+          }
+        }
+        .img-error{
+          color: red;
+        }
+      }
+    }
+
+    #product-detail{
+      &__wrapper{
+        padding: 40px;
+        border-bottom: solid 1px #f1f1f1;
+      }
+        .label{
+          @include label
+        }
+        .attention{
+          @include attention
+        }
+        .form-box{
+          @include form-box
+        } 
+        .form-box:focus{
+          @include focus
+        }
+        
+        .label{
+          @include label
+        }
+        .attention{
+          @include attention
+        }
+        .form-box__exp{
+          @include form-box__exp
+        }
+        .form-box__exp:focus{
+          @include focus
+        }
+    }
+
+    .product-detail-info{
+      &__wrapper{
+        padding: 40px;
+        border-bottom: solid 1px #f1f1f1;
+      }
+        h2{
+          @include exp-category;
+        }
+        .product-detail-info__category{
+          .label{
+            @include label
+          }
+          .attention{
+            @include attention
+          }
+          .category-select-wrapper{
+            .category-select-wrapper__box{
+              position: relative;
+              .category-select-wrapper__box__select{
+                @include form-box
+              }
+              .category-select-wrapper__box__select:focus{
+               @include focus
+              }
+              .fa-chevron-down{
+                @include pull-down
+              }
+            }
+          }
+          .category-select-wrapper__add{
+            .category-select-wrapper__box{
+              position: relative;
+              &--select{
+                @include form-box
+              }
+              &--select:focus{
+                @include focus
+              }
+              .fa-chevron-down{
+                @include pull-down
+              }
+            }
+          }
+          .size-select-wrapper{
+            .size-select-wrapper__box{
+              position: relative;
+              &__select{
+                @include form-box
+              }
+              &__select:focus{
+                @include focus
+              }
+              .fa-chevron-down{
+                @include pull-down
+              }
+            }
+          }
+        }
+
+        .label{
+          @include label
+        }
+        .burand-attention{
+          background-color:  #b4b2b2;
+          color: white;
+          font-weight: bold;
+          display: inline;
+          margin-left: 8px;
+          font-size: 12px;
+          padding: 1px 4px;
+          border-radius: 2px;
+        }
+        }
+        .form-box{
+          @include form-box
+        }
+        .form-box:focus{
+          @include focus
+        }
+        .label{
+          @include label
+        }
+        .attention{
+          @include attention
+        }
+        .product-condition__box{
+          position: relative;
+          .form-box__bottom{
+            @include form-box
+          }
+          .form-box__bottom:focus{
+            @include focus
+          }
+          .fa-chevron-down{
+            @include pull-down
+          }
+        }
+    
+    #derivery-info{
+      &__wrapper{
+        padding: 40px;
+        border-bottom: solid 1px #f1f1f1;
+        h2{
+          @include exp-category;
+        }
+        .labe{
+          @include label
+        }
+        .attention{
+          @include attention
+        }
+        &__form{
+          position: relative;
+          .form-box{
+            @include form-box
+          }
+          .form-box:focus{
+            @include focus
+          }
+          .fa-chevron-down{
+            @include pull-down
+          }
+        }
+      }
+    }
+
+    #product-price{
+      &__wrapper{
+        padding: 40px 40px 0;
+        border-bottom: solid 1px #f1f1f1;
+        &__top{
+          h2{
+            @include exp-category;
+          }
+          .label-form{
+            display: flex;
+            justify-content: space-between;
+            &__label{
+              .label{
+                @include label
+              }
+              .attention{
+                @include attention
+              }
+              padding-top: 30px;
+            }
+            &__form{
+              .form-box{
+                -webkit-appearance: none;
+	              -moz-appearance: none;
+	              appearance: none;
+                border-radius: 5px;
+                width: 300px;
+                height: 50px;
+                margin: 18px 0;
+                padding:0 56px 0 16px;
+                border-radius: 5px;
+                background-color: white;
+                border: solid 1px rgb(196, 194, 194);
+                outline: none;
+                cursor: pointer;
+              }
+              .form-box:focus{
+                @include focus
+              }
+            }
+              .form-box{
+                width: 300px;
+                padding: 0 16px;
+              }
+              .price-error{
+                color: red;
+                margin-bottom: 20px;
+              }
+          } 
+        }
+        &--bottom{
+          border-top: solid 1px #f1f1f1;
+          text-align: center;
+          .send-btn{
+            display: block;
+            color: white;
+            background-color:  #2CCCD1;
+            height: 50px;
+            width: 380px;
+            border-radius: 5px;
+            margin: 40px auto;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease 0s;
+          }
+          .send-btn:hover {
+            background-color:  rgb(37, 176, 180);
+          }
+          .return-top{
+            display: block;
+            margin: auto;
+            color: #0095ee;
+            padding-bottom: 40px;
+          }
+        } 
+      }
+    }
+.field_with_errors{
+  select{
+    border: solid 1px red!important;
+  }
+  input{
+    border: solid 1px red!important;
+  }
+  textarea{
+    border: solid 1px red!important;
+  }
+  display: contents;
+}

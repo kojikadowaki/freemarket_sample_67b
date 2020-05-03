@@ -1,0 +1,53 @@
+*{
+  box-sizing: border-box;
+}
+
+@mixin action-btn{
+  color: white;
+  width: 250px;
+  height: 80px;
+  background-color: #2CCCD1;
+  margin: 40px auto 20px;
+  line-height: 80px;
+  display: block;
+  border-radius: 5px;
+  
+}
+.create_wrapper{
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f1f1f1;
+  padding: 40px 0 40px 0;
+}
+  .content{
+    margin: 32px auto ;
+    width: 700px;
+    background-color: white;
+    text-align: center;
+    &__wrapper{
+      padding: 40px;
+    }
+  }
+    h2{
+      font-size: 40px;
+    }
+    .next-action{
+      .exhibition{
+        @include action-btn
+      }
+      .exhibition:hover {
+        background-color:  rgb(37, 176, 180);
+      }
+      .mypage{
+        @include action-btn
+      }
+      .mypage:hover{
+        background-color: rgb(37, 176, 180);
+      }
+    }
+      .return-top{
+        color: blue;
+        display: inline-block;
+        margin-top: 20px;
+      }
+      
