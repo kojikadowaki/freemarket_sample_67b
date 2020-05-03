@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', ()=> {
+$(function(){
   let buildFieldField = (index)=> {
     let html = `<div data-index="${index}" class="js-file_group">
                   <input class="js-file" type="file"
@@ -21,11 +21,8 @@ $(document).on('turbolinks:load', ()=> {
 
 
   $('#img-fields').on("click",".fa-camera", function(){
-
     let file_field = $(".js-file").last();
-
     file_field.trigger("click");
-
   });
 
   $('#image-box').on('change', `input[type="file"]`, function(e){
