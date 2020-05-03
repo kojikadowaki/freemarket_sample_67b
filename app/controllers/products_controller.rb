@@ -31,11 +31,14 @@ class ProductsController < ApplicationController
       @sizes = related_size.children
     end
   end
+
+  def exhibition_complete
+  end
   
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to root_path
+      redirect_to  exhibition_complete_products_path
     else
       session[:img_error] = "画像を選択してください"
       session[:price_error] = "300以上9999999以下で入力してください"
