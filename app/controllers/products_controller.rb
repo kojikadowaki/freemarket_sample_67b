@@ -37,8 +37,8 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to root_path
     else
-      @product.product_images.new
-      ProductImage.new
+      session[:img_error] = "画像を選択してください"
+      session[:price_error] = "300以上9999999以下で入力してください"
       @category_parents = Category.where(ancestry: nil).pluck(:name)
       render :new
     end
