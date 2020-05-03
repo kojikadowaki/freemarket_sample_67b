@@ -19,8 +19,7 @@
 #
 # Indexes
 #
-#  index_shipping_addresses_on_phone_number  (phone_number) UNIQUE
-#  index_shipping_addresses_on_user_id       (user_id)
+#  index_shipping_addresses_on_user_id  (user_id)
 #
 FactoryBot.define do
   factory :shipping_address do
