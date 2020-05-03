@@ -1,8 +1,9 @@
 class CardController < ApplicationController
 
   def new
+    @categories = Category.eager_load(children: :children).where(ancestry: nil)
     card = Card.where(user_id: current_user.id)
-    redirect_to action: card_path(card) if card.exists?
+    redirect_to card_path(card) if card.exists?
   end
 
   def pay #payjpとCardのデータベース作成を実施
@@ -37,13 +38,28 @@ class CardController < ApplicationController
   end
 
   def show #Cardのデータpayjpに送り情報を取り出す
+    @categories = Category.eager_load(children: :children).where(ancestry: nil)
     card = Card.find_by(user_id: current_user.id)
     if card.present?
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
       customer = Payjp::Customer.retrieve(card.customer_id)
       @default_card_information = customer.cards.retrieve(card.card_id)
+      @card_brand = @default_card_information.brand 
+      case @card_brand
+      when "Visa"
+        @card_src = "card_logo_visa.png"
+      when "MasterCard"
+        @card_src = "card_logo_master.png"
+      when "Saison"
+        @card_src = "card_logo_saisonr.png"
+      when "JCB"
+        @card_src = "card_logo_jcb.gif"
+      when "American Express"
+        @card_src = "card_logo_amex.gif"
+      end
     else
       redirect_to new_card_path
     end
   end
+
 end
