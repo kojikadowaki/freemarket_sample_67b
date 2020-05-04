@@ -3,6 +3,7 @@
 }
 
 @mixin action-btn{
+  font-size: 24px;
   color: white;
   width: 250px;
   height: 80px;
@@ -11,7 +12,6 @@
   line-height: 80px;
   display: block;
   border-radius: 5px;
-  
 }
 .create_wrapper{
   width: 100%;
