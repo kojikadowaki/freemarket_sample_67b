@@ -1,0 +1,66 @@
+= render partial: "header"
+.contents
+  .left_bar
+    .select
+      %select{name: :sort, class: 'select__btn'}
+        %option
+          並び替え
+      %li
+        %i.fa.fa-angle-down
+    .detail_search
+      詳細検索
+      .add_keyword
+        キーワードを追加する
+        %input.add_keyword__input{name: "search", placeholder: "例）値下げ"}
+      .category_select
+        カテゴリーを選択する
+        .category_select__form
+          %select{name: :sort, class: 'category_select__btn'}
+            %option
+              すべて
+          %li
+            %i.fa.fa-angle-down
+      .brand_search
+        ブランド名から探す
+        %input.brand_search__input{name: "brand_name", placeholder: "例）シャネル"}
+      .specify_size
+        サイズを指定する
+        .specify_size__form
+          %select{name: :sort, class: 'specify_size__btn'}
+            %option
+              すべて
+          %li
+            %i.fa.fa-angle-down
+      .price_select
+        価格
+        .price_select__form
+          %select{name: :sort, class: 'price_select__btn'}
+            %option
+              すべて
+          %li
+            %i.fa.fa-angle-down
+        .min_price
+        .max-price
+      .clear_completed
+  .search_result
+    %h1 検索結果
+    .products-list
+      - @products.each do |product|
+        - product.product_images.each do |image|
+          = link_to "#" do
+            .product_header
+              = image_tag image.url, class: ".product_header__img"
+            .list-block
+              .list-block__name
+                = product.name
+              .price
+                %ul
+                  %li
+                    = "#{product.price}円"
+                  %li
+                    %i.fas.fa-star 0
+            %p (税込)
+
+
+
+= render partial: "footer"

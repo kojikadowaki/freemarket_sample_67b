@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json'}
       get 'get_size', defaults: { format: 'json' }
-      get 'search'
+      post 'search'
     end
   end
 
@@ -33,5 +33,4 @@ Rails.application.routes.draw do
       post 'delete', to: 'card#delete'
     end
   end
-
 end

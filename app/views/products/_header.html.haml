@@ -2,12 +2,13 @@
   .header-content
     .header-block
       .header-block__logo
-        = link_to "#", class: "header-block__logo-item" do
+        = link_to "/", class: "header-block__logo-item" do
           = image_tag "logo.png", size: "140x40", alt: "ロゴ"
       .search
-        %input.search-box{ placeholder: "キーワードから探す" }
-        %button.search-btn{ type: "submit" }
-          = image_tag "icon-search 1.png", class: "serch-icon"
+        = form_tag search_products_path method: :get do
+          = text_field_tag :keyword, "", placeholder: "キーワードから探す", class: "form-box"
+          = submit_tag "", class: "form-btn"
+          = image_tag "icon-search 1.png", class: "form-icon"
     .nav-box
       .nav-left
         .nav-category

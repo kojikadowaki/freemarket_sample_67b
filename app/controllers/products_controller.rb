@@ -43,7 +43,9 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = Products.search(params[:keyword])
+    @product   = Product.search(params[:keyword])
+    @categories = Category.eager_load(children: :children).where(ancestry: nil)
+    @products   = Product.all.order("created_at DESC").where.not(product_status_id: 2)
   end
 
   private
