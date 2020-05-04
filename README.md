@@ -78,7 +78,6 @@
 - belongs_to :size
 - belongs_to_active_hash :ship_from_location
 - belongs_to_active_hash :product_condition
-- belongs_to_active_hash :product_status
 - belongs_to_active_hash :derivery_fee_payer
 - belongs_to_active_hash :derivery_day
 - belongs_to_active_hash :derivery_method
