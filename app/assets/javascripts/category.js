@@ -19,7 +19,7 @@ $(function(){
     var choiseChild = ''
     choiseChild = `<div class='category-select-wrapper__add' id= 'children_wrapper' >
                       <div class='category-select-wrapper__box'>
-                        <select class='category-select-wrapper__box--select' id= "child-category" name='category_id'>
+                        <select class='category-select-wrapper__box--select' id= "child-category" name='product[category_id]'>
                           <option value="---" data-category="---">選択して下さい</option>
                           ${categories}
                         </select>
