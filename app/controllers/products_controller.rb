@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :move_to_index, except: [:index]
+  before_action :move_to_index, except: [:index, :show]
 
   def index
     @categories = Category.eager_load(children: :children).where(ancestry: nil)
@@ -42,6 +42,11 @@ class ProductsController < ApplicationController
       @category_parents = Category.where(ancestry: nil).pluck(:name)
       render :new
     end
+  end
+
+  def show
+    @product = Product.find(params[:id])
+    @product_images = ProductImage.where("product_id = ?", params[:id] )
   end
 
   private
