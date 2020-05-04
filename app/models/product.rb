@@ -46,7 +46,6 @@ class Product < ApplicationRecord
   belongs_to_active_hash :derivery_fee_payer
   belongs_to_active_hash :derivery_day
   belongs_to_active_hash :derivery_method
-  belongs_to_active_hash :product_status
 
   validates :product_images, presence: true, length: {manimum: 1, maximum: 10}
   validates :name, presence: true, length: { maximum: 40 }
