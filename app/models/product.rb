@@ -56,8 +56,11 @@ class Product < ApplicationRecord
   :derivery_day_id, :derivery_method_id, :category, :user_id, presence: true
 
   def self.search(search)
-    return Product.all unless search
-    Product.where('name LIKE(?)', "%#{search}%")
+    if search
+      Product.where('name collate utf8_unicode_ci LIKE ?', "%#{search}%")
+    else
+      Product.all
+    end
   end
 
 end

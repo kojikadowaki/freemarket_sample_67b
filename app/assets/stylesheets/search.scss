@@ -224,7 +224,7 @@ i {
 }
 
 .search_result{
-  width: 650px;
+  width: 100%;
 
   h1 {
     font-size: 25px
@@ -235,14 +235,12 @@ i {
   height: 245px;
   margin: 26px auto;
   position: relative;
-  @include space-around;
+  display: flex;
+  flex-flow: row wrap;
 
   a {
     background-color: #fff;
-  }
-
-  &:hover {
-    opacity: 0.5;
+    margin: 10px;
   }
 }
 
@@ -277,21 +275,22 @@ i {
   }
 
   ul {
-  @include between;
-  align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
     li {
-    list-style: none;
-    text-align: left;
+      list-style: none;
+      text-align: left;
     }
 
       i {
-      font-size: 14px;
+        font-size: 14px;
       }
 
   p {
-  font-size: 10px;
-  text-align: left;
+    font-size: 10px;
+    text-align: left;
   }
 }
