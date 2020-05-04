@@ -100,6 +100,5 @@
                     = session[:price_error]
           #product-price__wrapper--bottom
             =f.submit '出品する', class:"send-btn"
-            =f.hidden_field :product_status_id, :value => 1
             = link_to '/products', class:"return-top", method: :get do
               もどる
