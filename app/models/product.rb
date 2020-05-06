@@ -48,7 +48,7 @@ class Product < ApplicationRecord
   belongs_to_active_hash :derivery_method
   belongs_to_active_hash :product_status
 
-  validates :product_images, presence: true, length: {manimum: 1, maximum: 10}
+  validates :product_images, presence: true, length: { minimum: 1, maximum: 10 }
   validates :name, presence: true, length: { maximum: 40 }
   validates :description, presence: true, length: { maximum: 1000 }
   validates :price,  presence: true, numericality:{ greater_than_or_equal_to: 300, less_than: 9999999 }
