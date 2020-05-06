@@ -33,11 +33,6 @@
 #
 require 'rails_helper'
 
-RSpec.describe Product, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
-end
-
-
 describe Product do
   describe '商品出品時のテストケース' do
     it '必須項目に値があれば出品できる' do
@@ -78,6 +73,28 @@ describe Product do
       it 'サイズが空の場合でも出品できる' do
         product = build(:product, size_id: "")
         expect(product).to be_valid
+      end
+
+      describe '画像に関するテストケース' do
+        it '画像が存在しない場合は出品できない' do
+          product = build(:product)
+          product.product_images.destroy_all
+          product.valid?
+          expect(product.errors[:product_images]).to include('を入力してください')
+        end
+
+        it '画像が11枚の場合は出品できない' do
+          product = build(:product)
+          10.times { product.product_images << build(:product_image, product: product) }
+          product.valid?
+          expect(product.errors[:product_images]).to include('は10文字以内で入力してください')
+        end
+
+        it '画像が10枚の場合は出品できる' do
+          product = build(:product)
+          9.times { product.product_images << build(:product_image, product: product) }
+          expect(product).to be_valid
+        end
       end
 
       describe '価格に関するテストケース' do
