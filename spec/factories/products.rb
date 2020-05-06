@@ -33,7 +33,7 @@
 #
 FactoryBot.define do
   factory :product do
-    id                    {1}
+    # id                    {1}
     name                  {"ONE PICE"}
     description           {"面白い"}
     price                 {"450"}
@@ -43,10 +43,11 @@ FactoryBot.define do
     product_condition_id  {"1"}
     product_status_id     {"1"}
     ship_from_location_id {"1"}
-    size_id               {"5"}
-    category_id           {7851}
+    # size_id             {"5"}
+    # category_id         {7851}                  
     brand                 {"ジャンプ"}
     category
+    size
     association :user, factory: :user
     after(:build) do |product|                          
       product.product_images << build(:product_image, product: product)
