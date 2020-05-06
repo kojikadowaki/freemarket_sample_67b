@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
+  before_action :move_to_show_without_owned_user, only: [:edit, :update]
 
   def index
     @categories = Category.eager_load(children: :children).where(ancestry: nil)
@@ -49,14 +50,62 @@ class ProductsController < ApplicationController
     @product_images = ProductImage.where("product_id = ?", params[:id] )
   end
 
+  def edit
+    @product = Product.find(params[:id])
+    @product.product_images.each { |image| image.url.cache! }
+    @product.product_images.build
+    @category_parent, @category_child, @category_grandchild = @product.category.path
+  end
+
+  def update
+    @product = Product.find(params[:id])
+    existing_images = @product.product_images
+    new_images      = params[:product][:product_images_attributes]
+    remove_images   = params[:product][:remove_images]
+    images_count = (
+        (existing_images ? existing_images.length    : 0) +
+        (new_images      ? new_images.keys.length    : 0) -
+        (remove_images   ? remove_images.keys.length : 0)
+    )
+
+    if remove_images
+      if (1..10).include?(images_count)
+        remove_images.each { |key, _| @product.product_images[key.to_i].destroy }
+        @product = Product.find(params[:id])
+      else
+        @product.product_images.each { |image| image.url.cache! }
+        @product.product_images.build
+        @category_parent, @category_child, @category_grandchild = @product.category.path
+        flash.now[:img_error] = "画像を選択して下さい"
+        render :edit
+        return
+      end
+    end
+
+    return if @product.update(product_params)
+
+    @product.valid?
+    @product.product_images.build
+    @category_parent, @category_child, @category_grandchild = @product.category.path
+    session[:price_error] = "300以上9999999以下で入力してください"
+    render :edit
+  end
+
   private
   def product_params
-    params.require(:product).permit(:name, :price, :description, :ship_from_location_id, 
-      :product_condition_id,:product_status_id, :derivery_fee_payer_id, :derivery_day_id, :derivery_method_id, :category_id, :size_id, :brand,
-      product_images_attributes: [:url]).merge(user_id: current_user.id)
+    params.require(:product).permit(
+      :name, :price, :description, :ship_from_location_id, 
+      :product_condition_id, :product_status_id, :derivery_fee_payer_id, :derivery_day_id, :derivery_method_id,
+      :category_id, :size_id, :brand,
+      product_images_attributes: [:id, :url, :url_cache]).merge(user_id: current_user.id)
   end
 
   def move_to_index
     redirect_to root_path unless user_signed_in?
+  end
+
+  def move_to_show_without_owned_user
+    product = Product.find(params[:id])
+    redirect_to root_path unless product.user == current_user
   end
 end
