@@ -14,6 +14,11 @@
 #
 require 'rails_helper'
 
-RSpec.describe Category, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Category do
+  describe 'インスタンスメソッド: group_listに関するテストケース' do
+    it 'インスタンスのancestryと一致する一覧を返す' do
+      ancestry = '1'
+      expect(Category.find_by(ancestry: ancestry).group_list).to eq(Category.where(ancestry: ancestry))
+    end
+  end
 end
