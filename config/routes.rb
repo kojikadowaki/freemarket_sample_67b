@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   root to: 'products#index'
   resources :products, only: [:index, :new, :create, :show, :destroy, :edit, :update] do
     resources :comments, only: :create 
+    resources :favorites, only:[:create, :destroy]
+
     collection do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json'}
