@@ -21,6 +21,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :purchase, only: :show do
+    member do
+      post 'pay',  to: 'purchase#pay'
+      get  'done', to: 'purchase#done'
+    end
+  end
+
   resources :users, only: :show do
     member do
       get 'card',   to: 'card#show'
@@ -30,7 +37,7 @@ Rails.application.routes.draw do
 
   resources :card, only: [:new, :show] do 
     collection do
-      post 'pay', to: 'card#pay'
+      post 'pay',    to: 'card#pay'
       post 'delete', to: 'card#delete'
     end
   end
