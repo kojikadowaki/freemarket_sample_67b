@@ -4,6 +4,7 @@ class PurchaseController < ApplicationController
     @user    = current_user
     @card    = Card.find_by(user_id: current_user.id)
     @product = Product.find(params[:id])
+    
     if @card.present?
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
       customer                  = Payjp::Customer.retrieve(@card.customer_id)
@@ -25,9 +26,8 @@ class PurchaseController < ApplicationController
       when "Discover"
         @card_src = "card_logo_discover.jpg"
       end
-    else
-      redirect_to new_card_path
     end
+
   end
 
   def pay #商品購入メソッド
@@ -43,7 +43,6 @@ class PurchaseController < ApplicationController
 
     @product.update(status: "購入済み" )
     Order.create!(buyer_user_id: current_user.id, product_id: @product.id)
-
 
     redirect_to done_purchase_path #購入完了画面へ遷移
   end
