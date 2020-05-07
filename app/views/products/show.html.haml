@@ -1,0 +1,101 @@
+.product_box
+  .title
+    = @product.name
+  .image
+    %ul
+      %li
+        = image_tag @product_images.first.url, class: "main__image"
+        %ul
+          - @product_images.each do |product_image|
+            %li
+              = image_tag product_image.url, class: "image_list"
+  .price
+    .info
+      ¥
+      = @product.price
+    .tax
+      %p (税込)送料込み
+  .text
+    = simple_format(@product.description)
+  .info
+    %table
+      %tr 
+        %th
+          出品者
+        %td 
+          = link_to @product.user.nickname, "#"
+      %tr
+        %th
+          カテゴリー
+        %td
+          %ul
+            %li
+              - if @product.category.parent.parent.blank?
+                %p
+              - else
+                = link_to @product.category.parent.parent.name, "#"
+            %li
+              - if @product.category.parent.name.blank?
+                %p
+              - else
+                = link_to @product.category.parent.name, "#"
+            %li
+              - if @product.category.blank?
+                %p
+              - else
+                = link_to @product.category.name, "#"
+      %tr
+        %th
+          ブランド
+        %td
+          = @product.brand
+      %tr
+        %th
+          商品サイズ
+        %td
+          - if @product.size.blank?
+            %p
+          - else
+            = @product.size.size
+      %tr
+        %th
+          商品の状態
+        %td
+          = @product.product_condition.product_condition
+      %tr
+        %th
+          送料の負担
+        %td
+          = @product.derivery_fee_payer.derivery_fee_payer
+      %tr
+        %th
+          発送元地域
+        %td
+          = @product.ship_from_location.name
+      %tr
+        %th
+          発送日目安
+        %td
+          = @product.derivery_day.derivery_day
+  .buy_button
+    - if user_signed_in? 
+      - if @product.user == current_user
+        %ul
+          %li 
+            = link_to "商品の編集", "#", class: "edit_button"
+          %li 
+            = link_to "商品の削除", "#", class: "destroy_button"
+      - else
+        = link_to "購入画面へ進む", "#", class: "promote_page"
+    - else 
+      %p
+  .botton
+    %ul
+      %li.favorite_botton
+        = link_to "#" do
+          = icon('fa', 'star')
+          お気に入り 0
+      %li.warming_button
+        = link_to "#" do
+          = icon('fa', 'flag')
+          不適切な商品の通報

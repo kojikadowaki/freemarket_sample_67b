@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  ancestry   :string(255)
-#  name       :string(255)      not null
+#  name       :string(255)      default("")
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

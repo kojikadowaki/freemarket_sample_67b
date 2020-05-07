@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  ancestry   :string(255)
-#  name       :string(255)      not null
+#  name       :string(255)      default("")
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -21,4 +21,8 @@ class Category < ApplicationRecord
   # 自己結合モデル
   belongs_to :parent, class_name: :Category, optional: true
   has_many :children, class_name: :Category, foreign_key: :ancestry
+
+  def group_list
+    Category.where(ancestry: self.ancestry)
+  end
 end

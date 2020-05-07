@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  ancestry   :string(255)
-#  size       :string(255)      not null
+#  size       :string(255)      default("")
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -14,6 +14,11 @@
 #
 require 'rails_helper'
 
-RSpec.describe Size, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Size do
+  describe 'インスタンスメソッド: group_listに関するテストケース' do
+    it 'インスタンスのancestryと一致する一覧を返す' do
+      ancestry = '1'
+      expect(Size.find_by(ancestry: ancestry).group_list).to eq(Size.where(ancestry: ancestry))
+    end
+  end
 end
