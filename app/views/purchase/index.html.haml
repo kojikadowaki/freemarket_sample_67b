@@ -63,8 +63,11 @@
           = current_user.shipping_address.address_first_name
         %br
 
-      = form_tag(pay_purchase_path(@product), action: :pay, method: :post) do
-        %button.button1 購入する
+      - if @default_card_information.present?
+        = form_tag(pay_purchase_path(@product), action: :pay, method: :post) do
+          %button.button1 購入する
+      - else
+        %br
 
 %br
 .exhibit__page__footer
