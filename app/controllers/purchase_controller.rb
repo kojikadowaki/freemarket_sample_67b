@@ -1,6 +1,6 @@
 class PurchaseController < ApplicationController
   
-  def index #購入内容確認画面
+  def show #購入内容確認画面
     @card    = Card.find_by(user_id: current_user.id)
     @product = Product.find(params[:id])
 
