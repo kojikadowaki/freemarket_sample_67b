@@ -4,7 +4,7 @@ class PurchaseController < ApplicationController
     @user    = current_user
     @card    = Card.find_by(user_id: current_user.id)
     @product = Product.find(params[:id])
-    
+
     if @card.present?
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
       customer                  = Payjp::Customer.retrieve(@card.customer_id)
@@ -36,15 +36,18 @@ class PurchaseController < ApplicationController
     Payjp.api_key = Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
 
     Payjp::Charge.create(
-      :amount   => @product.price,
-      :customer => @card.customer_id,
-      :currency => 'jpy', 
+      amount:   @product.price,
+      customer: @card.customer_id,
+      currency: 'jpy', 
     )
+    
+    if @product.save
+      @product.update(status: "購入済み" )
+      Order.create!(buyer_user_id: current_user.id, product_id: @product.id)
 
-    @product.update(status: "購入済み" )
-    Order.create!(buyer_user_id: current_user.id, product_id: @product.id)
+      redirect_to done_purchase_path #購入完了画面へ遷移
+    end
 
-    redirect_to done_purchase_path #購入完了画面へ遷移
   end
 
   def done #商品購入完了画面
