@@ -12,7 +12,7 @@
           カード番号
         .main__container__form__card--required
           必須
-        = text_field_tag "number", "", maxlength: "16", type: "text", id: 'card_number', placeholder: "半角数字のみ", class: "main__container__form__card--number"
+        = text_field_tag "number", "", maxlength: "16", type: "text", id: 'card_number', placeholder: "半角数字のみ", class: "main__container__form__card--number", maxlength: "16"
         .main__container__form__card--images
           = image_tag "card_logo_visa.png",   size: "45x30", class: "main__container__form__card__images__icon"
           = image_tag "card_logo_master.png", size: "45x30", class: "main__container__form__card__images__icon"
@@ -63,7 +63,7 @@
           セキュリティーコード
         .main__container__form__security--required
           必須
-        = text_field_tag "cvc", "", maxlength: "4", type: "text", id: "cvc", placeholder: "カード背面4桁もしくは3桁の番号", class: "main__container__form__security--number"
+        = text_field_tag "cvc", "", maxlength: "4", type: "text", id: "cvc", placeholder: "カード背面4桁もしくは3桁の番号", class: "main__container__form__security--number", maxlength: "4"
         #card_token
 
       .main__container__form__question
