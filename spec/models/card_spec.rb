@@ -16,23 +16,25 @@ RSpec.describe Card, type: :model do
 end
 
 describe Card do
-  describe '#create' do
-    it 'customer_id、card_idが存在すれば登録できること' do
-      user = create(:user)
+  describe '#new' do
+    it 'user_id、customer_id、card_idが存在すれば登録できること' do
       card = build(:card)
-      card.valid?
       expect(card).to be_valid
     end
 
-    it 'customer_idが存在しないと登録できないこと' do
-      user = create(:user)
+    it "user_idが空では登録できないこと" do
+      card = build(:card, user_id: "")
+      card.valid?
+      expect(card.errors[:user]).to include("を入力してください")
+    end
+
+    it 'customer_idが空では登録できないこと' do
       card = build(:card, customer_id: "")
       card.valid?
       expect(card.errors[:customer_id]).to include("を入力してください")
     end
 
-    it 'card_idが存在しないと登録できないこと' do
-      user = create(:user)
+    it 'card_idが空では登録できないこと' do
       card = build(:card, card_id: "")
       card.valid?
       expect(card.errors[:card_id]).to include("を入力してください")
