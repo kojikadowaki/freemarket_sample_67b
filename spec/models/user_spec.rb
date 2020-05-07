@@ -65,8 +65,8 @@ describe User do
       end
 
       it 'Eメールが重複している場合は登録できない' do
-        build(:user).save
-        user = build(:user)
+        build(:user, email: 'foobar@hogehoge.com').save
+        user = build(:user, email: 'foobar@hogehoge.com')
         user.valid?
         expect(user.errors[:email]).to include('はすでに存在します')
       end
