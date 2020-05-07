@@ -54,7 +54,6 @@ class Product < ApplicationRecord
   validates :description, presence: true, length: { maximum: 1000 }
   validates :price,  presence: true, numericality:{ greater_than_or_equal_to: 300, less_than: 9999999 }
   validates :ship_from_location_id, :product_condition_id, :derivery_fee_payer_id, 
-
   :derivery_day_id, :derivery_method_id, :category, :user_id, presence: true
 
   def self.search(search)
@@ -64,8 +63,4 @@ class Product < ApplicationRecord
       Product.all
     end
   end
-
-
-  :derivery_day_id, :derivery_method_id, :category, presence: true
-
 end

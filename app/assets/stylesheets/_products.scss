@@ -63,20 +63,24 @@ a {
     }
         .search {
           width: 100%;
-          height: 50px;
-          margin-bottom: 5px; 
+          height: 41px;
+          margin-bottom: 5px;
+          position:relative;
         }
+
           form {
             width: 100%;
-            height: 35px;
-            display: flex;
+            height: 41px;
           }
           
-            .form-box {
-              margin-left: auto;
+            #keyword {
+              height: 40px;
+              margin: 0;
               font-size: 15px;
               padding: 0 0 0 5px;
               font-family: YuGothic;
+              top: 0;
+              border-radius: 0;
               }
 
               .form-btn {
@@ -85,11 +89,16 @@ a {
                 cursor: pointer;
                 background-color: #3CCACE;
                 padding: 8px;
+                position:absolute;
+                right: 0;
+                top: 0; 
               }
 
               .form-icon{
-                width: 100%;
-                vertical-align: bottom;
+                width: 19px;
+                position:absolute;
+                right: 8px;
+                top: 10px; 
               }
     
 
