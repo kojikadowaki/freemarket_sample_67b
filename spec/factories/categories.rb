@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  ancestry   :string(255)
-#  name       :string(255)      default("")
+#  name       :string(255)      not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -14,6 +14,6 @@
 #
 FactoryBot.define do
   factory :category do
-    
+    name { 'レディース' }
   end
 end

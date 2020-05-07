@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :move_to_index, except: [:index, :show]
+  before_action :move_to_index, except: [:index, :show, :search]
   before_action :move_to_show_without_owned_user, only: [:edit, :update]
 
   def index
@@ -43,6 +43,12 @@ class ProductsController < ApplicationController
       @category_parents = Category.where(ancestry: nil).pluck(:name)
       render :new
     end
+  end
+
+  def search
+    @products = Product.search(params[:keyword])
+    @products = Product.all unless @products.present?
+    @categories = Category.eager_load(children: :children).where(ancestry: nil)
   end
 
   def show
@@ -108,4 +114,10 @@ class ProductsController < ApplicationController
     product = Product.find(params[:id])
     redirect_to root_path unless product.user == current_user
   end
+
+  def move_to_index
+    redirect_to root_path unless user_signed_in?
+  end
+
 end
+
