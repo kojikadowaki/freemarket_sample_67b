@@ -85,8 +85,10 @@
             = link_to "商品の編集", "#", class: "edit_button"
           %li 
             = link_to "商品の削除", "#", class: "destroy_button"
+      - elsif @product.status == "購入済み"
+        = link_to "売り切れました", "#" ,class:"disabled-button bold"
       - else
-        = link_to "購入画面へ進む", "#", class: "promote_page"
+        = link_to "購入画面へ進む", purchase_path, class: "promote_page"
     - else 
       %p
   .botton
