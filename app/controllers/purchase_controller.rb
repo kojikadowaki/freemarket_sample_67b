@@ -40,10 +40,7 @@ class PurchaseController < ApplicationController
       currency: 'jpy', 
     )
     
-    if @product.save
-      @product.update(status: "購入済み" )
-      Order.create!(buyer_user_id: current_user.id, product_id: @product.id)
-
+    if @product.update(status: "購入済み" ) && Order.create!(buyer_user_id: current_user.id, product_id: @product.id)
       redirect_to done_purchase_path #購入完了画面へ遷移
     end
 
