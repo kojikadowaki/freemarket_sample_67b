@@ -2,7 +2,7 @@
   .header-content
     .header-block
       .header-block__logo
-        = link_to "/", class: "header-block__logo-item" do
+        = link_to "root_path", class: "header-block__logo-item" do
           = image_tag "logo.png", size: "140x40", alt: "ロゴ"
       .search
         = form_tag search_products_path method: :get do
