@@ -7,6 +7,7 @@
 #  description           :text(65535)      not null
 #  name                  :string(255)      not null
 #  price                 :integer          not null
+#  status                :string(255)      default("出品中")
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
 #  category_id           :integer          not null
@@ -53,5 +54,5 @@ class Product < ApplicationRecord
   validates :description, presence: true, length: { maximum: 1000 }
   validates :price,  presence: true, numericality:{ greater_than_or_equal_to: 300, less_than: 9999999 }
   validates :ship_from_location_id, :product_condition_id, :derivery_fee_payer_id, 
-  :derivery_day_id, :derivery_method_id, :category, :user_id, presence: true
+  :derivery_day_id, :derivery_method_id, :category, presence: true
 end

@@ -7,6 +7,7 @@
 #  description           :text(65535)      not null
 #  name                  :string(255)      not null
 #  price                 :integer          not null
+#  status                :string(255)      default("出品中")
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
 #  category_id           :integer          not null
@@ -33,7 +34,6 @@
 #
 FactoryBot.define do
   factory :product do
-    id                    {1}
     name                  {"ONE PICE"}
     description           {"面白い"}
     price                 {"450"}
@@ -47,7 +47,7 @@ FactoryBot.define do
     category_id           {7851}
     brand                 {"ジャンプ"}
     category
-    association :user, factory: :user
+    user
     after(:build) do |product|                          
       product.product_images << build(:product_image, product: product)
     end
