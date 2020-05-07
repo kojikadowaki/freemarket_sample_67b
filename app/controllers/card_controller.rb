@@ -56,6 +56,10 @@ class CardController < ApplicationController
         @card_src = "card_logo_jcb.gif"
       when "American Express"
         @card_src = "card_logo_amex.gif"
+      when "Diners Club"
+        @card_src = "card_logo_diners.png"
+      when "Discover"
+        @card_src = "card_logo_discover.jpg"
       end
     else
       redirect_to new_card_path

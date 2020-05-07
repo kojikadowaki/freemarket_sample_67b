@@ -69,6 +69,7 @@
 |derivery_fee_payer_id|integer|null: false|
 |derivery_day_id|integer|null: false|
 |derivery_method_id|integer|null: false|
+|status|string|default: "出品中"|
 |category_id|references|null: false, foreign_key: true|
 |user_id|references|null: false, foreign_key: true|
 ### Association
