@@ -47,9 +47,6 @@ $(function() {
       fileIndex.shift();
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
     }
-    // if ($('.js-file_group').length == 7 ){
-    //   $('.input-box__image').append(addImageBox)
-    // }
 
     if ($('.js-file_group').length == 11){
       $('.img-btn').remove();
