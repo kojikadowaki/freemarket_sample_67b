@@ -13,6 +13,7 @@
 - has_one :profile, dependent: :destroy
 - has_one :credit_card, dependent: :destroy
 - has_one :shipping_address, dependent: :destroy
+- has_many :sns_credentials, dependent: :destroy
 
 ## profilesテーブル
 |Column|Type|Options|
@@ -139,5 +140,14 @@
 |user_id|references|null: false, foreign_key: true|
 |product_id|references|null: false, foreign_key: true|
 ### Association
-- belongs_to :user
-- belongs_to :product
+- belongs_to: user
+- belongs_to: product
+
+## sns_credentialsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id |references|null: false, foreign_key: true|
+|provider|string    |null: false|
+|uid     |string    |null: false|
+### Association
+- belongs_to: user, optional: true
