@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200502080755) do
+ActiveRecord::Schema.define(version: 20200513233303) do
 
   create_table "cards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id",     null: false
@@ -117,6 +117,15 @@ ActiveRecord::Schema.define(version: 20200502080755) do
     t.index ["ancestry"], name: "index_sizes_on_ancestry", using: :btree
   end
 
+  create_table "sns_credentials", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id",    null: false
+    t.string   "provider",   null: false
+    t.string   "uid",        null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sns_credentials_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "nickname",                            null: false
     t.string   "email",                  default: "", null: false
@@ -139,4 +148,5 @@ ActiveRecord::Schema.define(version: 20200502080755) do
   add_foreign_key "products", "categories"
   add_foreign_key "products", "sizes"
   add_foreign_key "products", "users"
+  add_foreign_key "sns_credentials", "users"
 end
