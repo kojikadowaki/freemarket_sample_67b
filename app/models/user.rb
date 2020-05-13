@@ -25,6 +25,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :orders, class_name: "Order", foreign_key: "user_id"
   has_many :products, through: :ordres
+  has_many :sns_credentials, dependent: :destroy
   validates :nickname,
             presence: true,
             length: { maximum: 10 }
