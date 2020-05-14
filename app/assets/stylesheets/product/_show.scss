@@ -121,6 +121,15 @@ ul.bottom_button{
           border: 1px solid #3CCACE;
           color: #fff;
         }
+        .disabled-button {
+          font-size: 18px;
+          background-color: #888;
+          padding: 15px 100px;
+          border-radius: 100px;
+          border: 1px solid #888;
+          color: #fff;
+          pointer-events: none;
+        }
         &--promote_page{
           font-size: 18px;
           background-color: #3CCACE;

@@ -90,9 +90,9 @@
               %li 
                 = link_to "商品の削除", "#", class: "top_content__product_box__buy_button--destroy_button"
           - elsif @product.status == "購入済み"
-            = link_to "売り切れました", "#" ,class:"disabled-button bold"
+            = link_to "売り切れました", "#" ,class:"disabled-button"
           - else
-            = link_to "購入画面へ進む", "purchase_path", class: "top_content__product_box__buy_button--promote_page"
+            = link_to "購入画面へ進む", purchase_path, class: "top_content__product_box__buy_button--promote_page"
         - else 
           %p
       .top_content__product_box__bottom
