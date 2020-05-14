@@ -63,37 +63,39 @@ a {
     }
         .search {
           width: 100%;
-          display: flex;
-          margin-bottom: 5px; 
+          height: 41px;
+          margin-bottom: 5px;
+          position:relative;
         }
-        
-        .search button {
-          width: 36px;
-          border: 0;
-          cursor: pointer;
-          background-color: #3CCACE;
-          padding: 8px;
-        }
-        
-        .search-box {
-          height: 40px;
-          width: 100%;
-          margin-left: auto;
-          font-size: 15px;
-          padding: 0 0 0 5px;
-          font-family: YuGothic;
-        }
-        
-        .search-btn {
-          font-size: 20px;
-          height: 40px;
-          width: 40px;
-        }
+          
+            #keyword {
+              height: 40px;
+              margin: 0;
+              font-size: 15px;
+              padding: 0 0 0 5px;
+              font-family: YuGothic;
+              top: 0;
+              border-radius: 0;
+              }
 
-        .serch-icon{
-          width: 100%;
-          vertical-align: bottom;
-        }
+              .form-btn {
+                width: 36px;
+                border: 0;
+                cursor: pointer;
+                background-color: #3CCACE;
+                padding: 8px;
+                position:absolute;
+                right: 0;
+                top: 0; 
+              }
+
+              .form-icon{
+                width: 19px;
+                position:absolute;
+                right: 8px;
+                top: 10px; 
+                cursor: pointer;
+              }
     
 
     .nav-box {
@@ -487,11 +489,26 @@ a {
             width: 100%;
             z-index: auto;
             object-fit: cover;
+
+            // 以下、商品購入機能のマークアップ実装時に使用予定です 
+            // &-sold {
+            //   border-width: 110px 110px 0 0;
+            //   border-color: #3CCACE transparent transparent transparent;
+            //   position: absolute;
+            //   border-style: solid;
+            //   &__inner {
+            //     top: -90px;
+            //     font-size: 23px;
+            //     position: absolute;
+            //     color: #fff;
+            //     transform: rotate(-45deg);
+            //     letter-spacing: 3px;
+            //     font-weight: bold;
+            //   }
+            // }
           }
         }
-
          
-
           .list-block {
             height: 85px;
             width: 220px;
