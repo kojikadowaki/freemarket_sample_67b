@@ -1,103 +1,109 @@
-.product_box
-  .title
-    = @product.name
-  .image
-    %ul
-      %li
-        = image_tag @product_images.first.url, class: "main__image"
+= render partial: "header"
+.main_box
+  .top_content
+    .top_content__product_box
+      .top_content__product_box__title
+        = @product.name
+      .top_content__product_box__image
         %ul
-          - @product_images.each do |product_image|
-            %li
-              = image_tag product_image.url, class: "image_list"
-  .price
-    .info
-      ¥
-      = @product.price
-    .tax
-      %p (税込)送料込み
-  .text
-    = simple_format(@product.description)
-  .info
-    %table
-      %tr 
-        %th
-          出品者
-        %td 
-          = link_to @product.user.nickname, "#"
-      %tr
-        %th
-          カテゴリー
-        %td
-          %ul
-            %li
-              - if @product.category.parent.parent.blank?
+          %li
+            = image_tag @product_images.first.url, class: "top_content__product_box__image--main_image"
+            %ul.photo_box
+              - @product_images.each do |product_image|
+                %li
+                  = image_tag product_image.url, class: "top_content__product_box__image--image_list"
+      .top_content__product_box__price
+        .top_content__product_box__price__info
+          ¥
+          = @product.price
+        .top_content__product_box_price__tax
+          (税込)送料込み
+      .top_content__product_box__text
+        .top_content__product_box__text__content
+          = simple_format(@product.description)
+      .top_content__product_box__info
+        %table
+          %tr 
+            %th
+              出品者
+            %td 
+              = link_to @product.user.nickname, "#"
+          %tr.category
+            %th
+              カテゴリー
+            %td
+              %ul
+                %li
+                  - if @product.category.parent.parent.blank?
+                    %p
+                  - else
+                    = link_to @product.category.parent.parent.name, "#"
+                %li
+                  - if @product.category.parent.name.blank?
+                    %p
+                  - else
+                    = link_to @product.category.parent.name, "#"
+                %li
+                  - if @product.category.blank?
+                    %p
+                  - else
+                    = link_to @product.category.name, "#"
+          %tr
+            %th
+              ブランド
+            %td
+              = @product.brand
+          %tr
+            %th
+              商品サイズ
+            %td
+              - if @product.size.blank?
                 %p
               - else
-                = link_to @product.category.parent.parent.name, "#"
-            %li
-              - if @product.category.parent.name.blank?
-                %p
-              - else
-                = link_to @product.category.parent.name, "#"
-            %li
-              - if @product.category.blank?
-                %p
-              - else
-                = link_to @product.category.name, "#"
-      %tr
-        %th
-          ブランド
-        %td
-          = @product.brand
-      %tr
-        %th
-          商品サイズ
-        %td
-          - if @product.size.blank?
-            %p
+                = @product.size.size
+          %tr
+            %th
+              商品の状態
+            %td
+              = @product.product_condition.product_condition
+          %tr
+            %th
+              送料の負担
+            %td
+              = @product.derivery_fee_payer.derivery_fee_payer
+          %tr
+            %th
+              発送元地域
+            %td
+              = @product.ship_from_location.name
+          %tr
+            %th
+              発送日目安
+            %td
+              = @product.derivery_day.derivery_day
+      .top_content__product_box__buy_button
+        - if user_signed_in? 
+          - if @product.user == current_user
+            %ul.edit_destory
+              %li 
+                = link_to "商品の編集", "#", class: "top_content__product_box__buy_button--edit_button"
+              %li 
+                = link_to "商品の削除", "#", class: "top_content__product_box__buy_button--destroy_button"
+          - elsif @product.status == "購入済み"
+            = link_to "売り切れました", "#" ,class:"disabled-button bold"
           - else
-            = @product.size.size
-      %tr
-        %th
-          商品の状態
-        %td
-          = @product.product_condition.product_condition
-      %tr
-        %th
-          送料の負担
-        %td
-          = @product.derivery_fee_payer.derivery_fee_payer
-      %tr
-        %th
-          発送元地域
-        %td
-          = @product.ship_from_location.name
-      %tr
-        %th
-          発送日目安
-        %td
-          = @product.derivery_day.derivery_day
-  .buy_button
-    - if user_signed_in? 
-      - if @product.user == current_user
-        %ul
-          %li 
-            = link_to "商品の編集", "#", class: "edit_button"
-          %li 
-            = link_to "商品の削除", "#", class: "destroy_button"
-      - elsif @product.status == "購入済み"
-        = link_to "売り切れました", "#" ,class:"disabled-button bold"
-      - else
-        = link_to "購入画面へ進む", purchase_path, class: "promote_page"
-    - else 
-      %p
-  .botton
-    %ul
-      %li.favorite_botton
-        = link_to "#" do
-          = icon('fa', 'star')
-          お気に入り 0
-      %li.warming_button
-        = link_to "#" do
-          = icon('fa', 'flag')
-          不適切な商品の通報
+            = link_to "購入画面へ進む", "purchase_path", class: "top_content__product_box__buy_button--promote_page"
+        - else 
+          %p
+      .top_content__product_box__bottom
+        %ul.bottom_button
+          %li.top_content__product_box__bottom--favorite_button
+            = link_to "#" do
+              = icon('fa', 'star')
+              お気に入り 0
+          %li.top_content__product_box__bottom--warming_button
+            = link_to "#" do
+              = icon('fa', 'flag')
+              不適切な商品の通報
+= render 'footer'
+

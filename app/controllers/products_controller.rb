@@ -54,6 +54,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @product_images = ProductImage.where("product_id = ?", params[:id] )
+    @categories = Category.eager_load(children: :children).where(ancestry: nil)
   end
 
   def edit
