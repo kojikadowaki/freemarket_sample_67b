@@ -19,6 +19,6 @@
 #  fk_rails_...  (product_id => products.id)
 #
 class Order < ApplicationRecord
-  belongs_to :buyer_user, class_name: "user", foreign_key: "buyer_user_id"
+  belongs_to :buyer_user, class_name: "User", foreign_key: "buyer_user_id"
   belongs_to :product
 end

@@ -102,8 +102,9 @@
           }
           .input-box__image{
             &__wrapper{
-              display: block;
-              height: 150px;
+              display: flex;
+              flex-wrap: wrap;
+              min-height: 150px;
               width: 100%;
               background-color:#f1f1f1;
               border: dashed 1px gray;
@@ -114,7 +115,7 @@
                 text-align: center;
                 display: inline-block;
                 border-left: solid 1px #f1f1f1;
-                .js-remove{
+                .js-remove, .js-remove_for_edit{
                   color: red;
                   line-height: 24px;
                 }

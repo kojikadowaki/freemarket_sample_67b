@@ -1,4 +1,4 @@
-$(function(){
+$(function() {
   let buildFieldField = (index)=> {
     let html = `<div data-index="${index}" class="js-file_group">
                   <input class="js-file" type="file"
@@ -16,8 +16,17 @@ $(function(){
     return html;
   }
 
+  let buildRemoveImageCheck = (index, image_id) => {
+    let html = `<div class="img-hidden">
+                  <input type="hidden"
+                    name="product[remove_images][${index}]"
+                    id="product_remove_images_${index}" value="${image_id}">
+                </div>`;
+    return html;
+  }
+
   let addImageBox = `<div class="input-box__image__wrapper"></div>`
-  let fileIndex = [1,2,3,4,5,6,7,8,9,10];
+  let fileIndex = [1,2,3,4,5,6,7,8,9,10].map(x => x + $('.js-file').length - 1);
 
 
   $('#img-fields').on("click",".fa-camera", function(){
@@ -38,9 +47,6 @@ $(function(){
       fileIndex.shift();
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
     }
-    if ($('.js-file_group').length == 7 ){
-      $('.input-box__image').append(addImageBox)
-    }
 
     if ($('.js-file_group').length == 11){
       $('.img-btn').remove();
@@ -51,6 +57,16 @@ $(function(){
     let targetIndex = $(this).prev().data('index');
     $(this).parent().remove();
     $(`#product_product_images_attributes_${targetIndex}_url`).remove();
+    if ($('.js-file').length == 0) $('#image-box').append(buildFieldField(fileIndex[0]));
+  });
+
+  $(document).on('click', '.js-remove_for_edit', function(){
+    let targetIndex = $(this).parent().children('.thumbnail').attr('data-index');
+    let imageID = $(this).parent().attr('id');
+    $(this).parent().remove();
+    $(`#product_product_images_attributes_${targetIndex}_id`).remove();
+    $(`.js-file_group[data-index="${targetIndex}"]`).remove();
+    $('.input-box__image__wrapper').append(buildRemoveImageCheck(targetIndex, imageID))
     if ($('.js-file').length == 0) $('#image-box').append(buildFieldField(fileIndex[0]));
   });
 });
