@@ -1,0 +1,55 @@
+*{
+  box-sizing: border-box;
+}
+
+$mainWhite: #fff;
+
+.purchase__done {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f1f1f1;
+
+  &__header {
+    height: 100px;
+    width: 100vw;
+    line-height: 160px;
+    text-align: center;
+  }
+
+  &__container {
+    width: 700px;
+    background-color: $mainWhite;
+    margin: 32px auto ;
+    color: #333;
+    text-align: center;
+    &--head {
+      padding: 40px;
+    }
+    &--product__box {
+      height: 120px;
+      display: flex;
+      justify-content: center;
+      &--info {
+        padding-left: 20px;
+        font-size: 15px;
+        text-align: left;
+        &__name {
+          padding-bottom: 10px;
+        }  
+      }
+    }
+    .back__to__top {
+      background-color: #3CCACE;
+      line-height: 60px;
+      font-size: 18px;
+      :hover {
+        background-color:  rgb(37, 176, 180);
+      }
+      &--btn {
+        display: block;
+        text-decoration: none;
+        color: $mainWhite;
+      }
+    }
+  }
+}
