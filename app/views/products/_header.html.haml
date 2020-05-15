@@ -5,9 +5,9 @@
         = link_to root_path, class: "header-block__logo-item" do
           = image_tag "logo.png", size: "140x40", alt: "ロゴ"
       .search
-        = form_tag search_products_path method: :get do
-          = text_field_tag :keyword, "", placeholder: "キーワードから探す", class: "form-box"
-          = submit_tag "", class: "form-btn"
+        = search_form_for @search, url: search_products_path, method: :get do |f|
+          = f.search_field :name_or_description_cont, placeholder: "キーワードから探す", class: "form-box"
+          = f.submit "", class: "form-btn"
           = image_tag "icon-search 1.png", class: "form-icon"
     .nav-box
       .nav-left

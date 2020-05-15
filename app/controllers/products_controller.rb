@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :move_to_index, except: [:index, :show, :search]
   before_action :move_to_show_without_owned_user, only: [:edit, :update]
+  before_action :search
 
   def index
     @categories = Category.eager_load(children: :children).where(ancestry: nil)
@@ -46,8 +47,8 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = Product.search(params[:keyword])
-    @products = Product.all unless @products.present?
+    @search = Product.ransack(params[:q])
+    @products = @search.result
     @categories = Category.eager_load(children: :children).where(ancestry: nil)
   end
 

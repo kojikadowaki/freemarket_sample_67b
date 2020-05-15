@@ -11,12 +11,12 @@
   height: 48px;
   background-color: #f8f8f8;
   display: flex;
-
-  &__btn::-ms-expand {
+}
+  #q_sorts::-ms-expand {
     display: none;
   }
   
-  &__btn {
+  #q_sorts {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -27,7 +27,7 @@
     background-color: #fff;
     cursor: pointer
   }
-}
+
 
 .select li {
   list-style: none;
