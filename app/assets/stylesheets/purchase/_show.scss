@@ -1,0 +1,162 @@
+*{
+  box-sizing: border-box;
+}
+
+$mainWhite: #fff;
+$mainBlack: #333;
+
+@mixin borderTop {
+  border-top: 1px solid #f5f5f5;
+}
+
+@mixin betweenItemsPadding {
+  padding: 35px 170px 5px;
+}
+
+@mixin spaceBetween {
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin cardEdit {
+  color: #0099e8;
+  text-decoration: none;
+}
+
+.buy__product {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f1f1f1;
+  &__header {
+    height: 128px;
+    width: 100vw;
+    line-height: 160px;
+    text-align: center;
+  }
+
+  &__container {
+    height: calc(100vh-128px);
+    width: 700px;
+    background-color: $mainWhite;
+    color: $mainBlack;
+    margin: 0 auto;
+    &--head {
+      padding: 32px;
+      font-size: 22px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    &--product__box {
+      height: 120px;
+      padding: 35px 16px;
+      display: flex;
+      justify-content: center;
+      color: $mainBlack;
+      @include borderTop;
+      &--info {
+        padding-left: 20px;
+        font-size: 15px;
+        text-align: left;
+        &__name {
+          padding-bottom: 10px;
+        }  
+      }
+    }
+
+    &--user__info {
+      &__inner{
+        @include borderTop;
+        &--price {
+          @include betweenItemsPadding;
+          @include spaceBetween;
+          font-weight: bold;
+          &__title {
+            font-size: 18px;
+          }
+          &__amount {
+            font-size: 22px;
+          }
+        }
+        &--payment {
+          @include borderTop;
+          @include betweenItemsPadding;
+          &__head {
+            @include spaceBetween;
+            font-size: 18px;
+            padding-bottom: 5px;
+            &--title {
+              font-weight: bold;
+              font-size: 15px;
+            }
+            &--edit {
+              font-size: 15px;
+              .card_registration {
+                @include cardEdit;
+              }
+            }
+          }
+          &__card {
+            font-size: 13px;
+            h3 {
+              font-size: 15px;
+              padding-bottom: 5px;
+            }
+            .card__register {
+              color: #0099e8;
+              font-size: 15px;
+            }
+            .card_registration {
+              @include cardEdit;
+            }
+          }
+        }
+
+        &--shipping__address {
+          @include borderTop;
+          @include betweenItemsPadding;
+          font-size: 13px;
+          h3 {
+            padding-bottom: 5px;
+            font-weight: bold;
+            font-size: 15px;
+          }
+        }
+
+        &--purchase__btn {
+          @include borderTop;
+          padding: 35px 170px;
+          display: block;
+          .available {
+            width: 100%;
+            background-color: #3CCACE;
+            color: $mainWhite;
+            line-height: 48px;
+            font-size: 14px;
+            outline: 0;
+            display: block;
+          }
+          .unavailable {
+            width: 100%;
+            background-color: #888;
+            color: $mainWhite;
+            line-height: 48px;
+            font-size: 14px;
+            pointer-events: none;
+          }
+        }
+      }
+    }
+  }
+
+  &__footer {
+    height: 128px;
+    text-align: center;
+    font-size: 12px;
+    &__lists {
+      padding: 16px 520px;
+      @include betweenItemsPadding;
+    }
+  }
+  
+}
