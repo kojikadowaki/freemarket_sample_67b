@@ -57,6 +57,11 @@ class ProductsController < ApplicationController
     @categories = Category.eager_load(children: :children).where(ancestry: nil)
   end
 
+  def destroy
+    product = Product.find(params[:id])
+    product.destroy
+  end
+  
   def edit
     @product = Product.find(params[:id])
     @product.product_images.each { |image| image.url.cache! }
@@ -88,7 +93,6 @@ class ProductsController < ApplicationController
         return
       end
     end
-
     return if @product.update(product_params)
 
     @product.valid?
