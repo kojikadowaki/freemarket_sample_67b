@@ -3,7 +3,7 @@
   %menu.left__content__menu
     %ul.left__content__list
       %li
-      = link_to "/users/#{current_user.id}", class: 'left__content__list-item' do
+      = link_to user_path(current_user.id), class: 'left__content__list-item' do
         マイページ
       %li
       = link_to '#', class: 'left__content__list-item' do
@@ -15,23 +15,14 @@
       = link_to '#', class: 'left__content__list-item' do
         いいね！一覧
       %li
-      = link_to '#', class: 'left__content__list-item' do
+      = link_to new_product_path, class: 'left__content__list-item' do
         出品する
       %li
-      = link_to '#', class: 'left__content__list-item' do
-        出品した商品 - 出品中
-      %li
-      = link_to  '#', class: 'left__content__list-item' do
-        出品した商品 - 取引中
+      = link_to selling_user_path(current_user.id), class: 'left__content__list-item' do
+        出品した商品一覧
       %li
       = link_to '#', class: 'left__content__list-item' do
-        出品した商品 - 売却済み
-      %li
-      = link_to '#', class: 'left__content__list-item' do
-        購入した商品 - 取引中
-      %li
-      = link_to '#', class: 'left__content__list-item' do
-        購入した商品 - 過去の取引
+        購入した商品一覧
       %li
       = link_to '#', class: 'left__content__list-item' do
         ニュース一覧

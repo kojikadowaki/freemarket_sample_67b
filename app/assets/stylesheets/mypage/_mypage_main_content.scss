@@ -96,6 +96,7 @@ $mainLightGray: #eee;
       text-align: center;
       font-size: 16px;
       padding-bottom: 85px;
+      font-weight: bold;
     }
 
     .tab__content {
@@ -167,6 +168,7 @@ $mainLightGray: #eee;
         color: $mainGray;
         text-align: center;
         font-size: 16px;
+        font-weight: bold;
       }
     
       #now_trading:checked ~ .content1, #past_trading:checked ~ .content2 {
