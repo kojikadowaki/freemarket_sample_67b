@@ -86,9 +86,9 @@
           - if @product.user == current_user
             %ul.edit_destory
               %li 
-                = link_to "商品の編集", "#", class: "top_content__product_box__buy_button--edit_button"
+                = link_to "商品の編集", edit_product_path, class: "top_content__product_box__buy_button--edit_button"
               %li 
-                = link_to "商品の削除", "#", class: "top_content__product_box__buy_button--destroy_button"
+                = link_to "商品の削除", "/products/#{@product.id}", class: "top_content__product_box__buy_button--destroy_button", method: :delete
           - elsif @product.status == "購入済み"
             = link_to "売り切れました", "#" ,class:"disabled-button"
           - else
