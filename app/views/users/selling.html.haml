@@ -1,0 +1,116 @@
+= render 'products/header'
+= render 'mypage_side_nav'
+
+.exhibition__products
+  .exhibition__products__title 
+    出品した商品
+
+  .exhibition__products__tabs
+    %input#now_selling{checked: "checked", name: "tabs1", type: "radio"}
+    %label.tab_exhibition{for: "now_selling"} 
+      出品中
+
+    %input#now_dealing{name: "tabs1", type: "radio"}
+    %label.tab_exhibition{for: "now_dealing"} 
+      取引中
+
+    %input#sold_out{name: "tabs1", type: "radio"}
+    %label.tab_exhibition{for: "sold_out"} 
+      売却済み
+
+
+    #now_selling.tab__content.content1
+      - if @selling_products.present?
+        - @selling_products.each do |product|
+          %li
+          .tab__content__list
+            = link_to product_path(product.id), class: "product__list__detail", method: :get do
+              .tab__content__list__products
+                .tab__content__list__products--image
+                  = image_tag product.product_images.first.url, size: "60x50", class: "product__image"
+
+                .tab__content__list__products--text
+                  .tab__content__list__products--text__name
+                    = product.name
+
+                  .tab__content__list__products--text__btn
+                    .tab__content__list__products--text__btn--favorite__btn
+                      = icon('fa', 'star')
+                      0
+                    .tab__content__list__products--text__btn--comment__btn
+                      = icon('fas', 'comment')
+                      0
+                    .tab__content__list__products--text__btn--status__selling
+                      出品中
+
+        = paginate @selling_products
+
+      - else
+        .tab__content__noproducts
+          = image_tag "logo_gray.jpg", size: "70x70", class: "logo_gray_image"  
+          %p.c-txtsp 出品中の商品はありません
+
+    #now_dealing.tab__content.content2
+      - if @dealing_products.present?
+        - @dealing_products.each do |product|
+          %li
+          .tab__content__list
+            = link_to product_path(product.id), class: "product__list__detail", method: :get do
+              .tab__content__list__products
+                .tab__content__list__products--image
+                  = image_tag product.product_images.first.url, size: "60x50", class: "product__image"
+
+                .tab__content__list__products--text
+                  .tab__content__list__products--text__name
+                    = product.name
+
+                  .tab__content__list__products--text__btn
+                    .tab__content__list__products--text__btn--favorite__btn
+                      = icon('fa', 'star')
+                      0
+                    .tab__content__list__products--text__btn--comment__btn
+                      = icon('fas', 'comment')
+                      0
+                    .tab__content__list__products--text__btn--status__dealing
+                      取引中
+
+        = paginate @dealing_products
+
+      - else
+        .tab__content__noproducts
+          = image_tag "logo_gray.jpg", size: "70x70", class: "logo_gray_image"  
+          %p.c-txtsp 取引中の商品はありません
+
+
+    #sold_out.tab__content.content3
+      - if @sold_products.present?
+        - @sold_products.each do |product|
+          %li
+          .tab__content__list
+            = link_to product_path(product.id), class: "product__list__detail", method: :get do
+              .tab__content__list__products
+                .tab__content__list__products--image
+                  = image_tag product.product_images.first.url, size: "60x50", class: "product__image"
+
+                .tab__content__list__products--text
+                  .tab__content__list__products--text__name
+                    = product.name
+
+                  .tab__content__list__products--text__btn
+                    .tab__content__list__products--text__btn--favorite__btn
+                      = icon('fa', 'star')
+                      0
+                    .tab__content__list__products--text__btn--comment__btn
+                      = icon('fas', 'comment')
+                      0
+                    .tab__content__list__products--text__btn--status__sold
+                      売却済
+
+        = paginate @sold_products
+
+      - else
+        .tab__content__noproducts
+          = image_tag "logo_gray.jpg", size: "70x70", class: "logo_gray_image"  
+          %p.c-txtsp 売却済の商品はありません
+
+= render 'products/footer'

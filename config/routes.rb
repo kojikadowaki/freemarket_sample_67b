@@ -30,8 +30,9 @@ Rails.application.routes.draw do
 
   resources :users, only: :show do
     member do
-      get 'card',   to: 'card#show'
-      get 'logout', to: 'users#logout'
+      get 'card',    to: 'card#show'
+      get 'logout',  to: 'users#logout'
+      get 'selling', to: 'users#selling'
     end
   end
 
