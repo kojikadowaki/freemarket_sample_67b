@@ -7,7 +7,7 @@
 #  uid        :string(255)      not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  user_id    :integer          not null
+#  user_id    :integer
 #
 # Indexes
 #
@@ -19,4 +19,7 @@
 #
 class SnsCredential < ApplicationRecord
   belongs_to :user, optional: true
+
+  validates :provider, presence: true
+  validates :uid,      presence: true
 end
