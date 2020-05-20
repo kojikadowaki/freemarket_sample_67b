@@ -21,7 +21,7 @@
       = link_to selling_user_path(current_user.id), class: 'left__content__list-item' do
         出品した商品一覧
       %li
-      = link_to '#', class: 'left__content__list-item' do
+      = link_to purchasing_user_path(current_user.id), class: 'left__content__list-item' do
         購入した商品一覧
       %li
       = link_to '#', class: 'left__content__list-item' do
