@@ -275,8 +275,6 @@ $signup_form_width: 300px;
       color: black;
       border: 1px solid black;
       &:before {
-        // @extend .fab;
-        // content: fa-content($fa-var-google);
         content: '';
         display: inline-block;
         background-image: url('google_logo.svg');
