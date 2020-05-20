@@ -216,17 +216,78 @@ $signup_form_width: 300px;
   text-align: center;
   font-size: 14px;
   width: $signup_content_width;
-  padding-bottom: 24px;
+  padding: 24px 0;
   margin-bottom: 16px;
-  border-bottom: 1px solid #EEEEEE;
-  &__button {
+  border-bottom: 1px solid $signup_wallpaper_color;
+  %__button {
     width: $signup_form_width;
     height: 48px;
-    background-color: #33aaff;
-    color: white;
     line-height: 48px;
     text-align: center;
     display: block;
-    margin: 0 auto;
+    margin: 8px auto;
+    position: relative;
+    &:before {
+      @extend %fa-icon;
+      font-size: 20px;
+      position: absolute;
+      left: 16px;
+      line-height: 48px;
+    }
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  &__button {
+    @extend %__button;
+    background-color: $signup_completed_color;
+    color: white;
+    &--email {
+      @extend %__button;
+      background-color: $signup_completed_color;
+      color: white;
+      &:before {
+        @extend .far;
+        content: fa-content($fa-var-envelope);
+      }
+    }
+    &--facebook {
+      @extend %__button;
+      background-color: #385185;
+      color: white;
+      &:before {
+        @extend .fab;
+        content: fa-content($fa-var-facebook);
+      }
+    }
+    &--twitter {
+      @extend %__button;
+      background-color: #1DA1F2;
+      color: white;
+      &:before {
+        @extend .fab;
+        content: fa-content($fa-var-twitter);
+      }
+    }
+    &--google {
+      @extend %__button;
+      background-color: white;
+      color: black;
+      border: 1px solid black;
+      &:before {
+        // @extend .fab;
+        // content: fa-content($fa-var-google);
+        content: '';
+        display: inline-block;
+        background-image: url('google_logo.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        width:  20px;
+        height: 20px;
+        top: 0;
+        bottom: 0;
+        margin: auto 0;
+      }
+    }
   }
 }
