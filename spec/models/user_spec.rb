@@ -19,10 +19,6 @@
 #
 
 require 'rails_helper'
-RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
-
-end
 
 describe User do
   describe '#create' do
@@ -38,14 +34,14 @@ describe User do
         expect(user.errors[:nickname]).to include('を入力してください')
       end
 
-      it 'ニックネームが11文字の場合は登録できない' do
-        user = build(:user, nickname: 'A' * 11)
+      it 'ニックネームが21文字の場合は登録できない' do
+        user = build(:user, nickname: 'A' * 21)
         user.valid?
-        expect(user.errors[:nickname]).to include('は10文字以内で入力してください')
+        expect(user.errors[:nickname]).to include('は20文字以内で入力してください')
       end
 
-      it 'ニックネームが10文字の場合は登録できる' do
-        user = build(:user, nickname: 'A' * 10)
+      it 'ニックネームが20文字の場合は登録できる' do
+        user = build(:user, nickname: 'A' * 20)
         expect(user).to be_valid
       end
 
@@ -93,6 +89,41 @@ describe User do
       end
     end
   end
+
+  describe 'from_omniauthメソッド' do
+    it 'SNSのnicknameとemailを返す' do
+      sns = facebook_mock
+      user = User.from_omniauth(sns)
+      expect(user.nickname).to include(sns.info.name[0, 20])
+      expect(user.email).to eq(sns.info.email)
+    end
+
+    it 'SNSのemailがnilの場合、ダミーのemailを返す' do
+      sns = facebook_mock
+      sns.info.email = nil
+      user = User.from_omniauth(sns)
+      expect(user.email).to eq("#{sns.uid}-#{sns.provider}@example.com")
+    end
+
+    it 'SNSのnicknameが20文字を超える場合、20文字までを返す（文字制限のため）' do
+      sns = facebook_mock
+      sns.info.name = 'A' * 21
+      user = User.from_omniauth(sns)
+      expect(user.nickname).to eq(sns.info.name[0, 20])
+    end
+
+    it '同じemailのユーザがすでに存在する場合、SNS認証ユーザに紐付ける' do
+      sns = facebook_mock
+      user = build(:user, email: sns.info.email)
+      user.save
+      User.from_omniauth(sns)
+      expect(SnsCredential.first.user).to eq(user)
+    end
+  end
 end
 
+private
 
+def facebook_mock
+  OmniAuth::AuthHash.new(Faker::Omniauth.facebook)
+end

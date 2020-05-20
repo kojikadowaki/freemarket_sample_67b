@@ -7,7 +7,7 @@
 #  uid        :string(255)      not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  user_id    :integer          not null
+#  user_id    :integer
 #
 # Indexes
 #
@@ -19,6 +19,23 @@
 #
 require 'rails_helper'
 
-RSpec.describe SnsCredential, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe SnsCredential do
+  describe 'create#' do
+    it 'SNS情報が登録できる' do
+      sns = build(:sns_credential)
+      expect(sns).to be_valid
+    end
+
+    it 'providerが空の場合は登録できない' do
+      sns = build(:sns_credential, provider: '')
+      sns.valid?
+      expect(sns.errors[:provider]).to include('を入力してください')
+    end
+
+    it 'uidが空の場合は登録できない' do
+      sns = build(:sns_credential, uid: '')
+      sns.valid?
+      expect(sns.errors[:uid]).to include('を入力してください')
+    end
+  end
 end

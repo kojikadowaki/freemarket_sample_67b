@@ -7,7 +7,7 @@
 #  uid        :string(255)      not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  user_id    :integer          not null
+#  user_id    :integer
 #
 # Indexes
 #
@@ -19,8 +19,8 @@
 #
 FactoryBot.define do
   factory :sns_credential do
-    user { nil }
-    provider { "MyString" }
-    uid { "MyString" }
+    user     { nil }
+    provider { "Facebook" }
+    uid      { Faker::Code.imei }
   end
 end

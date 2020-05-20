@@ -39,6 +39,8 @@ end
 require 'devise'
 require File.expand_path("spec/support/controller_macros.rb")
 
+OmniAuth.config.test_mode = true
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
