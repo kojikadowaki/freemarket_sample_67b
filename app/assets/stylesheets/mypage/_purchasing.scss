@@ -25,7 +25,7 @@ $mainBlack: #333;
 
 @mixin tabsShape {
   height: 70px;
-  width: calc(700px/3);
+  width: calc(700px/2);
   background-color: $mainLightGray;
   float: left;
   line-height: 60px;
@@ -41,7 +41,7 @@ $mainBlack: #333;
   justify-content: space-between;
 }
 
-.exhibition__products {
+.purchasing__products {
   min-height: 100vh;
   width: 700px;
   position: absolute;
@@ -57,11 +57,11 @@ $mainBlack: #333;
   &__tabs {
     background-color: $mainWhite;
 
-    input[name="tabs1"] {
+    input[name="tabs2"] {
       display: none;
     }
 
-    input[name="tabs1"]:checked + .tab_exhibition {
+    input[name="tabs2"]:checked + .tab_exhibition {
       @include tabsDesign; 
     }
 
@@ -69,7 +69,7 @@ $mainBlack: #333;
       @include tabsShape;
     }
 
-    #now_selling:checked ~ .content1, #now_dealing:checked ~ .content2, #sold_out:checked ~ .content3 {
+    #now_dealing:checked ~ .content1, #past_transaction:checked ~ .content2 {
       display: block;
     }
   }
@@ -104,11 +104,11 @@ $mainBlack: #333;
               padding-right: 8px;
             }
             &--status {
-              &__selling {
+              &__dealing {
                 @include productStatus;
                 background-color: #3CCACE;
               }
-              &__sold {
+              &__completed {
                 @include productStatus;
                 background-color: #888;
               }

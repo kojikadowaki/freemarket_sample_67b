@@ -85,7 +85,7 @@
 - belongs_to_active_hash :derivery_method
 - belongs_to :category
 - has_one :order, dependent: :destroy
-- has_one :buyer_user, through: :orders
+- has_one :user, through: :orders
 
 ## product_imagesテーブル
 |Column|Type|Options|
@@ -136,8 +136,8 @@
 ## ordersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|buyer_user_id|references|null: false, foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
 |product_id|references|null: false, foreign_key: true|
 ### Association
-- belongs_to: user
-- belongs_to: product
+- belongs_to :user
+- belongs_to :product
