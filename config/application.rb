@@ -13,5 +13,6 @@ module FreemarketSample67b
     # -- all .rb files in that directory are automatically loaded.
     config.i18n.default_locale = :ja
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s]
+    Faker::Config.locale = :en 
   end
 end

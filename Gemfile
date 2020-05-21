@@ -77,8 +77,6 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'rails-i18n'
 
-gem 'haml-rails'
-
 gem 'jp_prefecture'
 
 gem 'ancestry'
@@ -88,3 +86,8 @@ gem 'fog-aws'
 gem 'active_hash'
 gem 'payjp' 
 gem 'kaminari'
+
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
