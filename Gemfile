@@ -42,7 +42,6 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'capistrano'
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
@@ -69,7 +68,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'haml-rails'
-
+gem 'faker'
 gem 'rubocop', require: false
 
 gem 'font-awesome-sass'
