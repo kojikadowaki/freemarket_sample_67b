@@ -1,4 +1,4 @@
-.contents{
+.contents {
   width: 100%;
   display: flex;
   padding: 35px 0 35px 200px;
@@ -6,11 +6,15 @@
   background-color: #f8f8f8;
 }
 
-.select{
+.select {
   width: 250px;
   height: 48px;
   margin-right: 100px;
   background-color: #f8f8f8;
+}
+
+.select_box {
+  position: relative;
 }
   #q_sorts::-ms-expand {
     display: none;
@@ -32,15 +36,10 @@
     font-size: 25px;
     color: #a9a9a9;
     pointer-events: none;
+    position: absolute;
+    right: 10px;
+    top: 12px
   }
-
-li {
-  list-style: none;
-}
-
-i {
-  font-family: YuGothic;
-}
 
 .detail_search {
   width: 250px;
@@ -224,7 +223,6 @@ i {
 }
 
 .products-list {
-  height: 245px;
   margin: 26px auto;
   position: relative;
   display: flex;
