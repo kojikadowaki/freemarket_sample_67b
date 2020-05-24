@@ -49,7 +49,6 @@ class ProductsController < ApplicationController
   def search
     @search = Product.ransack(params[:q])
     @products = @search.result
-    @sorts = [["価格が安い順", "price ASC"], ["価格が高い順", "price DESC"], ["出品が新しい順", "created_at ASC"], ["出品が古い順", "created_at DESC"]]
     @categories = Category.eager_load(children: :children).where(ancestry: nil)
   end
 
