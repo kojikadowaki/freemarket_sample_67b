@@ -53,8 +53,8 @@ class ProductsController < ApplicationController
     else
       params[:q] = { sorts: 'id desc' }
       @search = Product.ransack()
-      @items = Product.all
-      end
+      @products = Product.all
+    end
     @categories = Category.eager_load(children: :children).where(ancestry: nil)
   end
 
