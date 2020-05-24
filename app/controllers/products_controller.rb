@@ -47,8 +47,14 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @search = Product.ransack(params[:q])
-    @products = @search.result
+    if params[:q].present?
+      @search = Product.ransack(params[:q])
+      @products = @search.result
+    else
+      params[:q] = { sorts: 'id desc' }
+      @search = Product.ransack()
+      @items = Product.all
+      end
     @categories = Category.eager_load(children: :children).where(ancestry: nil)
   end
 
