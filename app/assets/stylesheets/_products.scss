@@ -68,23 +68,32 @@ a {
           position:relative;
         }
           
-            #keyword {
-              height: 40px;
+          .product_search{
+            width: 100%;
+            height: 41px;
+            display: flex;
+          }
+ 
+            #q_name_or_description_cont {
+              width: 100%;
+              height: 35px;
               margin: 0;
-              font-size: 15px;
-              padding: 0 0 0 5px;
-              font-family: YuGothic;
-              top: 0;
+              padding: 0 56px 0 5px;
               border-radius: 0;
+              background-color: white;
+              border: solid 1px #c4c2c2;
+              outline: none;
+              font-family: YuGothic;
               }
 
               .form-btn {
                 width: 36px;
+                height: 35px;
                 border: 0;
                 cursor: pointer;
                 background-color: #3CCACE;
                 padding: 8px;
-                position:absolute;
+                position: relative;
                 right: 0;
                 top: 0; 
               }
@@ -93,8 +102,9 @@ a {
                 width: 19px;
                 position:absolute;
                 right: 8px;
-                top: 10px; 
+                top: 8px; 
                 cursor: pointer;
+                pointer-events: none;
               }
     
 

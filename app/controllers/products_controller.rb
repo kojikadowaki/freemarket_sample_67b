@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :move_to_index, except: [:index, :show, :search]
   before_action :move_to_show_without_owned_user, only: [:edit, :update]
+  before_action :search
   before_action :set_product, only: [:show, :destroy, :edit, :update]
 
   def index
@@ -47,8 +48,14 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = Product.search(params[:keyword])
-    @products = Product.all unless @products.present?
+    if params[:q].present?
+      @search = Product.ransack(params[:q])
+      @products = @search.result
+    else
+      params[:q] = { sorts: 'id desc' }
+      @search = Product.ransack()
+      @products = Product.all
+    end
     @categories = Category.eager_load(children: :children).where(ancestry: nil)
   end
 

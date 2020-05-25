@@ -2,11 +2,10 @@
 .contents
   .left_bar
     .select
-      %select{name: :sort, class: 'select__btn'}
-        %option
-          並び替え
-      %li
-        %i.fa.fa-angle-down
+      = search_form_for @search, url: search_products_path do |f|
+        .select_box
+          = f.select( :sorts, { '並び替え': 'id desc', '価格の安い順': 'price asc', '価格の高い順': 'price desc', '出品の古い順': 'updated_at asc', '出品の新しい順': 'updated_at desc' } , { selected: params[:q][:sorts] }, { onchange: 'this.form.submit()'} )
+          %i.fa.fa-angle-down.select_down
     .detail_search
       詳細検索
       .add_keyword
@@ -47,7 +46,7 @@
     .products-list
       - @products.each do |product|
         - product.product_images.each do |image|
-          = link_to "#" do
+          = link_to product_path(product.id) do
             .product_header
               = image_tag image.url, class: "product_header__img"
             .list-block
