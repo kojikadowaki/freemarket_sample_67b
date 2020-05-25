@@ -3,7 +3,7 @@
     %h1
       = link_to root_path, class: 'signup-header__logo' do
         = image_tag 'logo.png', size: '140x40', alt: 'ロゴ'
-    = render partial: 'progress', locals: { progress: 2 }
+    = render partial: 'devise/registrations/progress', locals: { progress: 2 }
 
   .signup-content
     %h2.signup-title 送付先住所入力
