@@ -105,5 +105,38 @@
             = link_to "#" do
               = icon('fa', 'flag')
               不適切な商品の通報
+  .second_box
+    .second_box__content_sentence
+      .second_box__content_sentence__comment_box
+        - if @comments
+          - @comments.each do |comment|
+            .second_box__content_sentence__comment_box__message_list
+              .second_box__content_sentence__comment_box__message_list__left_box
+                .second_box__content_sentence__comment_box__message_list__left_box__user_name
+                  = link_to comment.user.nickname
+                .second_box__content_sentence__comment_box__message_list__left_box__user_condition
+                  - if comment.user == @product.user
+                    出品者
+                  - else
+              .second_box__content_sentence__comment_box__message_list__right_box
+                .second_box__content_sentence__comment_box__message_list__right_box__comment_markup
+                  = simple_format(comment.text)
+                .second_box__content_sentence__comment_box__message_list__right_box__time
+                  = icon('fa', 'clock')
+                  = comment.created_at.strftime("%Y/%m/%d/ %H:%M")
+        - else
+      .second_box__content_sentence__attention
+        相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退席処分となることがあります。
+      .second_box__content_sentence__comment_form
+        - if user_signed_in?
+          - if @product.status == "購入済み"
+            = form_for [@product, @comment] do |form| 
+              = form.text_area :text, rows: "4", class:"second_box__content_sentence__comment_form--writing_comment"
+              .second_box__content_sentence__comment_form__button
+                = link_to "売り切れのためコメントできません","#", class:"second_box__content_sentence__comment_form__button--sold_out"
+          - else
+            = form_for [@product, @comment] do |form| 
+              = form.text_area :text, rows: "4", class:"second_box__content_sentence__comment_form--writing_comment"
+              = form.submit "コメントをする", class:"second_box__content_sentence__comment_form--submit_button"
+        - else
 = render 'footer'
-

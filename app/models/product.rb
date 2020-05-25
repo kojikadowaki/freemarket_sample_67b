@@ -38,7 +38,7 @@ class Product < ApplicationRecord
   belongs_to :category
   has_one :order, dependent: :destroy
   has_one :buyer_user, through: :orders
-  # has_many :comments, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :product_images, dependent: :destroy
   accepts_nested_attributes_for :product_images, allow_destroy: true
   extend ActiveHash::Associations::ActiveRecordExtensions
