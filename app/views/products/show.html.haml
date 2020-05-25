@@ -127,6 +127,8 @@
         - else
       .second_box__content_sentence__attention
         相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退席処分となることがあります。
+      .second_box__content_sentence__flash
+        = flash[:unsuccess]
       .second_box__content_sentence__comment_form
         - if user_signed_in?
           - if @product.status == "購入済み"
