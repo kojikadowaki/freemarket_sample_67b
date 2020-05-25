@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
   before_action :move_to_index, except: [:index, :show, :search]
   before_action :move_to_show_without_owned_user, only: [:edit, :update]
   before_action :search
+  before_action :set_product, only: [:show, :destroy, :edit, :update]
 
   def index
     @categories = Category.eager_load(children: :children).where(ancestry: nil)
@@ -59,20 +60,21 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
     @product_images = ProductImage.where("product_id = ?", params[:id] )
     @categories = Category.eager_load(children: :children).where(ancestry: nil)
   end
 
+  def destroy
+    @product.destroy
+  end
+  
   def edit
-    @product = Product.find(params[:id])
     @product.product_images.each { |image| image.url.cache! }
     @product.product_images.build
     @category_parent, @category_child, @category_grandchild = @product.category.path
   end
 
   def update
-    @product = Product.find(params[:id])
     existing_images = @product.product_images
     new_images      = params[:product][:product_images_attributes]
     remove_images   = params[:product][:remove_images]
@@ -95,7 +97,6 @@ class ProductsController < ApplicationController
         return
       end
     end
-
     return if @product.update(product_params)
 
     @product.valid?
@@ -126,6 +127,10 @@ class ProductsController < ApplicationController
   def move_to_index
     redirect_to root_path unless user_signed_in?
   end
+
+  def set_product 
+    @product = Product.find(params[:id]) 
+   end 
 
 end
 

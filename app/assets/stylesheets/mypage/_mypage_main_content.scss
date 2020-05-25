@@ -3,6 +3,16 @@ $mainWhite: #fff;
 $mainGray: #ccc;
 $mainLightGray: #eee;
 
+@mixin productStatus {
+  display: inline-block;
+  margin: 0 0 0 7px;
+  padding: 2px 7px;
+  border-radius: 3px;
+  color: $mainWhite;
+  font-size: 12px;
+  font-weight: bold;
+}
+
 @mixin tabsDesign {
   background-color: $mainWhite;
   border: solid 2px;
@@ -11,7 +21,7 @@ $mainLightGray: #eee;
 
 @mixin tabsShape {
   height: 70px;
-  width: 50%;
+  width: calc(700px/2);
   background-color: $mainLightGray;
   float: left;
   line-height: 60px;
@@ -29,7 +39,7 @@ $mainLightGray: #eee;
 
 
 .main__content {
-  height: 100vh;
+  min-height: auto;
   width: 700px;
   position: absolute;
   top: 100px;
@@ -51,17 +61,41 @@ $mainLightGray: #eee;
         left: 44%;
         position: absolute;
         border-radius: 50%;
-        &__name {
-          top: 60%;
-          left: 41%;
-          position: absolute;
-          color: #000;
-          text-align: center;
-          text-decoration: none;
+      }
+    &__name {
+      top: 60%;
+      left: 41%;
+      position: absolute;
+      color: #000;
+      text-align: center;
+      text-decoration: none;
+      &--title {
+        font-weight: bold;
+        font-size: 14px;
+      }
+      .users__products {
+        display: flex;
+        padding-top: 7px;
+        font-size: 13px;
+        &--status {
+          display: flex;
+          padding-right: 20px;
+          &__num {
+            padding-left: 10px;
+            font-weight: bold;
+          }
+        }
+        &--number {
+          display: flex;
+          &__num {
+            padding-left: 10px;
+            font-weight: bold;
+          }
         }
       }
     } 
-  }  
+  }
+}
 
   .notification__tabs {
     background-color: $mainWhite;
@@ -96,6 +130,7 @@ $mainLightGray: #eee;
       text-align: center;
       font-size: 16px;
       padding-bottom: 85px;
+      font-weight: bold;
     }
 
     .tab__content {
@@ -106,14 +141,14 @@ $mainLightGray: #eee;
       &__description { 
         @include between;
         min-height: 80px;
-        padding: 14px;
+        padding: 15px;
         color: $mainBlack;
         &__news {
           float: right;
           margin-left: 15px;
           i {
             color: #696969;
-            margin-top: 3px;
+            margin-top: 5px;
             font-size: 13px;
           }
         }
@@ -151,26 +186,71 @@ $mainLightGray: #eee;
         display: none;
       }
 
-      input[name="tabs2"]:checked + .tab_item2 {
+      input[name="tabs2"]:checked + .tab_exhibition {
         @include tabsDesign; 
       }
 
-      .tab_item2 {
+      .tab_exhibition {
         @include tabsShape;
       }
 
-      .tab__content {
-        height: 350px;
-        background-color: $mainWhite;
-        display: none;
-        padding-top: 150px;
-        color: $mainGray;
-        text-align: center;
-        font-size: 16px;
-      }
-    
-      #now_trading:checked ~ .content1, #past_trading:checked ~ .content2 {
+      #now_dealing:checked ~ .content1, #past_transaction:checked ~ .content2 {
         display: block;
+      }
+
+      .tab__content {
+        display: none;
+        clear: both;
+        overflow: hidden;
+        list-style: none;
+      
+        &__list {
+          background-color: $mainWhite;
+          &__products {
+            border-bottom: solid 0.1px $mainLightGray;
+            display: flex;
+            &--image {
+              padding: 15px;
+            }
+            &--text {
+              font-size: 14px;
+              padding-top: 15px;
+              &__name {
+                padding: 0 0 10px 10px;
+                color: $mainBlack;
+              }
+              &__btn {
+                display: flex;
+                color: #808080;
+                &--favorite__btn {
+                  padding-right: 8px;
+                }
+                &--comment__btn {
+                  padding-right: 8px;
+                }
+                &--status {
+                  &__dealing {
+                    @include productStatus;
+                    background-color: #3CCACE;
+                  }
+                  &__completed {
+                    @include productStatus;
+                    background-color: #888;
+                  }
+                }
+              }
+            }
+          }
+        }
+        &__noproducts {
+          height: 300px;
+          background-color: $mainWhite;
+          padding-top: 100px;
+          color: $mainGray;
+          text-align: center;
+          font-size: 16px;
+          font-weight: bold;
+        }
       }
     }
   }
