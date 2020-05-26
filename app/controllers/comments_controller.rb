@@ -1,8 +1,9 @@
 class CommentsController < ApplicationController
   def create
     comment = Comment.create(comment_params)
+    comment_id = comment.product.id
     if comment.save
-      redirect_to "/products/#{comment.product.id}" 
+      redirect_to product_path(comment_id)
     else
       flash[:unsuccess] = "入力してください"
       redirect_back(fallback_location: root_path )
