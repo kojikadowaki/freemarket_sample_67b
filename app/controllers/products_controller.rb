@@ -49,6 +49,8 @@ class ProductsController < ApplicationController
   def show
     @product_images = ProductImage.where("product_id = ?", params[:id] )
     @categories = Category.eager_load(children: :children).where(ancestry: nil)
+    @comment = Comment.new
+    @comments = @product.comments.includes(:user)
   end
 
   def destroy

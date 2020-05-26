@@ -23,7 +23,7 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:google_oauth2, :facebook, :twitter]
   has_one :profile,          dependent: :destroy
   has_one :shipping_address, dependent: :destroy
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :orders, class_name: "Order", foreign_key: "user_id"
   has_many :products, through: :ordres
   has_many :sns_credentials, dependent: :destroy
