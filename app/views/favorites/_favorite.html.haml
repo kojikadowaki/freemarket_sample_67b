@@ -1,0 +1,10 @@
+- if current_user.already_favorite?(product)
+  = link_to product_favorite_path(product), method: :delete, remote: true do
+    %li.top_content__product_box__bottom--favorite_button
+      = icon('fa', 'star')
+      = "お気に入り #{product.favorite_users.count}"
+- else
+  = link_to "/products/#{product.id}/favorites", method: :post, remote: true do
+    %li.top_content__product_box__bottom--favorite_button
+      = icon('fa', 'star')
+      = "お気に入り #{product.favorite_users.count}"
