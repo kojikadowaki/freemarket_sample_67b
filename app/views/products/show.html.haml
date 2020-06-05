@@ -97,10 +97,7 @@
           %p
       .top_content__product_box__bottom
         %ul.bottom_button
-          %li.top_content__product_box__bottom--favorite_button
-            = link_to "#" do
-              = icon('fa', 'star')
-              お気に入り 0
+          = render partial: 'favorites/favorite', locals: {product: @product}
           %li.top_content__product_box__bottom--warming_button
             = link_to "#" do
               = icon('fa', 'flag')
