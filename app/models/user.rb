@@ -29,7 +29,13 @@ class User < ApplicationRecord
   has_many :sns_credentials, dependent: :destroy
   validates :nickname,
             presence: true,
+
+
             length: { maximum: 20 }
+  def already_favorite?(product)
+    self.favorites.exists?(product_id: product.id)
+  end            
+
 
   def self.from_omniauth(auth)
     sns = SnsCredential.where(provider: auth.provider, uid: auth.uid).first_or_create
