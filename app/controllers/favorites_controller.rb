@@ -1,12 +1,18 @@
 class FavoritesController < ApplicationController
   def create
-    @like = current_user.favorites.create(product_id: params[:product_id])
-    redirect_to root_path
+    @favorite = Favorite.create(favorite_params)
+    
   end
 
   def destroy
-    @like = Like.find_by(product_id: params[:product_id], user_id: current_user.id)
-    @like.destroy
-    redirect_to root_path
+    @favorite = Favorite.find_by(product_id: params[:product_id],user_id: current_user.id)
+    @favorite.destroy
+  
+  end
+
+  private
+  def favorite_params
+    params.permit().merge(user_id: current_user.id, product_id: params[:product_id])
   end
 end
+
