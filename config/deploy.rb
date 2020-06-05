@@ -1,5 +1,5 @@
 # config valid for current version and patch releases of Capistrano
-lock "3.12.1"
+lock "3.14.0"
 
 set :application, "freemarket_sample_67b"
 set :repo_url, "git@github.com:kojikadowaki/freemarket_sample_67b.git"
