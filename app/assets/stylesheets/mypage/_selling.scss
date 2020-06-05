@@ -1,0 +1,130 @@
+*{
+  box-sizing: border-box;
+}
+
+$mainWhite: #fff;
+$mainGray: #ccc;
+$mainLightGray: #eee;
+$mainBlack: #333;
+
+@mixin productStatus {
+  display: inline-block;
+  margin: 0 0 0 7px;
+  padding: 2px 7px;
+  border-radius: 3px;
+  color: $mainWhite;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+@mixin tabsDesign {
+  background-color: $mainWhite;
+  border: solid 2px;
+  border-color: #3CCACE $mainWhite $mainWhite $mainWhite
+}
+
+@mixin tabsShape {
+  height: 70px;
+  width: calc(700px/3);
+  background-color: $mainLightGray;
+  float: left;
+  line-height: 60px;
+  text-align: center;
+  font-weight: bold;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+@mixin between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.exhibition__products {
+  min-height: 100vh;
+  width: 700px;
+  position: absolute;
+  top: 100px;
+  margin: 50px 0 0 520px;
+  &__title {
+    background-color: #f0ffff;
+    padding: 0 16px;
+    font-size: 16px;
+    line-height: 72px
+  }
+
+  &__tabs {
+    background-color: $mainWhite;
+
+    input[name="tabs1"] {
+      display: none;
+    }
+
+    input[name="tabs1"]:checked + .tab_exhibition {
+      @include tabsDesign; 
+    }
+
+    .tab_exhibition {
+      @include tabsShape;
+    }
+
+    #now_selling:checked ~ .content1, #now_dealing:checked ~ .content2, #sold_out:checked ~ .content3 {
+      display: block;
+    }
+  }
+
+  .tab__content {
+    display: none;
+    clear: both;
+    overflow: hidden;
+    list-style: none;
+  
+    &__list {
+      &__products {
+        border-bottom: solid 0.1px $mainLightGray;
+        display: flex;
+        &--image {
+          padding: 15px;
+        }
+        &--text {
+          font-size: 14px;
+          padding-top: 15px;
+          &__name {
+            padding: 0 0 10px 10px;
+            color: $mainBlack;
+          }
+          &__btn {
+            display: flex;
+            color: #808080;
+            &--favorite__btn {
+              padding-right: 8px;
+            }
+            &--comment__btn {
+              padding-right: 8px;
+            }
+            &--status {
+              &__selling {
+                @include productStatus;
+                background-color: #3CCACE;
+              }
+              &__sold {
+                @include productStatus;
+                background-color: #888;
+              }
+            }
+          }
+        }
+      }
+    }
+    &__noproducts {
+      height: 300px;
+      background-color: $mainWhite;
+      padding-top: 100px;
+      color: $mainGray;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+}

@@ -13,6 +13,7 @@
 - has_one :profile, dependent: :destroy
 - has_one :credit_card, dependent: :destroy
 - has_one :shipping_address, dependent: :destroy
+- has_many :sns_credentials, dependent: :destroy
 
 ## profilesテーブル
 |Column|Type|Options|
@@ -69,6 +70,7 @@
 |derivery_fee_payer_id|integer|null: false|
 |derivery_day_id|integer|null: false|
 |derivery_method_id|integer|null: false|
+|status|string|default: "出品中"|
 |category_id|references|null: false, foreign_key: true|
 |user_id|references|null: false, foreign_key: true|
 ### Association
@@ -83,7 +85,7 @@
 - belongs_to_active_hash :derivery_method
 - belongs_to :category
 - has_one :order, dependent: :destroy
-- has_one :buyer_user, through: :orders
+- has_one :user, through: :orders
 
 ## product_imagesテーブル
 |Column|Type|Options|
@@ -134,8 +136,17 @@
 ## ordersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|buyer_user_id|references|null: false, foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
 |product_id|references|null: false, foreign_key: true|
 ### Association
 - belongs_to: user
 - belongs_to: product
+
+## sns_credentialsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id |references|null: false, foreign_key: true|
+|provider|string    |null: false|
+|uid     |string    |null: false|
+### Association
+- belongs_to: user, optional: true

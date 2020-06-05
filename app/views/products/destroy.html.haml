@@ -1,0 +1,14 @@
+.create_wrapper
+  .top-icon
+    = image_tag "logo.png", class: "top-logo"
+  .content
+    .content__wrapper
+      %h2 商品の削除が完了しました！
+      .next-action
+        = link_to '/products/new', class:"exhibition" do
+          出品する
+        = link_to '#', class:"exhibition" do
+          マイページへ
+      = link_to '/products', class:"return-top", method: :get do
+        ホームへ
+        

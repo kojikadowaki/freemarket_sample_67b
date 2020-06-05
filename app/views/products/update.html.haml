@@ -1,0 +1,9 @@
+.create_wrapper
+  .top-icon
+    = image_tag "logo.png", class: "top-logo"
+  .content
+    .content__wrapper
+      %h2 商品の編集が完了しました！
+      .next-action
+        = link_to 'マイページへ', user_path(current_user), class: "exhibition"
+      = link_to 'ホームへ', root_path, class: "return-top"

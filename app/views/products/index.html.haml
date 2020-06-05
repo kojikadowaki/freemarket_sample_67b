@@ -93,10 +93,14 @@
       .products-box
         .products-list
           - @products.limit(3).each do |product|
-            = link_to "#" do
+            = link_to product_path(product.id) do
               .product
                 .product_header
                   = image_tag product.product_images.first.url, class: "products-list__img"
+                    - if product.status == "購入済み"
+                    .products-list__img-sold
+                      .products-list__img-sold__inner
+                        SOLD
                 .list-block
                   .list-block__name
                     = product.name
@@ -117,10 +121,14 @@
       .products-box
         .products-list
           - @brands.limit(3).each do |bland|
-            = link_to "#" do
+            = link_to product_path(bland.id) do
               .product
                 .product_header
                   = image_tag bland.product_images.first.url, class: "products-list__img"
+                    - if bland.status == "購入済み"
+                    .products-list__img-sold
+                      .products-list__img-sold__inner
+                        SOLD
                 .list-block
                   .list-block__name
                     = bland.name

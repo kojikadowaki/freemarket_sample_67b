@@ -42,13 +42,13 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'capistrano'
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
   gem 'pry-rails'
+  gem 'rails-controller-testing'
 end
 
 group :development do
@@ -68,15 +68,13 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'haml-rails'
-
+gem 'faker'
 gem 'rubocop', require: false
 
 gem 'font-awesome-sass'
 gem 'devise'
 gem 'devise-i18n'
 gem 'rails-i18n'
-
-gem 'haml-rails'
 
 gem 'jp_prefecture'
 
@@ -87,3 +85,10 @@ gem 'fog-aws'
 gem 'active_hash'
 gem 'payjp' 
 gem 'gretel'
+gem 'ransack'
+gem 'kaminari'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
+

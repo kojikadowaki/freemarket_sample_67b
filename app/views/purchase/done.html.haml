@@ -1,0 +1,20 @@
+.purchase__done
+  .purchase__done__header
+    = link_to image_tag("logo.png", size: "185x50", class: "buy__product__header--image"), root_path
+
+  .purchase__done__container
+    .purchase__done__container--head
+      %h2 購入が完了しました！
+
+    .purchase__done__container--product__box
+      .purchase__done__container--product__box--image
+        = image_tag(@product.product_images.first.url, size: "90x70", class: "product__image")
+      .purchase__done__container--product__box--info
+        .purchase__done__container--product__box--info__name
+          = @product.name
+        .purchase__done__container--product__box--info__price
+          = number_to_currency(@product.price, format: "%u%n", unit: "¥", precision: 0)
+
+    .back__to__top
+      = link_to "/products", class: "back__to__top--btn", method: :get do
+        トップページへ戻る

@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  ancestry   :string(255)
-#  size       :string(255)      default("")
+#  size       :string(255)      not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -17,4 +17,8 @@ class Size < ApplicationRecord
   has_many :categories, through: :category_sizes
   has_many :category_sizes
   has_ancestry
+
+  def group_list
+    Size.where(ancestry: self.ancestry)
+  end
 end

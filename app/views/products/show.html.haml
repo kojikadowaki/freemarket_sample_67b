@@ -1,0 +1,144 @@
+= render partial: "header"
+.main_box
+  .top_content
+    .top_content__product_box
+      .top_content__product_box__title
+        = @product.name
+      .top_content__product_box__image
+        %ul
+          %li
+            = image_tag @product_images.first.url, class: "top_content__product_box__image--main_image"
+            %ul.photo_box
+              - @product_images.each do |product_image|
+                %li
+                  = image_tag product_image.url, class: "top_content__product_box__image--image_list"
+      .top_content__product_box__price
+        .top_content__product_box__price__info
+          ¥
+          = @product.price
+        .top_content__product_box_price__tax
+          (税込)送料込み
+      .top_content__product_box__text
+        .top_content__product_box__text__content
+          = simple_format(@product.description)
+      .top_content__product_box__info
+        %table
+          %tr 
+            %th
+              出品者
+            %td 
+              = link_to @product.user.nickname, "#"
+          %tr.category
+            %th
+              カテゴリー
+            %td
+              %ul
+                %li
+                  - if @product.category.parent.parent.blank?
+                    %p
+                  - else
+                    = link_to @product.category.parent.parent.name, "#"
+                %li
+                  - if @product.category.parent.name.blank?
+                    %p
+                  - else
+                    = link_to @product.category.parent.name, "#"
+                %li
+                  - if @product.category.blank?
+                    %p
+                  - else
+                    = link_to @product.category.name, "#"
+          %tr
+            %th
+              ブランド
+            %td
+              = @product.brand
+          %tr
+            %th
+              商品サイズ
+            %td
+              - if @product.size.blank?
+                %p
+              - else
+                = @product.size.size
+          %tr
+            %th
+              商品の状態
+            %td
+              = @product.product_condition.product_condition
+          %tr
+            %th
+              送料の負担
+            %td
+              = @product.derivery_fee_payer.derivery_fee_payer
+          %tr
+            %th
+              発送元地域
+            %td
+              = @product.ship_from_location.name
+          %tr
+            %th
+              発送日目安
+            %td
+              = @product.derivery_day.derivery_day
+      .top_content__product_box__buy_button
+        - if user_signed_in? 
+          - if @product.user == current_user
+            %ul.edit_destory
+              %li 
+                = link_to "商品の編集", edit_product_path, class: "top_content__product_box__buy_button--edit_button"
+              %li 
+                = link_to "商品の削除", "/products/#{@product.id}", class: "top_content__product_box__buy_button--destroy_button", method: :delete
+          - elsif @product.status == "購入済み"
+            = link_to "売り切れました", "#" ,class:"disabled-button"
+          - else
+            = link_to "購入画面へ進む", purchase_path, class: "top_content__product_box__buy_button--promote_page"
+        - else 
+          %p
+      .top_content__product_box__bottom
+        %ul.bottom_button
+          %li.top_content__product_box__bottom--favorite_button
+            = link_to "#" do
+              = icon('fa', 'star')
+              お気に入り 0
+          %li.top_content__product_box__bottom--warming_button
+            = link_to "#" do
+              = icon('fa', 'flag')
+              不適切な商品の通報
+  .second_box
+    .second_box__content_sentence
+      .second_box__content_sentence__comment_box
+        - if @comments
+          - @comments.each do |comment|
+            .second_box__content_sentence__comment_box__message_list
+              .second_box__content_sentence__comment_box__message_list__left_box
+                .second_box__content_sentence__comment_box__message_list__left_box__user_name
+                  = link_to comment.user.nickname
+                .second_box__content_sentence__comment_box__message_list__left_box__user_condition
+                  - if comment.user == @product.user
+                    出品者
+                  - else
+              .second_box__content_sentence__comment_box__message_list__right_box
+                .second_box__content_sentence__comment_box__message_list__right_box__comment_markup
+                  = simple_format(comment.text)
+                .second_box__content_sentence__comment_box__message_list__right_box__time
+                  = icon('fa', 'clock')
+                  = comment.created_at.strftime("%Y/%m/%d/ %H:%M")
+        - else
+      .second_box__content_sentence__attention
+        相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退席処分となることがあります。
+      .second_box__content_sentence__flash
+        = flash[:unsuccess]
+      .second_box__content_sentence__comment_form
+        - if user_signed_in?
+          - if @product.status == "購入済み"
+            = form_for [@product, @comment] do |form| 
+              = form.text_area :text, rows: "4", class:"second_box__content_sentence__comment_form--writing_comment"
+              .second_box__content_sentence__comment_form__button
+                = link_to "売り切れのためコメントできません","#", class:"second_box__content_sentence__comment_form__button--sold_out"
+          - else
+            = form_for [@product, @comment] do |form| 
+              = form.text_area :text, rows: "4", class:"second_box__content_sentence__comment_form--writing_comment"
+              = form.submit "コメントをする", class:"second_box__content_sentence__comment_form--submit_button"
+        - else
+= render 'footer'

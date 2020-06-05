@@ -2,12 +2,13 @@
   .header-content
     .header-block
       .header-block__logo
-        = link_to "#", class: "header-block__logo-item" do
+        = link_to root_path, class: "header-block__logo-item" do
           = image_tag "logo.png", size: "140x40", alt: "ロゴ"
       .search
-        %input.search-box{ placeholder: "キーワードから探す" }
-        %button.search-btn{ type: "submit" }
-          = image_tag "icon-search 1.png", class: "serch-icon"
+        = search_form_for @search, url: search_products_path, method: :get do |f|
+          = f.search_field :name_or_description_cont, placeholder: "キーワードから探す", class: "form-box"
+          = f.submit "", class: "form-btn"
+          = image_tag "icon-search 1.png", class: "form-icon"
     .nav-box
       .nav-left
         .nav-category
@@ -38,4 +39,4 @@
           .nav-right__login
             = link_to "ログイン", new_user_session_path, class: "nav-right__login-item"
           .nav-right__new
-            = link_to "新規会員登録", new_user_registration_path, class: "nav-right__new-item"
+            = link_to "新規会員登録", select_sign_up_path, class: "nav-right__new-item"

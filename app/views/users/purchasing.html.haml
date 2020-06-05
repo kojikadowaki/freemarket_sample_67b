@@ -1,0 +1,74 @@
+= render 'products/header'
+= render 'mypage_side_nav'
+
+.purchasing__products
+  .purchasing__products__title 
+    購入した商品
+
+  .purchasing__products__tabs
+    %input#now_dealing{checked: "checked", name: "tabs2", type: "radio"}
+    %label.tab_exhibition{for: "now_dealing"} 
+      取引中
+
+    %input#past_transaction{name: "tabs2", type: "radio"}
+    %label.tab_exhibition{for: "past_transaction"} 
+      過去の取引
+
+
+    #now_dealing.tab__content.content1
+      - if @dealing_products.present?
+        - @dealing_products.each do |product|
+          %li
+          .tab__content__list
+            = link_to product_path(product.id), class: "product__list__detail", method: :get do
+              .tab__content__list__products
+                .tab__content__list__products--image
+                  = image_tag product.product_images.first.url, size: "60x50", class: "product__image"
+
+                .tab__content__list__products--text
+                  .tab__content__list__products--text__name
+                    = product.name
+
+                  .tab__content__list__products--text__btn
+                    .tab__content__list__products--text__btn--favorite__btn
+                      = icon('fa', 'star')
+                      0
+                    .tab__content__list__products--text__btn--comment__btn
+                      = icon('fas', 'comment')
+                      0
+                    .tab__content__list__products--text__btn--status__dealing
+                      取引中
+
+        = paginate @dealing_products
+
+      - else
+        .tab__content__noproducts
+          = image_tag "logo_gray.jpg", size: "70x70", class: "logo_gray_image"  
+          %p.c-txtsp 取引中の商品はありません
+
+    #past_transaction.tab__content.content2
+      - if @orders.present?
+        - @orders.each do |order|
+          %li
+          .tab__content__list
+            = link_to product_path(order.product.id), class: "product__list__detail", method: :get do
+              .tab__content__list__products
+                .tab__content__list__products--image
+                  = image_tag order.product.product_images.first.url, size: "60x50", class: "product__image"
+
+                .tab__content__list__products--text
+                  .tab__content__list__products--text__name
+                    = order.product.name
+
+                  .tab__content__list__products--text__btn
+                    .tab__content__list__products--text__btn--status__completed
+                      取引完了
+
+        = paginate @orders
+
+      - else
+        .tab__content__noproducts
+          = image_tag "logo_gray.jpg", size: "70x70", class: "logo_gray_image"  
+          %p.c-txtsp 過去に取引した商品はありません
+
+= render 'products/footer'

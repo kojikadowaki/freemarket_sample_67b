@@ -7,6 +7,7 @@
 #  description           :text(65535)      not null
 #  name                  :string(255)      not null
 #  price                 :integer          not null
+#  status                :string(255)      default("出品中")
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
 #  category_id           :integer          not null
@@ -38,7 +39,7 @@ class Product < ApplicationRecord
   has_one :order, dependent: :destroy
   has_one :buyer_user, through: :orders
   has_many :comments, dependent: :destroy
-  has_many :product_images
+  has_many :product_images, dependent: :destroy
   accepts_nested_attributes_for :product_images, allow_destroy: true
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :ship_from_location
@@ -47,10 +48,18 @@ class Product < ApplicationRecord
   belongs_to_active_hash :derivery_day
   belongs_to_active_hash :derivery_method
 
-  validates :product_images, presence: true, length: {manimum: 1, maximum: 10}
+  validates :product_images, presence: true, length: { minimum: 1, maximum: 10 }
   validates :name, presence: true, length: { maximum: 40 }
   validates :description, presence: true, length: { maximum: 1000 }
   validates :price,  presence: true, numericality:{ greater_than_or_equal_to: 300, less_than: 9999999 }
   validates :ship_from_location_id, :product_condition_id, :derivery_fee_payer_id, 
   :derivery_day_id, :derivery_method_id, :category, :user_id, presence: true
+
+  def self.search(search)
+    if search
+      Product.where('name collate utf8_unicode_ci LIKE ?', "%#{search}%")
+    else
+      Product.all
+    end
+  end
 end
