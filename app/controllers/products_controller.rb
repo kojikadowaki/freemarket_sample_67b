@@ -5,8 +5,8 @@ class ProductsController < ApplicationController
 
   def index
     @categories = Category.eager_load(children: :children).where(ancestry: nil)
-    @products   = Product.all.order("created_at DESC").where.not(product_status_id: 2)
-    @brands     = Product.all.order("created_at DESC").where.not(brand: nil).where.not(product_status_id: 2)
+    @products   = Product.all.order("created_at DESC")
+    @brands     = Product.all.order("created_at DESC").where.not(brand: nil)
   end
   
   def new
