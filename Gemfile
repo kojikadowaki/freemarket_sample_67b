@@ -84,11 +84,9 @@ gem 'mini_magick'
 gem 'fog-aws'
 gem 'active_hash'
 gem 'payjp' 
-
+gem 'gretel'
 gem 'ransack'
-
 gem 'kaminari'
-
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
