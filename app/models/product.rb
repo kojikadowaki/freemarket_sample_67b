@@ -15,7 +15,6 @@
 #  derivery_fee_payer_id :integer          not null
 #  derivery_method_id    :integer          not null
 #  product_condition_id  :integer          not null
-#  product_status_id     :integer          not null
 #  ship_from_location_id :integer          not null
 #  size_id               :integer
 #  user_id               :integer          not null
