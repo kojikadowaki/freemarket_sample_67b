@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200520085110) do
+ActiveRecord::Schema.define(version: 20200606063246) do
 
   create_table "cards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id",     null: false
@@ -79,7 +79,6 @@ ActiveRecord::Schema.define(version: 20200520085110) do
     t.datetime "created_at",                                          null: false
     t.datetime "updated_at",                                          null: false
     t.string   "brand"
-    t.integer  "product_status_id",                                   null: false
     t.integer  "derivery_method_id",                                  null: false
     t.string   "status",                              default: "出品中"
     t.index ["category_id"], name: "index_products_on_category_id", using: :btree
