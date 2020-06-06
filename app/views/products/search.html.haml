@@ -45,18 +45,18 @@
     検索結果
     .products-list
       - @products.each do |product|
-        - product.product_images.each do |image|
-          = link_to product_path(product.id) do
-            .product_header
-              = image_tag image.url, class: "product_header__img"
-            .list-block
-              .list-block__name
-                = product.name
-              .price
-                %ul
-                  %li
-                    = "#{product.price}円"
-                  %li
-                    %i.fas.fa-star 0
-                %p (税込)
+      
+        = link_to product_path(product.id) do
+          .product_header
+            = image_tag product.product_images.first.url, class: "product_header__img"
+          .list-block
+            .list-block__name
+              = product.name
+            .price
+              %ul
+                %li
+                  = "#{product.price}円"
+                %li
+                  %i.fas.fa-star 0
+              %p (税込)
 = render partial: "footer"
