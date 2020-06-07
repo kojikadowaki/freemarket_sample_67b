@@ -12,9 +12,13 @@
   margin-right: 100px;
   background-color: #f8f8f8;
 }
+.select_search {
+  display:none;
+}
 
 .select_box {
   position: relative;
+  z-index: 2;
 }
   #q_sorts::-ms-expand {
     display: none;

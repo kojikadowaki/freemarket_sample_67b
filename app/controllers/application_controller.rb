@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
       @search = Product.ransack()
       @products = Product.all
     end
-    @categories = Category.eager_load(children: :children).where(ancestry: nil)
+      @categories = Category.eager_load(children: :children).where(ancestry: nil)
   end
 
   private

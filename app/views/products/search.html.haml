@@ -3,6 +3,7 @@
   .left_bar
     .select
       = search_form_for @search, url: search_products_path do |f|
+        = f.search_field :name_or_description_cont, class: "select_search"
         .select_box
           = f.select( :sorts, { '並び替え': 'id desc', '価格の安い順': 'price asc', '価格の高い順': 'price desc', '出品の古い順': 'updated_at asc', '出品の新しい順': 'updated_at desc' } , { selected: params[:q][:sorts] }, { onchange: 'this.form.submit()'} )
           %i.fa.fa-angle-down.select_down
@@ -45,7 +46,6 @@
     検索結果
     .products-list
       - @products.each do |product|
-      
         = link_to product_path(product.id) do
           .product_header
             = image_tag product.product_images.first.url, class: "product_header__img"
