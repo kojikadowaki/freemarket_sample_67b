@@ -1,6 +1,7 @@
 .wrapper
   .top-icon
-    = image_tag "logo.png", class: "top-logo"
+    = link_to root_path do
+      = image_tag "logo.png", class: "top-logo"
   .form
     = form_for @product do |f|
       #image-box
@@ -124,4 +125,4 @@
         #product-price__wrapper--bottom
           = f.submit '修正する', class: 'send-btn'
           = f.hidden_field :product_status_id, :value => 1
-          = link_to 'もどる', root_path, class: "return-top"
+          = link_to 'トップへもどる', root_path, class: "return-top"
