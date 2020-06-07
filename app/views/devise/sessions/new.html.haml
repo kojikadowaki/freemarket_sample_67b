@@ -12,10 +12,11 @@
     .registration
       %p アカウントをお持ちでない方はこちら
       = link_to '新規会員登録', select_sign_up_path, class: 'registration__button'
-    .registration
-      = link_to 'Facebookでログイン', user_facebook_omniauth_authorize_path, method: :post, class: 'registration__button--facebook'
-      = link_to 'Twitterでログイン', user_twitter_omniauth_authorize_path, method: :post, class: 'registration__button--twitter'
-      = link_to 'Googleでログイン', user_google_oauth2_omniauth_authorize_path, method: :post, class: 'registration__button--google'
+    - if Rails.env == 'development'
+      .registration
+        = link_to 'Facebookでログイン', user_facebook_omniauth_authorize_path, method: :post, class: 'registration__button--facebook'
+        = link_to 'Twitterでログイン', user_twitter_omniauth_authorize_path, method: :post, class: 'registration__button--twitter'
+        = link_to 'Googleでログイン', user_google_oauth2_omniauth_authorize_path, method: :post, class: 'registration__button--google'
 
     = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'signup-form' }) do |f|
       .signup-form__field

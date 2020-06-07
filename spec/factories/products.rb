@@ -42,7 +42,6 @@ FactoryBot.define do
     derivery_fee_payer_id {"1"}
     derivery_method_id    {"1"}
     product_condition_id  {"1"}
-    product_status_id     {"1"}
     ship_from_location_id {"1"}
     # size_id             {"5"}
     # category_id         {7851}                  
@@ -64,7 +63,6 @@ FactoryBot.define do
     derivery_fee_payer_id {"1"}
     derivery_method_id    {"1"}
     product_condition_id  {"1"}
-    product_status_id     {"1"}
     ship_from_location_id {"1"}
     size_id               {"5"}
     category_id           {7851}

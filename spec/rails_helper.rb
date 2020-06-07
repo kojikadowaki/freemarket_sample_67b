@@ -36,9 +36,6 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 
-require 'devise'
-require File.expand_path("spec/support/controller_macros.rb")
-
 OmniAuth.config.test_mode = true
 
 RSpec.configure do |config|
@@ -72,6 +69,5 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :view
-  config.include Devise::TestHelpers, type: :controller
   config.include ControllerMacros, type: :controller
 end

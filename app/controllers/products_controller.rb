@@ -99,7 +99,7 @@ class ProductsController < ApplicationController
   def product_params
     params.require(:product).permit(
       :name, :price, :description, :ship_from_location_id, 
-      :product_condition_id, :product_status_id, :derivery_fee_payer_id, :derivery_day_id, :derivery_method_id,
+      :product_condition_id, :derivery_fee_payer_id, :derivery_day_id, :derivery_method_id,
       :category_id, :size_id, :brand,
       product_images_attributes: [:id, :url, :url_cache]).merge(user_id: current_user.id)
   end
