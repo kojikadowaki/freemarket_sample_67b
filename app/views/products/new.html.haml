@@ -1,7 +1,8 @@
 
 .wrapper
   .top-icon
-    = image_tag "logo.png", class: "top-logo"
+    = link_to root_path, class: "header-block__logo-item" do
+      = image_tag "logo.png", class: "top-logo"
   .form
     = form_for [@product] do |f|
       #image-box
