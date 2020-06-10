@@ -25,6 +25,7 @@ $(function() {
     }
   }
 
+  set_birthday_selectbox();
   $(CLASS_SELECT_YEAR).on('change', set_birthday_selectbox);
   $(CLASS_SELECT_MONTH).on('change', set_birthday_selectbox);
 });
