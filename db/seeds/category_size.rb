@@ -105,7 +105,7 @@ end
 n = 245
 8.times do 
   CategorySize.create!(
-    category_id: n, size_id: 52
+    category_id: n, size_id: 29
   )
   n += 1
 end
